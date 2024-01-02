@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_데이터 입출력</title>
+
+    <style>
+        #area3{
+            width: 200px;
+            height: 65px;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .text-red{ color : red; }
+        .text-green{ color : green; }
+
+
+
+    </style>
+
+</head>
+<body>
+    <h3>document.write('내용');</h3>
+    
+    <script>
+        // script 태그는 body태그 마지막에 적는게 좋지만
+        // 수업내용과의 연관성을 나타내기위해
+        // 필기한 내용 밑에다가 작성함.
+
+        document.write("document.write()로 출력한 내용");
+        // document : 현재 HTML 문서(현재 페이지)
+
+        /*
+            script 태그 내에서 코드가 function() 내에 작성되지 않은 경우
+            브라우저가 HTML 문서를 위->아래로 차례대로 해석할 때
+            document.write() 구문을 바로 해석해서 화면에 출력되게됨.
+        */
+    </script>
+
+    <button type="button" onclick="writeFn();">writeFn() 함수 호출</button>
+    <script>
+        function writeFn(){
+            document.write("HTML 문서가 완전히 로드된 후 " 
+                           +"document.write() 함수를 호출하게 되면 "
+                           +"기존에 작성된 HTML 문서의 내용을 모두 삭제한 후 출력됨.");
+        }
+    </script>    
+
+    <hr>
+
+    <h3>innerText / innerHTML 을 이용한 요소 내용 입/출력</h3>
+    <p id="area1">
+        자바스크립트에서 요소에 작성된 내용을 읽거나 변경할 때 <br><br>
+        innerText 라는 속성을 사용한다.
+    </p>
+
+    <p id="area2">
+        요소 내용 전체(태그 + 속성 + 내용)를 읽거나 변경할 때
+        innerHTML 이라는 속성을 사용한다. <br><br>
+
+        + 태그모양 문자열을 실제 태그로 해석할 수 있게함.
+    </p>
+
+    <button type="button" onclick="check1();">innerText 확인하기</button>
+    <button type="button" onclick="check2();">innerHTML 확인하기</button>
+    <br>
+    <button type="button" onclick="reset1();">innerText 초기화</button>
+    <button type="button" onclick="reset2();">innerHTML 초기화</button>
+
+    <script>
+        function check1(){ 
+
+            // 현재 문서 내에서 id 속성값이 "area1" 인 요소를 얻어와
+            // area1 이라는 이름의 변수에 저장(대입);
+            var area1 = document.getElementById("area1");
+
+            // 자바스크립트는 별도의 변수 자료형이 없음.
+            // -> 저장되는 값에 따라 변수 자료형이 결정됨.
+            // var(variable) : 변수 선언하겠다.
+
+            // 정말 id가 "area1"인 요소를 얻어와 저장했는지 확인
+            console.log(area1);
+
+            // id가 "area1" 인 요소에 작성된 내용(content)만 얻어와서 console에 출력
+            console.log( area1.innerText ); // innerText가 getter로 사용됨
+
+            // id가 "area1"인 요소에 작성된 내용을 변경하여 화면에 출력
+            area1.innerText = "<h4>innerText로 인해 내용이 변경됨</h4>";
+             // innerText가 setter로 사용됨
+        }
+
+
+        function check2(){
+            // 문서 내에서 id 속성값이 "area2"인 요소를 얻어와 변수 area2에 저장
+            var area2 = document.getElementById("area2");
+
+            // id가 area2인 요소를 잘 얻어왔나 확인
+            console.log(area2);
+
+            // id가 area2인 요소 내용 전체를 콘솔에 출력
+            console.log(area2.innerHTML);
+
+            // id가 area2인 요소의 내용을 변경(태그가 인식되는지 확인!)
+            area2.innerHTML = "<hr><h4>innerHTML로 변경한 내용</h4>";
+        }
+
+
+        // id가 area1인 요소의 태그까지 포함된 모든 내용을 얻어와 content1 변수에 저장
+        var content1 = document.getElementById("area1").innerHTML;
+        var content2 = document.getElementById("area2").innerHTML;
+        // function 안에 작성되지 않은 코드는 HTML 문서 로딩 시 바로 해석됨.
+        // --> HTML 문서가 로딩되면서 area1,2에 작성된 내용이 바로 변수에 저장됨.
+        //  == 처음에 적어둔 설명이 변수에 저장되어있다
+
+        function reset1(){
+            document.getElementById("area1").innerHTML = content1;
+        }
+
+        function reset2(){
+            document.getElementById("area2").innerHTML = content2;
+        }
+    </script>
+
+
+    <hr>
+    <h5>innerHTML 간단 응용</h5>
+    <div id="test1">
+        <input type="text"> 
+        <button type="button" onclick="add()">추가</button>
+    </div>
+    <div id="test2"></div>
+
+    <script>
+        function add(){
+            document.getElementById("test2").innerHTML =
+                document.getElementById("test1").innerHTML;
+        }
+    </script>
+
+    <hr>
+
+    <h3>window.confirm("내용")을 이용한 데이터 입력</h3>
+    <pre>
+        어떤 질문에 대한 "예" / "아니요" 결과를 얻고자 할 때 사용하는 함수.
+        (확인/취소)
+        -> 선택 결과에 따라 true 또는 false가 입력됨
+    </pre>
+
+    <button type="button" onclick="confirmTest()">확인 버튼</button>
+  
+    <br>
+    <div id="area3"></div>
+    <button type="button" onclick="confirmTest2()">문제 출제</button>
+
+    <script>
+        function confirmTest(){
+            console.log( window.confirm("아래 버튼 중 하나 클릭.") );
+        }
+
+        function confirmTest2(){
+            var answer = window.confirm("자바스크립트는 컴파일 방식의 객체 지향 언어이다.");
+
+            var area3 = document.getElementById("area3");
+
+            if(answer){ 
+                area3.innerHTML = "<h5 class='text-red'>틀렸습니다.</h5>";
+                
+            }else{  
+                area3.innerHTML = "<h5 class='text-green'>정답입니다.</h5>";
+            }
+        }
+    </script>
+
+    <hr>
+
+    <h3>window.prompt() 를 이용한 데이터 입력</h3>
+    <p>
+        텍스트를 적을 수 있는 필드와 확인/취소 버튼이 있는 대화 상자를 출력.<br><br>
+        
+        텍스트를 입력한 후 확인 버튼을 누르면 입력된 텍스트가 반환된다.
+    </p>
+
+    <button type="button" onclick="testPrompt1();">확인하기</button>
+    
+
+    <div id="area4"> </div>
+    <button type="button" onclick="testPrompt2();">이름 입력 하기</button>
+
+
+    <script>
+        function testPrompt1(){
+            console.log(  window.prompt("아무 단어나 입력하세요.")  );
+        }
+
+
+        function testPrompt2(){
+            var input = window.prompt("이름을 입력하세요.");
+                // -> 확인 클릭 시 : 입력한 이름
+                // -> 취소 클릭 시 : null
+
+            var area4 = document.getElementById("area4");
+
+            if( input != null ){ // 확인 클릭 시
+                area4.innerHTML = "<h5 class='text-green'>확인 클릭</h5>";
+
+                area4.innerHTML += "<span class='text-green'>" + input +  "</span>" 
+                                                                        + "님 환영합니다.";
+                // +=   -> 기존 내용 뒤에 이어쓰기
+
+            } else { // 취소 클릭 시
+                area4.innerHTML = "<h5 class='text-red'>취소 클릭</h5>";
+            }
+        }
+    </script>
+
+
+</body>
+</html>

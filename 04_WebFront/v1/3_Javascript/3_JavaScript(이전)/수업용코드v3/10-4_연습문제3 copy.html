@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_연습문제_2</title>
+</head>
+<body>
+    <button type="button" id="add">추가</button>
+    <button type="button" id="sum">합</button>
+    <button type="button" id="avg">평균</button>
+    <button type="button" id="reset">초기화</button><br><br>
+
+    <table id="wrapper">
+        <tr>
+            <td>1번째 입력 : </td>
+            <td><input type="number" class="inputNumbers"><br></td>
+        </tr>
+    </table>
+    <div id="printArea"></div>
+
+
+    <script>
+        var count = 0;
+        var str = "<tr><td>" + ++count + "번째 입력 : </td>"
+        var input = '<td><input type="number" class="inputNumbers"></td></tr>';
+        
+        document.getElementById("add").onclick = function(){
+
+            document.getElementById("wrapper").innerHTML += str + input;
+        }
+        
+        document.getElementById("reset").onclick = function(){
+            count = 0;
+
+            //var str = ++count + "번째 입력 : "
+            //var input = '<input type="number" class="inputNumbers"><br>';
+
+            document.getElementById("wrapper").innerHTML = str + input;
+            document.getElementById("printArea").innerHTML = "";
+
+        }
+
+
+        document.getElementById("sum").onclick = function(){
+            document.getElementById("printArea").innerHTML = "<h3>합계 : " + calcSum() + "</h3>";
+        }
+
+        document.getElementById("avg").onclick = function(){
+            document.getElementById("printArea").innerHTML = "<h3>평균 : " + calcAvg() + "</h3>";
+        }
+
+        function calcSum(){
+            var arr = document.getElementsByClassName("inputNumbers");
+            
+            var sum = 0;
+            
+            for(var item of arr){
+                sum += item.value;
+            }
+
+            return sum;
+        }
+
+        function calcAvg(){
+            var arr = document.getElementsByClassName("inputNumbers");
+            return calcSum()/arr.length;
+        }
+
+
+
+    </script>
+</body>
+</html>

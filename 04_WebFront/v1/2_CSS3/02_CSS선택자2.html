@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_CSS 선택자2</title>
+
+    <style>
+        /* 기본 속성 선택자 */
+        div[name="n1"]{ /* div 태그 중 name 속성값이 "n1"인 태그 선택*/
+            background-color: orangered;
+        }
+
+        .cls1[name="n2"]{
+            /* 클래스가 cls1인 요소 중 name 속성값이 "n2"인 요소 선택*/
+            background-color: blue;
+        }
+
+        /* 자식(자손) 선택자 */
+        #test1 > h4{
+            /* 아이디가 test1인 요소의 자식 중 h4 태그 선택 */
+            background-color: orange;
+        }
+
+        /* 아이디가 test1인 요소의 자식 중 ul 태그의 배경색을 yellow로 지정 */
+        #test1 > ul{
+            background-color: yellow;
+        }
+
+        /*아이디가 test1인 요소의 자식 중 h4, ul 태그 선택*/
+        /*#test1 > h4,  #test1 > ul{
+            font-style: italic;
+        }*/
+
+        #test1 > *{
+            /* 아이디가 test1인 요소의 모든 자식 선택*/
+            font-style: italic;
+        }
+
+        /* 후손 선택자 */
+        #test1 li{
+            /* 아이디가 test1인 요소 내부에 작성된 모든 li 태그 선택*/
+            font-style: normal;
+        }
+
+        #test1 *{
+            /* 아이디가 test1인 요소 내부에 작성된 모든 태그 선택 */ 
+            color : red;
+        }
+
+
+        /* 반응 선택자 */
+        .div-cls{
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+            border: 1px solid black;
+        }
+
+        #div1:active{
+            /* 아이디가 div1인 요소가 클릭되고 있을 때 */
+            background-color: aqua;
+            width: 190px;
+            height: 190px;
+            cursor: pointer;
+        }
+
+        #div2:hover{
+           /* 아이디가 div2인 요소에 마우스가 올라갔을 때 */
+           background-color: yellow;
+           width: 210px;
+           height: 210px;
+        }
+
+        /* 상태 선택자 */
+        input[name="fruits"]:checked{
+            /* input 태그 중 name 속성값이 "fruits"인 태그의 상태가 체크로 변했을 때*/
+            width: 20px;
+            height: 20px;
+        }
+
+        #text1:focus{
+            /* 아이디가 text1인 요소에 포커스가 맞춰진 상태인 경우*/
+            background-color: greenyellow;
+        }
+
+        option:disabled{
+            /* 비활성화된 모든 option 태그 선택 */
+            background-color: gray;
+            color: white;
+        }
+
+        option:enabled{
+            /* 활성화된 모든 option 태그 선택 */
+            font-weight: bold; /*글자 굵게*/
+        }
+
+        /* 동위 선택자 */
+        #div-test1 + div{
+            /* 아이디가 div-test1 인 요소 바로 뒤에오는 div 태그 선택*/
+            background-color: springgreen;
+        }
+
+        #div-test3 ~ div{
+            /* 아이디가 div-test3 인 요소 뒤에 있는 모든 div 태그 선택*/
+            background-color: pink;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <h3>기본 속성 선택자</h3>
+    <pre>
+        태그 내에 작성되는 내용 중
+        태그명을 제외한 부분을 속성이라고 함.
+
+        ex) &lt;p id="test" class="cls1" name="p1" &gt;
+        
+        id, class, name == 속성
+
+        "test", "cls1", "p1" == 속성 값
+
+
+        선택자[속성="속성값"]{ css 설정 코드; }
+    </pre>
+
+    <div name="n1" class="cls1">div 1</div>
+    <div name="n1">div 2</div>
+    <div name="n2">div 3</div>
+    <div name="n2" class="cls1">div 4</div>
+
+
+    <hr>
+    <h3>후손 선택자와 자손 선택자</h3>
+    <pre>
+        자손 선택자 : 바로 아래있는 하위 요소를 선택
+        선택자 > 선택자 { 설정 내용; }
+
+
+        후손 선택자 : 모든 하위 요소를 선택
+        선택자 선택자 { 설정 내용; }
+    </pre>
+
+    <div id="test1">
+        <h4>test1의 자손</h4>
+        <h4>이 태그도 test1의 자손(자식)일까?</h4>
+
+        <ul id="test2"> 나도 test1의 자식이다
+            <li> list 1 </li>
+            <li> list 2 </li>
+        </ul>
+    </div>
+
+
+    <hr>
+    <h3>반응 선택자</h3>
+    <pre>
+        사용자의 움직임에 따라 달라지는 선택자
+
+        - 사용자가 요소를 클릭하고 있는 경우  (:active)
+        - 사용자가 요소에 마우스를 올려두는 경우 (:hover)
+    </pre>
+
+    <div class="div-cls" id="div1">active 테스트</div>
+    <div class="div-cls" id="div2">hover 테스트</div>
+
+
+    <hr>
+    <h3>상태 선택자</h3>
+    <pre>
+        입력 양식의 상태에 따라 선택되는 선택자
+        (checked, focus, enabled/disabled)
+    </pre>
+
+    <h5>체크 상태에 따른 선택자 :checked</h5>
+    <input type="checkbox" name="fruits"> 사과 <br>
+    <input type="checkbox" name="fruits"> 바나나 <br>
+    <input type="checkbox" name="fruits"> 복숭아 <br>
+
+
+    <h5>초점이 맞춰진 상태에 따른 선택자 :focus</h5>
+    <input type="text" id="text1">
+
+    <h5>사용 가능한 input 태그 선택자 :enabled</h5>
+    <h5>사용 불가능한 input 태그 선택자 :disabled</h5>
+
+    <label>연령대 선택 : </label>
+    <select>
+        <!-- disabled : 비활성화 -->
+        <option disabled >10대</option>
+        <option>20대</option>
+        <option>30대</option>
+        <option>40대</option>
+        <option>50대</option>
+        <option disabled>60대</option>
+    </select>
+
+
+    <hr>
+    <h3>동위 선택자</h3>
+    <pre>
+        동위 관계(동일한 위치)에서 뒤에 위치한 요소를 선택하는 선택자
+        
+        바로 뒤에 하나 선택 :  선택자a + 선택자b{ 설정내용; }
+
+        뒤에 있는 모든 요소 선택 : 선택자a ~ 선택자b{ 설정내용; }
+    </pre>
+
+    <div id="div-test1">div-test1</div>
+    <div id="div-test2">div-test2</div>
+    <div id="div-test3">div-test3</div>
+    <div id="div-test4">div-test4</div>
+
+    <p>관련없는 p태그 ~</p>
+
+    <div id="div-test5">div-test5</div>
+
+
+</body>
+</html>

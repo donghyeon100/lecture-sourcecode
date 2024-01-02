@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area {
+		height:100px;
+		background:lightgray;
+		border:1px solid black;
+	}
+</style>
+</head>
+<body>
+	<h1>캡슐화와 상속</h1>
+	<h3>캡슐화</h3>
+	<p>생성자 함수에서 속성 선언 시 <br> 
+		this 키워드를 사용하지 않고 지역변수로 선언.<br><br>
+		
+		캡슐화된 객체의 속성은 직접 접근할 수 없으므로<br>
+		간접 접근할 수 있도록 this 키워드를 사용하여 get/setter 메소드 작성
+		</p>
+	<button onclick="test1();">실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function GirlGroup(gn, mc, m){
+			var groupName = gn;
+			var memberCount = mc;
+			var members = m;
+			
+			this.getGroupName = function(){
+				return groupName;
+			}
+			this.getMemberCount = function(){
+				return memberCount;
+			}
+			this.getMembers = function(){
+				return members;
+			}
+			
+			this.setGroupName = function(gn){
+				groupName = groupName;
+			}
+			this.setMemberCount = function(mc){
+				memberCount = mc;
+			}
+			this.setMembers = function(m){
+				members = m;
+			}
+		} 
+		
+		function test1(){
+			var gn = '소녀시대';
+			var mc = 9;
+			var m = ['태연', '서현', '티파니', '써니', '수영', '유리', '윤아', '제시카', '효연'];
+			
+			// 생성자 함수를 이용하여 객체 생성
+			var girlsGeneration = new GirlGroup(gn ,mc, m);
+			
+			// 객체 정보를 console에서 조회
+			console.log(girlsGeneration);
+			
+			// 객체의 속성에 직접 접근해보기
+			console.log(girlsGeneration.groupName); // undefined
+			
+			//girlsGeneration.groupName = "방탕소년단";
+			
+			// 객체에 간접 접근해보기
+			console.log(girlsGeneration.getGroupName());
+
+			// 객체에 간접 접근해서 탈퇴 멤버 삭제
+			girlsGeneration.getMembers().splice(
+				girlsGeneration.getMembers().indexOf('제시카'),1);
+			girlsGeneration.setMemberCount(8);
+			
+			var area1 = document.getElementById("area1");
+			with(girlsGeneration){
+				area1.innerHTML += "그룹명 : " + getGroupName() + "<br>";
+				area1.innerHTML += "멤버수 : " + getMemberCount() + "<br>";
+				area1.innerHTML += "멤버 : " + getMembers() + "<br>";
+			}
+			
+			
+		}
+	</script>
+	
+	<hr>
+	
+	<h3>상속</h3>
+	<p>자바스크립트에는 Class 가 존재하지 않아 자바와 같은 상속을 할 수 없음<br>
+		대신 prototype이라는 것을 이용하여 상속과 비슷한 효과를 낼 수 있음.
+	</p>
+
+	<h3>프로토타입</h3>as2112<br>
+		자바스크립트에서 객체와 객체를 연결하여 속성, 메소드를 공유함.<br>
+		(단, 공유한 정보는 한쪽 방향으로만 공유됨.) <br><br>
+
+		프로토타입(prototype)다음 두 가지로 이루어짐 <br>
+		- __proto__ (Prototype Link): 상위 객체로 부터 물려받은 프로토타입 정보<br>
+		- prototype (Prototype Object): 하위 객체로 물려줄 프로토 타입 정보.(현재 객체 정보)<br>
+		console.log(객체); 호출 시 개발자 도구에서 확인 가능
+
+	</p>
+
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+
+		// 캡슐환된 Book 생성자 함수
+		function Book(t, p, dr){
+			var title = t;
+			var price = p;
+			var discountRate = dr
+			
+			this.getTitle = function(){
+				return title;
+			}
+			this.getPrice = function(){
+				return price;
+			}
+			this.getDiscountRate = function(){
+				return discountRate;
+			}
+			
+			this.setTitle = function(t){
+				title = t;
+			}
+			this.setPrice = function(p){
+				if(p < 0){
+					throw '가격은 음수값을 가질 수 없습니다.';
+				}else{
+					price = p;
+				}
+			}
+			this.setDiscountRate = function(dr){
+				if(t < 0){
+					throw '할인율은 음수값을 가질 수 없습니다.';
+				}else{
+					discountRate = dr;
+				}
+			}
+			
+			/*
+			this.getSellPrice = function(){
+				return this.getPrice() * (1 - this.getDiscountRate());
+			}*/
+		}
+		
+
+		// Book 객체 정보를 나타내는 prototype에 함수 속성 추가.
+		// 바로 위에 주석처리된 this.getSellPrice 와 같은 기능을 함.
+		Book.prototype.getSellPrice = function(){
+			return this.getPrice() * (1 - this.getDiscountRate());
+		}
+		
+		
+		function test2(){
+			var book1 = new Book('자바의정석', 35000, 0.15);
+
+			console.log(book1);
+
+			document.getElementById("area2").innerHTML = 
+					"title : " + book1.getTitle() 
+					+ " sellPrice : " + book1.getSellPrice();
+			
+		}	
+	</script>
+	<br>
+
+	<button onclick="test3();">상속 확인</button>
+	<div id="area3" class="area"></div>
+	<script>
+		function Novel(t, p, dr, tp){
+			// Book 생성자 함수를 가져 지역변수에 담음.
+			this.base = Book;
+			console.log(Book);
+
+			// 가져온 Book 생성자 함수를 호출하여 객체 생성
+			this.base(t, p, dr);
+			
+			// 접근 제한된 속성 선언.
+			var type = tp;
+			
+			// 간접 접근을 위한 get/setter 생성
+			this.getType = function(){
+				return type;
+			}
+			this.setType = function(tp){
+				type = tp;
+			}
+			
+		}
+		
+		console.log(Book.prototype);
+
+		Novel.prototype = new Book();;
+		console.log(Novel.prototype);
+		
+		function test3(){
+			var novel1 = new Novel('나무', 30000, 0.2, '소설');
+
+			document.getElementById("area3").innerHTML = 
+				"title : " + novel1.getTitle() 
+				+ " sellPrice : " + novel1.getSellPrice() 
+				+ " type : " + novel1.getType();
+		}
+		
+	</script>
+	
+</body>
+</html>

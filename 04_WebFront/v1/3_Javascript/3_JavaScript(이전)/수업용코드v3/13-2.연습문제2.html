@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16_연습문제_3</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 60px;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 700px;
+            height: 500px;
+        }
+
+        .area {
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tr>th:first-of-type {
+            width: 50px;
+        }
+
+        .wrapper>h3 {
+            margin-left: 60px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h3>학생 점수 관리 프로그램</h3>
+        <div class="area" id="area1">
+            <table id="stdList" border="1">
+                <tr>
+                    <th>이름</th>
+                    <th>Java</th>
+                    <th>Oracle</th>
+                    <th>JDBC</th>
+                    <th>HTML</th>
+                    <th>합계</th>
+                    <th>평균</th>
+                </tr>
+            </table>
+        </div>
+        <div class="area" id="area2">
+            <label for="sName">이름 : </label>
+            <input type="text" name="sName" id="sName" class="stdInfo"><br>
+            <label for="Java">Java : </label>
+            <input type="number" name="Java" id="Java" class="stdInfo"><br>
+            <label for="Oracle">Oracle : </label>
+            <input type="number" name="Oracle" id="Oracle" class="stdInfo"><br>
+            <label for="JDBC">JDBC : </label>
+            <input type="number" name="JDBC" id="JDBC" class="stdInfo"><br>
+            <label for="HTML">HTML : </label>
+            <input type="number" name="HTML" id="HTML" class="stdInfo">
+            <button type="button" id="btn">추가</button>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
+        document.getElementById("btn").onclick = function () {
+            var stdInfo = document.getElementsByClassName("stdInfo");
+            console.log(stdInfo);
+
+            var std = new Student(stdInfo);
+            //console.log(std);
+
+            with (std) {
+                var el = "<tr>";
+                el += "<td>" + name + "</td>";
+                el += "<td>" + java + "</td>";
+                el += "<td>" + oracle + "</td>";
+                el += "<td>" + jdbc + "</td>";
+                el += "<td>" + html + "</td>";
+                el += "<td>" + getSum() + "</td>";
+                el += "<td>" + getAvg() + "</td>";
+                el += "</tr>";
+
+                document.getElementById("stdList").innerHTML += el;
+            }
+
+        };
+
+        function Student(stdInfo) {
+            // 속성 정의
+            this.name = stdInfo[0].value;
+            this.java = Number(stdInfo[1].value);
+            this.oracle = Number(stdInfo[2].value);
+            this.jdbc = Number(stdInfo[3].value);
+            this.html = Number(stdInfo[4].value);
+
+            // 합계
+            this.getSum = function () {
+                return this.java + this.oracle + this.jdbc + this.html;
+            }
+
+            // 평균
+            this.getAvg = function () {
+                return this.getSum() / 4;
+            }
+
+            // toString() 오버라이딩
+            this.toString = function () {
+                return this.name + "의 점수 정보 입니다 : " + this.java + " / " + this.oracle
+                    + " / " + this.jdbc + " / " + this.html + "<br>";
+            }
+        }   
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>문제해결 1-2</title>
+</head>
+
+<body>
+   <fieldset>
+      <form type="get" url="result.html">
+         <p>회원여부:
+            <input type="radio" name="member" value="yes" checked>회원
+            <input type="radio" name="guest" value="no">비회원<br>
+
+         <p>취미(중복선택) :
+            독서
+            영화
+            음악
+            스포츠
+         </p>
+
+         <p>
+            직업: <select name="job">
+               <option value="student">학생</option>
+               <option value="company">회사원</option>
+               <option value="teacher">교사</option>
+               <option value="sales">자영업</option>
+               <option value="others">기타</option>
+            </select>
+         </p>
+
+         <p> 남기고 싶은 말 : <br>
+            <textarea name="message" placeholder="150자 내외로 글을 남겨주세요."></textarea>
+         </p>
+            초기화
+            전송
+      </form>
+   </fieldset>
+</body>
+</html>
+

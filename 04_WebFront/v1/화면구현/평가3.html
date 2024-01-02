@@ -1,0 +1,125 @@
+<!-- 
+    아래의 요구사항을 반영하는 화면을 구현하세요.
+    <<결과 화면>>
+
+    <<요구사항>>
+    1. 회원가입 폼에서 회원가입 버튼을 클릭하면 result.html로 제출한다.
+
+    2. 아이디, 이름, 주민번호은 반드시(required) 입력한다.
+    
+    3. 아이디는 회원가입버튼을 클릭하면 유효성 검사한다.
+    
+    4. 아이디는 5~10글자의 대문자, 소문자, 숫자만 입력 가능
+    
+    5. 아이디 조건이 만족하지 않으면 "5~10글자의 대문자, 소문자, 숫자만 입력 가능"라는 경고창이 나타나고 submit 이벤가 발생하지 않는다.
+    
+    6. 주민번호 앞자리는 한글자 입력할때 마다 숫자형 문자인지 확인한다.
+
+    7. 주민번호 앞자리에 숫자가 아닌 경우에는 "숫자를 입력하세요" 대화 상자 나타난다.
+
+    8. 성별은 raido 버튼을 이용해서 남자 또는 여자로 성별을 나타난다. (직접 클릭 할 수 없도록 disabled 속성 추가) 
+
+    9. 성별은 주민번호 뒷자리를 모두 입력하면 뒷자리의 첫글자에 따라 radio 버튼 남자(1,3) 또는 여자(2,4)가 자동 선택되도록 한다.
+    
+    10.취소버튼을 이용해서 입력 상자를 초기화 한다.
+ -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>화면구현 - 체크리스트 3</title>
+    <style>
+        form ul {
+            list-style: none;
+        }
+
+        form ul>li {
+            text-align: right;
+            width: 100px;
+            display: inline-block;
+            margin-right: 5px
+        }
+
+        #zumin {
+            width: 300px;
+            text-align: left
+        }
+
+        form li:last-child {
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>회원가입</legend>
+        <form action="result.html" method="post" onsubmit="return validate();">
+
+            <ul>
+                <li><label for="userId">아이디</label></li>
+                <li><input type="text" name='userId' id="userId" size='10' required></li>
+                <br>
+
+                <li><label for='userName'>이름</label></li>
+                <li><input type="text" name='userName' id="userName" size='10' required></li>
+                <br>
+
+                <li><label for='zumin'>주민번호</label></li>
+                <li id="zumin">
+                    <input type="text" name="num1" id="num1" size="10" maxlength="6" required>-
+                    <input type="password" name="num2" id="num2" size="10" maxlength="7" required>
+                </li>
+                <br>
+
+                <li>성별</li>
+                <li>
+                    <label>남<input type="radio" name='gender' class="gender1" value="M" disabled></label>
+                    <label>여<input type="radio" name='gender' class="gender1" value="F" disabled></label>
+                </li>
+                <br>
+
+                <li>
+                    <button>회원가입</button>
+                    <button type="reset">취소</button>
+                </li>
+            </ul>
+        </form>
+    </fieldset>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+
+        
+        function validate(){
+            const userId = document.getElementById("userId");
+            const regExp = /^[A-za-z0-9]{5,10}$/;
+            
+            if(!regExp.test(userId.value)){
+                alert("5~10글자의 대문자, 소문자, 숫자만 입력 가능");
+                return false;
+            }
+        }
+
+
+        document.getElementById("num1").addEventListener("input", function(){
+            if( this.value < 0 || this.value > 9 ){
+                alert("숫자를 입력하세요");
+            }
+        });
+        
+        document.getElementById("num2").addEventListener("input", function(){
+            const gender = document.getElementsByName("gender");
+
+            if(this.value.substring(0, 1) == '1' || this.value.substring(0, 1) == '3'){
+                gender[0].checked = true;
+            }else{
+                gender[1].checked = true;
+            }
+        });
+
+    </script>
+</body>
+</html>

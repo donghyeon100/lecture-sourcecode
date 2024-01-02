@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제해결 1</title>
+
+    <style>
+        form .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        button.btn:hover {
+            opacity: 0.8;
+            color: yellow;
+        }
+
+        .cancel:hover {
+            opacity: 0.8;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>로그인을 클릭하면 로그인 폼이 나타납니다.</h2>
+
+    <button class="open">로그인</button>
+
+    <div class="form-popup" id="myForm">
+        <form action="result.html" method="post">
+            <fieldset>
+                <legend>로그인</legend>
+
+                <h1>Login</h1>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+                <br>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <br>
+
+                <button type="submit" class="btn">Login</button>
+                <button type="button" class="btn cancel">Close</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        // 1. 이 문서를 처음 로드하면 로그인 화면은 보이지 않는다.
+        // -> innerHTML = "";
+        // -> display : none; // 요소는 존재 하지만 보이지x, 영역x
+        // -> visiblily : hidden; // 요소는 존재 하지만 보이지x, 영역O
+        document.getElementById("myForm").style.display = "none";
+
+
+        // 2. label 태그는 가로로 '80px' 크기를 갖는다.
+        const label = document.getElementsByTagName("label");
+        label[0].style.display = "inline-block";
+        label[0].style.width = "80px";
+
+        label[1].style.display = "inline-block";
+        label[1].style.width = "80px";
+
+        // 3. 로그인 버튼을 클릭하면 로그인 화면이 화면에 나타난다.
+        //const open = document.querySelectorAll(".open")[0];
+        const open = document.getElementsByClassName("open")[0];
+        open.addEventListener("click", function () {
+            document.getElementById("myForm").style.display = "block";
+        });
+
+        // 4. Close 버튼을 클릭하면 로그인 화면이 사라진다.
+        const close = document.getElementsByClassName("cancel")[0];
+        close.addEventListener("click", function () {
+            document.getElementById("myForm").style.display = "none";
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .item{
+            border: 1px solid black;
+            width: 100px;
+            height: 120px;
+            padding: 5px;
+            display: inline-block;
+        }
+
+        .box{
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+        }
+
+        .btn{
+            width: 100px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="box"></div>
+        <button class="btn">red</button>
+    </div>
+
+    <div class="item">
+        <div class="box"></div>
+        <button class="btn">green</button>
+    </div>
+
+    <div class="item">
+        <div class="box"></div>
+        <button class="btn">blue</button>
+    </div>
+
+    <script>
+        // 1. box 클래스 요소가 문서 로드 시 보이지 않음
+        const box = document.getElementsByClassName("box");
+        // 배열 --> 요소 하나씩 꺼내서 스타일 적용!        
+
+        /*for(let i=0 ; i<box.length ; i++){
+            box[i].style.display = "none";
+        }*/
+
+        for(let b of box){
+            b.style.display = "none";
+        }
+
+        // 2. 버튼을 클릭했을 때
+        // 버튼과 같이 있는 box를 화면에 보이게 한다
+        const btn = document.getElementsByClassName("btn");
+
+
+        // 4. 버튼을 클릭했을 때 이전 box요소가 보이고 있는 상태이면
+        //    보이지 않게 다시 숨기기
+        for(let b of btn){
+            b.addEventListener("click", function(){
+
+                // 이전 box display 얻어오기
+                const dp = this.previousElementSibling.style.display;
+                console.log(dp); // block이 얻어와짐!
+
+                if(dp == "block"){
+                    this.previousElementSibling.style.display = "none";
+                
+                }else{ // none인 경우
+                    // 2-1) 인덱스가 같음을 이용
+                    //box[i].style.display = "block";
+
+                    // 2-2) 이전 형제 요소를 선택하는 방법
+                    this.previousElementSibling.style.display = "block";
+
+                    // 3. 화면에 나타난 box의 배경색을 
+                    // 버튼에 작성된 색으로 변경
+
+                    // this : 클릭 이벤트가 발생한 버튼
+                    this.previousElementSibling.style.backgroundColor = this.innerText;
+                }
+
+            });
+        }
+
+
+
+
+    </script>
+</body>
+</html>

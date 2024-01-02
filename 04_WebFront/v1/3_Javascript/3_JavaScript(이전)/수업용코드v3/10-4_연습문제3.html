@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13_연습문제_2</title>
+</head>
+
+<body>
+    <button type="button" id="add">추가</button>
+    <button type="button" id="sum">합</button>
+    <button type="button" id="avg">평균</button>
+    <button type="button" id="reset">초기화</button><br><br>
+    <div id="wrapper">
+        1번째 입력 : <input type="number" class="inputNumbers"><br>
+    </div>
+    <div id="printArea"></div>
+
+    <script>
+        var count = 1; // 출력 숫자 카운트용 변수
+
+        // 추가되는 input 태그 구문이 일정하므로 전역변수로 선언.
+        var input = '<input type="number" class="inputNumbers"><br>';
+
+        // 추가 버튼 클릭 시 이벤트
+        document.getElementById("add").onclick = function () {
+
+            // input 요소 값 유지를 위하여 
+            // 새로운 요소 추가 전 
+            // 이전 요소들의 value값을 별도 배열에 저장.
+            var arr = document.getElementsByClassName("inputNumbers");
+            var values = [];
+            for (var item of arr) {
+                values.push(item.value);
+            }
+
+            // n 번째 입력
+            var str = ++count + "번째 입력 : "
+
+            document.getElementById("wrapper").innerHTML += str + input;
+            document.getElementById("printArea").innerHTML = ""; // 결과 삭제
+
+            // 이전 요소 value를 새롭게 추가된 요소에 다시 대입하여 
+            // input 값이 유지되는 형태를 만듦.
+            var arr2 = document.getElementsByClassName("inputNumbers");
+            for (var i = 0; i < values.length; i++) {
+                arr2[i].value = values[i];
+            }
+        }
+
+        // 초기화 버튼 클릭 시 이벤트
+        document.getElementById("reset").onclick = function () {
+            count = 0;
+            var str = ++count + "번째 입력 : "
+
+            document.getElementById("wrapper").innerHTML = str + input;
+            document.getElementById("printArea").innerHTML = ""; // 결과 삭제
+
+        }
+
+        // 합 버튼 클릭 시 이벤트
+        document.getElementById("sum").onclick = function () {
+            document.getElementById("printArea").innerHTML = "<h3>합계 : " + calcSum() + "</h3>";
+        }
+
+        // 평균 버튼 클릭 시 이벤트
+        document.getElementById("avg").onclick = function () {
+            document.getElementById("printArea").innerHTML = "<h3>평균 : " + calcAvg() + "</h3>";
+        }
+
+        // 합계를 반환하는 함수
+        function calcSum() {
+            var arr = document.getElementsByClassName("inputNumbers");
+
+            var sum = 0;
+
+            for (var item of arr) {
+                // isNaN(value) : value 값이 NaN인 경우 true
+                // input type이 number가 아닐경우 사용해야하는 조건문.
+                if (!isNaN(Number(item.value))) {
+
+                    sum += Number(item.value); 
+                    // input의 value는 string 형태 이므로 number 형태로 변환해야 합을 구하는게 가능함.
+                }
+            }
+
+            return sum; 
+        }
+
+        // 평균을 반환하는 함수
+        function calcAvg() {
+            var arr = document.getElementsByClassName("inputNumbers");
+            return calcSum() / arr.length;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

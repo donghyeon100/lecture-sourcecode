@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.div-test {
+		border:1px solid black;
+		padding:20px;
+	}
+	.div1 {
+		background:red;
+	}
+	.div2 {
+		background:orange;
+	}
+	.div3 {
+		background:yellow;
+	}
+	.div4 {
+		background:green;
+	}
+</style>
+</head>
+<body>
+	<h1>이벤트 전달</h1>
+	<h3>이벤트버블링</h3>
+	<p>자식 노드에서 부모 노드로 이벤트가 전달된다.</p>
+	<div onclick="test1('1번 div');" class="div-test div1">
+		<div onclick="test1('2번 div');" class="div-test div2">
+			<div onclick="test1('3번 div');" class="div-test div3">
+				<div onclick="test1('4번 div');" class="div-test div4"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function test1(msg){
+			alert(msg);		
+		}
+	</script>
+	
+	<hr>
+	
+	<h3>이벤트버블링 막기</h3>
+	<div onclick="test2(event, '1번 div');" class="div-test div1">
+		<div onclick="test2(event, '2번 div');" class="div-test div2">
+			<div onclick="test2(event, '3번 div');" class="div-test div3">
+				<div onclick="test2(event, '4번 div');" class="div-test div4"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function test2(e, msg){
+			var event = e || window.event;
+			
+			alert(msg);
+			
+			//ie 제외
+			event.stopPropagation();
+
+			//ie 전용
+			event.cancelBubble = true;
+		}
+	
+	</script>
+	
+	<hr>
+	
+	<h3>표준 이벤트 모델(addEventListener)</h3>
+	<pre>
+	w3에서 공식적으로 지정한 이벤트 모델
+	한 번에 여러 개 이벤트 핸들러 설정 가능
+	IE는 9버전 부터 지원
+
+	(참고)HTML DOM 이벤트 종류
+	https://www.w3schools.com/jsref/dom_obj_event.asp
+	</pre>
+
+	<button id="btn">실행확인</button>
+	<script>
+		window.onload = function(){
+			var btn = document.getElementById("btn");
+			
+			btn.addEventListener('click', function(){
+				alert('표준이벤트 테스트')
+			});
+			
+			btn.addEventListener('click', function(){
+				btn.style.background = "red";
+			});
+			
+		}
+	
+	</script>	
+</body>
+</html>

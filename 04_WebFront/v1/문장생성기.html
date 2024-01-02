@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html문서 제목</title>
+</head>
+<body>
+    과목 : <input type="text" id="subject" autocomplete="off">
+    <hr>
+    <form onsubmit="return fn();">
+
+        이름 : <input type="text" id="inputName" autocomplete="off">   <br>
+        점수 : <input type=text id="score" autocomplete="off">
+        <button>생성</button>
+    </form>
+    <hr>
+    <input id="result" size="100" autocomplete="off"></input>
+
+    <script>
+        function fn(){
+            const subject = document.getElementById("subject").value;
+            const name = document.getElementById("inputName").value;
+            const score = document.getElementById("score").value;
+
+            
+            
+            document.getElementById("result").value 
+            =  name + "씨 " + subject + " 평가 " + score + "점으로 " 
+            
+            if(score >= 60){
+                document.getElementById("result").value 
+                    += "통과하셨습니다.";
+            }else{
+                document.getElementById("result").value 
+                    += "재응시 대상자이십니다. 오늘 수업 후 재응시 바랍니다.";
+            }
+
+            copy_to_clipboard();
+
+            return false;
+        }
+
+
+        function copy_to_clipboard() {
+            var copyText = document.getElementById("result");
+            copyText.select();
+            document.execCommand("Copy");
+        }
+
+    </script>
+</body>
+</html>

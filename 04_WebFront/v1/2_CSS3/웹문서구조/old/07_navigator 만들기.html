@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_navigator 만들기</title>
+
+    <!-- 웹 폰트 적용을 위한 link태그 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  
+    <style>
+        /* 웹 폰트 적용을 위한 @font-face 속성 */
+        @font-face {
+            font-family: 'CookieRun-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        
+        div{
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        .navigator{
+            width: 1000px;
+            height: 40px;
+        }
+
+
+        #navi, #navi li > ul {
+            /* ul 태그 자체적으로 설정되어있는 padding, margin 제거*/
+            padding :0;
+            margin: 0;
+
+            list-style-type: none ;
+            /* list-style-type : li 태그 왼쪽에 나타는 기호 형태를 지정하는 스타일 */
+        
+            width: 100%;
+            height: 100%;
+            /* 하위 요소에 가변 크기 단위(%)를 사용하여 크기를 지정해야 되는 경우
+                상위요소에 width, height가 지정되어 있어야만 
+                원하는 비율로 나눌 수 있음.
+             */
+        }
+
+        #navi > li{
+            width: 15%;
+            height: 100%;
+            float : left;
+            text-align: center;
+            line-height: 35px;
+        }
+
+        #navi li a{
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+
+            text-decoration: none;
+            /* text-decoration : 글자에 선 관련된 스타일 지정*/
+
+            color : rgba(0, 0, 255, 0.5);
+            /* rgba : rgb 색상(0~255) + 투명도(0~1)*/
+
+            font-weight: bold;
+            /* font-weight : 글꼴의 굵기(100 ~ 900) 
+                normal : 보통 굵기 글씨 (== 가중치 400)
+                bold : 굵은 글씨(== 가중치 700)
+                bolder : 부모 요소보다 굵게
+                lighter :  부모 요소보다 얇게
+            */
+
+            font-size: 20px;
+
+            font-family: "굴림123", "Pattaya";
+            /* font-family : 글꼴 지정 속성
+                - 여러 글꼴을 연달아 작성 가능
+                    -> 앞쪽 글꼴이 없으면 뒤쪽에 작성된 글꼴이 적용됨
+            */
+        }
+
+
+        #navi li a:hover{
+            /* :hover   : 마우스가 올라갔을 때의 스타일을 지정하는 상태 선택자*/
+            color : orange;
+            background-color: rgb(250,250,250);
+        }
+
+        /* 서브 메뉴 목록이 존재할 수 있는 영역을 없앰 */
+        #navi li > ul > li{ 
+            /* 서브 메뉴 li 만 선택 */
+            height: 0;
+            line-height: 0;
+            opacity: 0;
+        }
+
+        /* 서브 메뉴 목록에 있는 a태그가 화면에 조금 남는 경우도 없앰*/
+        #navi li > ul > li > a{
+            /* opacity: 0; */
+            /* opacity : 불투명 정도를 지정하는 속성 (0(투명) ~ 1(불투명)) */
+            display: none;
+            /* display: none;  -> 태그는 존재하지만 화면에 보이지 않고, 자리도 차지하지 않음 */
+        }
+
+
+        /* 서브 메뉴가 있는 메인 메뉴에 마우스를 올렸을 경우
+            없앴던 서브 메뉴 a태그를 다시 화면에 보이게 함
+        */
+        #navi > li:hover ul a{
+            /* opacity: 1; */
+            display: block;
+        }
+
+        /* 서브 메뉴가 있는 메인 메뉴에 마우스를 올렸을 경우
+            없앴던 서브메뉴 영역을 다시 지정
+        */
+        #navi > li:hover ul li{
+            height: 40px;
+            line-height: 35px;
+            opacity: 1;
+        }
+
+
+        #navi > li ul li{
+            /* 서브메뉴 목록 선택 */
+            transition-duration: 0.5s;
+            /* transition-duration : 변이 시간 지정*/
+        }
+
+
+
+        #web-font{
+            font-family: "Nanum Pen Script";
+        }
+
+        #web-font2{
+            font-family: 'CookieRun-Regular';
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="navigator">
+        <ul id="navi">
+            <li> <a href="#">Java</a> </li>
+            <li> <a href="#">Oracle</a> </li>
+
+            <li> 
+                <a href="#">Front-End</a> 
+                
+                <ul>
+                    <li> <a href="#">HTML5</a>  </li>
+                    <li> <a href="#">CSS3</a>  </li>
+                    <li> <a href="#">Javascript</a>  </li>
+                    <li> <a href="#">jQuery</a>  </li>
+                </ul>
+            </li>
+
+            <li> <a href="#">Server</a> </li>
+            <li> <a href="#">Framework</a> </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div>
+        <h4>** 웹 폰트 사용하는 방법</h4>
+        <p>웹 폰트 제공 사이트 1 : <a href="http://fonts.google.com" target="_blank">구글 웹폰트 사이트로</a></p>
+        <p id="web-font">font style test</p>
+    
+        <p>웹 폰트 제공 사이트 2 : <a href="https://noonnu.cc/" target="_blank">눈누 상업용 무료 한글폰트 사이트로</a></p>
+        <p id="web-font2">한글 폰트 스타일 테스트</p> 
+    </div>
+
+</body>
+</html>

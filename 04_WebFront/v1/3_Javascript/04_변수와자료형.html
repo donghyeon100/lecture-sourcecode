@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_변수와 자료형</title>
+</head>
+<body>
+    
+    <h3>변수 선언 위치에 따른 구분</h3>
+
+    <pre>
+        - 자바
+
+        public class Student{
+
+            // 필드
+            private String name;  // 멤버 변수, 인스턴스 변수
+            private int age;  // 멤버 변수, 인스턴스 변수
+            public static String schoolName; 클래스 변수, static 변수
+            
+            public void method1(){
+                int num = 10;   // method1()의 지역 변수
+
+                if(num == 10){
+                    int b = 20;  // if의 지역 변수
+                }
+            }
+        }
+    </pre>
+
+    <hr>
+
+    <pre>
+        자바스크립트
+
+        &lt;script&gt;
+            
+            var 변수명; // 전역 변수 (같은 문서 내 선언된 이후 부터 어디서든 사용 가능)
+
+            변수명; // 전역 변수 (앞에 변수 선언 형식이 없어도 선언 가능)
+
+            function 함수명(){
+
+                var 변수명; // function 지역 변수
+
+                변수명; // 전역 변수
+
+                if(조건식){
+                    var 변수명; // function 지역 변수
+
+                    변수명; // 전역 변수
+                }
+            }
+
+        &lt;/script&gt;
+    </pre>
+
+    <script>
+        var v1 = "변수1";   // 전역 변수 
+        v2 = "변수2";       // 전역 변수
+
+        if( 1 == 1 ){
+            var g1 = "script 태그 바로 아래 있는 if문 변수1"; // 전역 변수
+            g2 = "script 태그 바로 아래 있는 if문 변수2"; // 전역 변수
+        }
+
+
+        console.log(g1);
+        console.log(g2);
+
+
+        function test(){ // 함수 선언
+            // 함수 정의
+
+            var t1 = "test 변수1"; // function 지역 변수
+            t2 = "test 변수2"; // 전역 변수
+
+            console.log(t1);
+            console.log(t2);
+
+
+            if(1 == 1){
+                var f1 = "if문 변수1"; // function 지역 변수
+                f2 = "if문 변수2"; // 전역 변수
+            }
+
+            console.log(f1);
+            console.log(f2);
+        }
+
+    </script>
+
+
+    <script>
+        console.log(v1);
+        console.log(v2);
+
+        test(); // 함수 호출
+
+        console.log(t2);
+
+        //console.log(f1); -- 에러
+        console.log(f2);
+
+    </script>
+
+
+    <hr>
+
+    <h3> 변수 선언 방식 </h3>
+    <pre>
+        var : 변수,  변수명 중복 o, 함수 레벨 scope
+        let : 변수,  변수명 중복 x, 블록{} 레벨 scope
+        const : 상수, 변수명 중복 x, 블록{} 레벨 scope
+
+        1순위 : const
+        2순위 : let
+        3순위 : var (es6 이후로는 잘 사용하지 않음)
+    </pre>
+
+    <script>
+        var d1 = "중복확인1";
+        var d1 = "중복확인2"; // 변수명 중복 가능
+
+        console.log(d1); // 마지막으로 선언된 값이 출력됨.
+
+        let d2 = "abc";
+        //let d2 = "123"; 변수명 중복 X
+
+        function test2(){
+            if( 1 == 1 ){
+                var s1 = "function scope";
+            }
+
+            console.log(s1);
+
+            if( 1 == 1 ){
+                const s2 = "block scope";
+                // s2 = "abc"; // 상수는 값 변경 불가
+
+                let qqq = "123";
+                qqq = "456";
+            }
+
+            // console.log(s2); // if 밖에 있어서 에러
+
+        }
+
+        test2(); // 함수 호출
+    </script>
+
+
+    <hr>
+
+    <h3>자바스크립트의 자료형</h3>
+
+    <pre>
+        자바스크립트의 변수는 별도의 자료형을 지정하지 않음.
+            -> 변수에 대입되는 값(리터럴)에 의해서 자료형이 결정됨.
+
+        - string(문자열)
+        - number(숫자)   -> 정수, 실수 모두 다
+        - boolean(논리값)
+        - object(객체)   -> Array, {name:"홍길동", age:10}
+        - function(함수) -> let fn1 = function(){}
+        - undefined(정의되지 않은 변수) 
+            -> let str;
+               console.log(str); // undefined
+    </pre>
+
+    <button type="button" onclick="typeTest();">자료형 확인 테스트</button>
+
+    <div id="area2"></div>
+
+    <script>
+        function typeTest(){
+
+            const area2 = document.getElementById("area2");
+
+            const name = "홍길동"; //  string
+            const gender = '남'; // string
+            // 자바스크립트에서 "", ''는 둘다 string 리터럴 표기법
+            // (자바스크립트에는 char 자료형이 없다!)
+            
+            const age = 20; // number
+            const height = 180.5; // number
+
+            const isTrue = true; // boolean
+
+            const hobbyList = ['게임', '운동', '낚시']; // object
+            // 자바스크립트에서 {} 기호는 객체를 나타내는 표기법 이므로
+            // 배열은 []를 사용한다.
+
+            const user = { id : "user01" , pw : "pass01" }; // object
+
+
+            const sumFn = function(num1, num2){ // 익명 함수 // function
+                const sum = num1 + num2;
+                return sum;
+            }
+
+
+            let unDef; // 값 대입을 안함 == 변수 자료형이 지정되지 않음
+                        // == 변수가 정의되지 않았다 == undefined
+
+
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+          
+
+
+            area2.innerHTML = ""; // 이전 내용 삭제(초기화)
+            
+            // typeof 변수명 : 해당 변수의 자료형을 확인하는 연산자
+
+            area2.innerHTML += name + '의 자료형 : ' + typeof name + "<br>";
+            area2.innerHTML += gender + '의 자료형 : ' + typeof gender + "<br>";
+            area2.innerHTML += age + '의 자료형 : ' + typeof age + "<br>";
+            area2.innerHTML += height + '의 자료형 : ' + typeof height + "<br>";
+            area2.innerHTML += isTrue + '의 자료형 : ' + typeof isTrue + "<br>";
+            area2.innerHTML += hobbyList + '의 자료형 : ' + typeof hobbyList + "<br>";
+            area2.innerHTML += user + '의 자료형 : ' + typeof user + "<br>";
+            area2.innerHTML += sumFn + '의 자료형 : ' + typeof sumFn + "<br>";
+            area2.innerHTML += unDef + '의 자료형 : ' + typeof unDef + "<br>";
+            
+
+            // for ... in : 자바스크립트 객체에 있는 속성을 순서대로 반복 접근한 for문 
+            area2.innerHTML += user['id'] + "<br>";
+            area2.innerHTML += user['pw'] + "<br>";
+            area2.innerHTML += user.id + "<br>";
+            area2.innerHTML += user.pw + "<br>";
+
+            for(let key in user ){
+                // user 객체에 있는 속성을 순서대로 얻어와 key에 저장
+                area2.innerHTML += user[key] + "<br>";
+            }
+
+            // 변수에 저장된 function 사용 방법
+            area2.innerHTML += sumFn(10, 20) + "<br>";
+
+
+        }
+
+
+    </script>
+
+
+</body>
+</html>

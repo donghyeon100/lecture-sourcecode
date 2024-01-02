@@ -1,0 +1,131 @@
+<!-- 
+    아래의 요구사항을 반영하는 화면을 구현하세요.
+    <<결과 화면>>
+
+    <<요구사항>>
+    1. 아이디, 이름, 전화번호는 모든 항목은 반드시(required) 입력하도록 하는 속성이 작성되어야 한다.
+
+    2. 회원가입 폼의 회원가입 버튼을 클릭하면 result.html로 제출 된다.
+
+    3. 회원가입 버튼을 클릭한 경우
+        아이디와 이름의 데이터를 비교하여 일치하면 "아이디와 이름의 값은 일치하면 안됩니다" 대화 상자가 나타나고
+        submit 이벤가 발생하지 않는다.
+
+    4. 선택한 취미의 개수를 구한다.
+
+    5. 취미를 2개 미만 선택하는 경우 "취미는 2개 이상 선택하세요"라는 경고창이 나타난다.
+
+    6. 전화번호는 국번은 0으로 시작하고 최대3자리까지, 가운데 자리는 3자리 또는 4자리, 마지막 자리는 4자리
+
+    7. 전화번호 형식에 맞지 않으면 "전화번호 형식을 확인하세요"라는 경고창이 나타난다.
+
+    8. 전화번호 형식에 맞지 않으면 기존에 입력한 전화번호는 삭제한다.
+
+    9. 전화번호 형식에 맞지 않으면 submit을 수행하지 않는다.
+
+    10. 취소를 클릭하면 입력한 데이터가 초기화 된다.
+
+ -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>화면구현 - 체크리스트 2</title>
+    <style>
+        form ul {
+            list-style: none;
+        }
+
+        form ul>li {
+            width: 100px;
+            display: inline-block;
+            margin-right: 5px
+        }
+
+        #hobby {
+            width: 300px
+        }
+
+        form li:last-child {
+            width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="result.html" method="post" onsubmit="return validate()">
+        <fieldset>
+            <legend>회원가입</legend>
+            <ul>
+                <li><label for="userId">아이디</label></li>
+                <li><input type="text" name='userId' id="userId" size='10' required></li>
+                <br>
+
+                <li><label for='userName'>이름</label></li>
+                <li><input type="text" name='userName' id="userName" size='10' required></li>
+                <br>
+
+                <li><label for='hobby'>취미</label></li>
+                <li id="hobby">
+                    <input type="checkbox" name="hobby" value="피아노">피아노
+                    <input type="checkbox" name="hobby" value="게임">게임
+                    <input type="checkbox" name="hobby" value="테니스">테니스
+                    <input type="checkbox" name="hobby" value="등산">등산
+                </li>
+                <br>
+
+                <li><label for='phone'>전화번호</label></li>
+                <li>
+                    <input type="text" name='phone' id="phone" maxlength="15" placeholder="0*[*]-***[*]-****" required>
+                </li>
+                <br>
+                <br>
+
+                <li>
+                    <button>회원가입</button>
+                    <button type="reset">취소</button>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script>
+        function validate(){
+            const userId = document.getElementById("userId");
+            const userName = document.getElementById("userName");
+            
+            if(userId.value == userName.value){
+                alert("아이디와 이름의 값은 일치하면 안됩니다.");
+                return false;
+            }
+            
+
+            const hobbyList = document.getElementsByName("hobby");
+            let count = 0;
+            
+            for(let hobby of hobbyList){
+                if(hobby.checked) count++;
+            }
+            
+            if(count < 2){
+                alert("취미는 두 개 이상 선택하세요");
+                return false;
+            }
+            
+            const phone = document.getElementById("phone");
+
+            const regExp = /^[0][0-9]{1,2}-[0-9]{3,4}-[0-9]{4,4}$/;
+
+            if (!regExp.test(phone.value)) {
+                alert("전화번호 형식을 확인하세요");
+                phone.value = "";
+                return false;
+            }
+        }
+
+    </script>
+</body>
+</html>

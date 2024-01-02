@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>01. 자바스크립트 개요</title>
+    <noscript>
+        해당 브라우저는 자바스크립트를 미지원 하거나
+        자바스크립트 실행 기능이 비활성화 되어 있습니다.
+    </noscript>
+
+    <!-- script태그의 type 속성 기본값은 "text/javascript -->
+    <script src="js/sample.js"></script>
+
+    <!-- 
+            <script> 태그는 head 태그, body 태그 둘다 선언 가능.
+            head 태그에 선언 하는 경우 : 페이지 로딩 시에 실행되어야 하는 script
+                -> 문서 초기화 및 설정을 담당하는 가벼운 script
+                단점 : html 코드는 위에서 아래로 해석되는데
+                       script 코드가 크고 무겁다면 페이지 로딩(랜더링)이 딜레이되는 문제가 발생함.
+            
+            body 태그에 선언하는 경우 : 나머지 경우의 script
+                - 중간에 삽입하는 경우 문제점: html 코드를 랜더링하던 중 중간에 딜레이 되는 문제 발생.
+                -> </body> (body 종료 태그) 바로 앞에 작성하여
+                   화면에 노출되는 html 코드 랜더링이 끝난 이후 script 코드를 로딩 하는 것이 좋음.
+
+        -->
+</head>
+
+<body>
+    <h1>자바스크립트 개요</h1>
+
+    <h3>스크립트 언어란?</h3>
+    <pre>
+        기존에 이미 존재하는 프로그램의 동작을 사용자의 요구에 맞게 수행되도록 제어하는 용도의 언어.
+        소스코드의 수정이 많은 곳에서 사용하기 적합. (인터프리터(Interperter) 방식)
+
+        - 인터프리터란? 
+            소스코드를 한줄 씩 읽어 바로 실행하는 방식.
+
+        매우 빠르게 배우고 짧은 소스코드 파일로 상호작용 하도록 고안되었다.
+
+    </pre>
+
+    <h3>Javascript</h3>
+    <pre>
+        웹 브라우저에서 많이 사용하는 인터프리터 방식의 객체지향 프로그래밍 언어.
+        HTML 문서내에 기술되고, HTML과 함께 웹 브라우저에 의해 해석됨
+
+        ECMA 스크립트 표준을 따르는 대표적인 웹 기술이다.
+    </pre>
+
+    <hr>
+
+    <h2>자바스크립트 작성 방법</h2>
+    <pre>
+        소스는 함수 단위로 작성하고, 이벤트속성을 사용해서 구동되게 함.
+        
+        이벤트 속성은 태그마다 차이가 있음
+        on이벤트명="실행할 함수명([전달값])"
+
+        </pre>
+
+    <h3>inline 방식</h3>
+    <p>태그에 직접 간단소스코드를 작성해서 실행되게 하는 방법</p>
+    <button onclick="window.alert('버튼 클릭 확인');">경고창 출력!</button>
+    <button onclick="console.log('버튼 클릭 확인');">console 출력!</button>
+    <h4 onmouseover="style.backgroundColor='red'" onmouseout="this.style.backgroundColor='white'">
+        마우스오버 / 마우스아웃
+    </h4>
+
+
+    <h3>internal 방식</h3>
+    <p>script 태그 영역에 작성해서 실행되게 하는 방법<br>
+        head태그, body태그에 작성 가능
+    </p>
+    <button onclick="testfn();">함수 실행 확인용 버튼</button>
+    <script type="text/javascript">
+        // 자바스크립트 주석은 자바와 같음
+
+        // 자바스크립트에서 함수 작성시 함수명 앞에 반환자료형(return type) 붙이지 않음. 
+        // ->자바스크립트는 자료형이 없음.
+        function testfn() {
+            alert('testfn() 함수 실행 확인');
+        }
+    </script>
+
+    <h3>external 방식</h3>
+    <p>별도의 js파일로 작성해서 가져다 사용하는 방법</p>
+    <!-- js폴더를 만들어 내부에 sample.js 파일을 만들고 코드 작성 후
+            head에서 추가하기.-->
+    <button onclick="samp();">samp() 실행</button>
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_함수</title>
+
+    <style>
+        .area{
+            width: 500px;
+            height: 150px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>기본적인 함수 선언, 정의, 호출</h3>
+
+    <pre>
+        function 함수명(){ // 함수 선언
+
+            // 함수 정의
+        }
+
+        함수명(); // 함수 호출
+    </pre>
+
+    <button type="button" id="btn1">함수 호출</button>
+
+    <div id="div1" class="area"></div>
+
+
+    <script>
+        // 갑작스런 문제
+        // id가 btn1인 요소의 작성된 내용을 콘솔에 출력
+        // console.log( document.getElementById("btn1").innerText );
+
+        let clickCount = 0; // 전역 변수
+
+        function test1(){ // 함수 선언
+            // 함수 정의
+            document.getElementById("div1").innerText = ++clickCount;
+        }
+        
+        // 표준 이벤트 모델
+        // - 함수의 모양을 그대로 가져오기 위해서는 괄호를 제외한 함수명을 작성
+        document.getElementById("btn1").addEventListener("click", test1);
+    </script>
+
+
+    <hr>
+
+    <h3>익명 함수 (이름이 없는 함수)</h3>
+
+    <pre>
+        function([매개변수]){
+            수행할 코드;
+        }
+
+        - 이벤트 핸들러(이벤트 발생시의 동작) 또는 
+            변수, 매개변수에 함수를 저장할 때 주로 사용.
+            (+ 즉시 실행 함수에서도 사용)
+    </pre>
+
+    <button type="button" id="btn2">익명 함수 확인</button>
+    
+    <script>
+        const btn2 = document.getElementById("btn2");
+
+        btn2.addEventListener("click", function(){
+                                         // 익명 함수
+            //console.log(clickCount);
+            
+            for(let i=1 ; i<=clickCount ; i++){
+                console.log(i);
+            }
+        });
+
+    </script>
+
+    <hr>
+
+    <h3>즉시 실행 함수</h3>
+    <pre>
+        - 익명 함수의 한 종류로써
+          함수가 정의 되자마자 실행되는 함수.
+
+        (function([매개변수]){ "수행할 코드"; })();
+
+        * 즉시 실행 함수 사용 이유
+        - 함수 선언, 정의, 호출의 일련의 과정을 수행하지 않아도 즉시 실행됨.
+            -> 일반적인 함수보다 속도적 측면에서 우위를 가지고 있음.
+
+        - 사용하려는 변수명이 전역변수로 사용되고 있을 경우
+          즉시 실행 함수 내부에 지역변수로 같은 변수명을 작성하여
+          변수명 충돌 문제를 해결할 수 있다.
+    </pre>
+
+    <!-- <button type="button" id="btn3">즉시 실행 함수 확인</button> -->
+    <div id="div3" class="area"></div>
+
+    <script>
+        const div3 = document.getElementById("div3");
+
+        let str = "전역변수<br>";
+
+        div3.innerHTML = str;
+        
+        // 즉시 실행 함수
+        (function(){
+            let str = "abc";
+            div3.innerHTML += str;
+        })();
+
+    </script>
+
+    <hr>
+
+    <h3>매개변수 , 반환값 </h3>
+
+    <button type="button" id="btn4">확인</button>
+    <div id="div4" class="area"></div>
+
+    <script>
+        const btn4 = document.getElementById("btn4");
+        const div4 = document.getElementById("div4");
+
+        function printDiv( value ){
+            div4.innerHTML += value + "<br>";
+        }
+
+        btn4.addEventListener("click", function(){
+            // 함수 정상 호출
+            printDiv("월요일 싫어...");
+
+            // 함수 비정상 호출-1 -> 초과된 매개변수 무시
+            printDiv("화요일도 피곤해...", "수요일은 더피곤해...");
+
+            // 함수 비정상 호출-2 -> 전달되지 않은 매개변수는 undefined로 설정
+            printDiv();
+        });
+
+    </script>
+
+    <hr>
+    <button type="button" id="btn5">리턴 확인</button>
+    <script>
+        function createRandomNumber(){
+
+            const arr = new Array(); // []
+
+            for(let i=0 ; i<10 ; i++){
+
+                // 1~100 사이 정수로된 난수를 ran에 저장
+                const ran = Math.floor( Math.random() * 100 +1 );
+
+                // 중복 제거
+                if(arr.indexOf(ran) == -1 ){
+                    // arr 배열 내에 ran과 같은 값이 있는 요소의 인덱스를 반환
+                    // 일치하는 요소가 없으면 -1을 반환
+                    // 중복값 없음
+                    arr.push(ran);
+               
+                }else{
+                    i--; // i 증가 전 1감소 시켜 제자리에 위치
+                }
+            }
+
+            return arr;
+        }
+
+        document.getElementById("btn5").addEventListener("click", function(){
+            const arr = createRandomNumber();
+            console.log(arr);
+        });
+
+
+    </script>
+
+
+
+</body>
+</html>

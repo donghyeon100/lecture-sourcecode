@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>22_정규표현식</title>
+	<style>
+		.area {
+			background: lightgray;
+			border: 1px solid black;
+			height: 150px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>정규표현식</h1>
+
+	<h3>정규표현식(Regular Expression)이란? </h3>
+	<pre>
+
+	</pre>
+
+	<h3>정규 표현식 참고 사이트</h3>
+	<ul>
+		<li><a href="https://regexper.com/" target="_blank">작성한 정규표현식을 그림으로 나타내주는 사이트</a></li>
+		<li><a href="https://regexr.com/" target="_blank">정규표현식 테스트 사이트</a></li>
+		<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D"
+				target="_blank">
+				MDN - 정규표현식 설명
+			</a></li>
+	</ul>
+
+	<h3>정규표현식의 객체 생성 및 메소드</h3>
+	<pre>
+	- 정규 표현식 객체 선언 방법
+		1) 
+		2) 
+	
+
+	- 정규 표현식 객체 메소드
+
+	test() : 문자열에서 정규식 변수의 값과 일치하는 값이 있으면 true / 없으면 false
+	exec() : 문자열에서 정규식 변수의 값과 일치하는 값이 있으면 처음 매치된 문자열 반환
+	
+
+	- String 내장 객체에서 제공하는 정규표현식 사용 가능 메소드
+
+	match() : 문자열에서 정규식 변수의 값과 일치하는 모든 값을 배열로 반환
+	replace() : 문자열에서 정규식 변수의 값과 일치하는 일치하는 부분을 새로운 값으로 변경.
+	search() : 맨 처음 일치하는 부분의 시작 인덱스 반환
+	split() : 정규식 변수에 지정된 값을 구분자로 하여 배열 생성
+
+
+	</pre>
+	<button onclick="test1();">확인하기</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1() {
+			var str = 'javascript jquery ajax script';
+			var area1 = document.getElementById('area1');
+
+			area1.innerHTML = "str : " + str + "<br>";
+			area1.innerHTML += "test()함수 사용 : " + + "<br>";
+			area1.innerHTML += "exec()함수 사용 : " + + "<br>";
+
+			//정규표현식의 메소드를 직접 사용하기보다 string메소드를 사용하는 것이 일반적이다.
+			area1.innerHTML += "match()함수 사용 : " + + "<br>";
+			area1.innerHTML += "replace()함수 사용 : " + + "<br>";
+			area1.innerHTML += "search()함수 사용 : " + + "<br>";
+			area1.innerHTML += "split()함수 사용 : " + + "<br>";
+
+
+		}
+
+	</script>
+
+	<hr>
+	<h3>메타 문자를 이용한 문자 검색, 치환</h3>
+	<p>특정 메타 문자를 사용하여 문자열에 정규식이 존재하는지<br>
+		test()를 이용하여 검사하거나, replace() 이용하여 치환.</p>
+
+	<br><br>
+
+	<button onclick="test2();">console에서 실행확인</button>
+	<script>
+		function test2() {
+			var area2 = document.getElementById("area2");
+			var printStr = "";
+
+			//var str = "javascript jquery ajax";
+			var str = 'javascript jquery ajax script';
+			printStr += "str : " + str + "<br><br>";
+
+
+		}
+	</script>
+
+
+	<hr>
+
+	<h3>메타문자를 이용한 주민번호 확인</h3>
+	<label>주민번호 입력 : </label>
+	<input type="text" id="pno">
+	<button onclick="test3();">실행확인</button>
+	<script>
+		function test3() {
+
+		}
+
+	</script>
+
+	<hr>
+
+	<h3>추가 메타 문자</h3>
+	<p>\d : 숫자 <br>
+		\w : 아무 단어(숫자 포함)<br>
+		\s : 공백문자(탭, 띄어쓰기, 줄바꿈)<br>
+		\D : 숫자 아님<br>
+		\W : 아무 단어 아님<br>
+		\S : 공백 문자 아님</p>
+	<label>주민번호 입력 : </label>
+	<input type="text" id="pno2">
+	<button onclick="test4();">실행확인</button>
+	<div id="area7" class="area"></div>
+	<script>
+		function test4() {
+
+
+		}
+	</script>
+
+	<hr>
+
+	<h3>수량문자</h3>
+	<p>a+ : a가 적어도 1개 이상<br>
+		a* : a가 0개 또는 여러개<br>
+		a? : a가 0개 또는 1개<br>
+		a{5} : a가 5개<br>
+		a{2,5} : a가 2~5개<br>
+		a{2, } : a가 2개 이상<br>
+		a{ , 2} : a가 2개 이하</p>
+	<label>주민번호 입력 : </label>
+	<input type="text" id="pno3">
+	<button onclick="test5();">실행확인</button>
+	<div id="area5" class="area"></div>
+	<script>
+		function test5() {
+
+		}
+	</script>
+
+	<hr>
+
+	<h3>플래그문자</h3>
+
+	<p>g : 전역비교를 수행한다<br>
+		i : 대소문자를 가리지 않고 비교한다<br>
+		m : 여러 줄의 검사를 수행한다</p>
+
+</body>
+
+</html>

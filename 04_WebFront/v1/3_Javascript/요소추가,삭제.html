@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html문서 제목</title>
+
+    <style>
+        #add-list{
+            width: 250px;
+            height: 200px;
+            border : 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="add-value">
+    <button onclick="add();">추가</button>
+    <div id="add-list"></div>
+
+    <script>
+        function add(){
+            var addValue = document.getElementById("add-value");
+
+            // 자바스크립트 방식의 요소 생성 방법
+            var p = document.createElement("p");
+            // 화면에 배치되지 않은 p태그 요소가 생성됨
+
+            // p태그 요소의 내용으로 add-value에 작성된 값을 얻어와 대입
+            p.innerHTML = addValue.value;
+            // p.innerText
+
+
+            // 자바스크립트 방식으로 button 요소 만들기
+            var btn = document.createElement("button");
+
+            // 생성된 버튼에 "삭제" 글자 추가
+            btn.innerHTML = "삭제";
+
+            // 생성된 버튼에 "onclick" 속성 추가
+            btn.setAttribute("onclick", "this.parentElement.remove();" );
+            // this : 클릭된 삭제 버튼
+            // parentElement : 부모 요소
+            // remove() : 제거하다.
+
+
+            // 만들어진 p, btn을 화면에 배치
+            // 1) p태그 자식으로 btn을 추가
+            p.appendChild(btn);
+
+            // 2) id가 add-list인 요소의 자식으로 p태그 추가
+            document.getElementById("add-list").appendChild(p);
+
+            // add-value 에 작성된 값 삭제
+            addValue.value = "";
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+html

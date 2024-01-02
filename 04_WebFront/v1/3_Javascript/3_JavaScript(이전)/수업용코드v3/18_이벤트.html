@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area {
+		background:lightgray;
+		border:1px solid black;
+		height:100px;
+	}
+
+	pre{
+		border:1px dashed black;
+		font-size: 14px;
+	}
+</style>
+</head>
+<body>
+	<h1>이벤트</h1>
+
+	<pre>
+	이벤트 : 동작, 행위  ex) click
+	이벤트 핸들러 또는 이벤트 리스너 
+	: 이벤트가 발생하는 것을 대기하고 있다가 이벤트 발생 시 
+		연결해둔 기능(function)을 수행하는 코드
+
+	
+	이벤트 객체 : 해당 이벤트에 대한 정보를 담고있는 객체. (이벤트 발생 좌표, 이벤트가 수행된 요소 등)
+	<!-- 이벤트 핸들러 : 이벤트 발생 시 수행되는 기능 (function)
+	이벤트 리스너 :  특정 이벤트 발생을 대기하다가 이벤트 발생 시 연결된 이벤트 핸들러를 수행하는 기능 -->
+	</pre>
+
+	<h3>고전 이벤트 모델</h3>
+	<pre>
+	요소 객체가 갖고 있는 이벤트 속성에 이벤트 핸들러를 연결하는 방법으로 
+	이벤트 객체를 제거할 땐 속성 값에 null을 넣어주면 됨</pre>
+	<button id="test1">test1() 실행확인</button>
+	<button id="test2">test2() 실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		var test1 = document.getElementById("test1");
+		var test2 = document.getElementById("test2");
+		 
+		test1.onclick = function(){ 
+			var area1 = document.getElementById("area1");
+			
+			area1.innerHTML += "test1()이 실행되었습니다.<br>";
+		}
+
+		test1.onclick = function(){
+			alert("!");
+		}
+		
+		test2.onclick = function(){
+			var area1 = document.getElementById("area1");
+			
+			area1.innerHTML += "test2()이 실행되면서 test1()이벤트 제거.<br>";
+			test1.onclick = null; // 이벤트 제거
+		}
+	</script>	
+
+	<hr>
+	
+	<h3>이벤트 발생 객체</h3>
+	<pre>
+	이벤트 발생 객체는 매개 변수(e, window.event)로 이벤트 정보를 전달함.
+	핸들러 내부에서 e.target 또는 this로
+	이벤트가 발생된 요소 선택 가능.</pre>
+
+	<button id="test3">test3() 실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		var test3 = document.getElementById("test3");
+		
+		test3.onclick = function(e){
+
+			// e : 이벤트가 발생한 객체
+			// window.event : ie8 이전 버전의 e
+			var event = e || window.event;
+
+
+			console.log(event.target);
+			console.log(this);
+
+			event.target.style.backgroundColor = "red";
+			this.style.color = "white";
+		}
+	
+		
+	</script>
+	
+	<h3>인라인 이벤트 모델</h3>
+	<pre>
+	요소 내부에 이벤트를 작성하는 방식
+	script 태그에 정의된 함수를 호출하는 방식을 선호</pre>
+	<button onclick="test4();">실행확인</button>
+	<div id="area3" class="area"></div>
+	<script>
+		function test4(){ 
+			alert('test4()실행확인');
+		
+		}	
+	</script>
+	
+	<hr>
+
+	<h3>window.onload 함수</h3>
+	<pre>
+	- html 문서의 모든 요소가 로딩이 완료 되면 브라우저가 발생시키는 이벤트
+
+	- 문서의 로딩이 완료 된후 수행되어야 하는 기능이 있을 경우 사용함.
+	ex) 스크립트 코드보다 로딩이 늦게되는 요소를 얻어와야 하는 경우
+
+	- window.onload = function(){};  또는 &lt;body onload="함수명()"&gt; 형태로 사용하며
+	  onload는 html 문서당 딱 한번만 작성할 수 있음.
+
+	  (참고. 여러번 사용하고 싶은 경우 다음과 같이 작성
+		  function window::onload(){ 수행할코드; }
+	  )    
+
+	</pre>
+
+	<script>
+		//window.onload = function(){
+			console.log(document.getElementById("area4").innerText);
+		//}
+
+		/*function test(){
+			console.log(document.getElementById("area4").innerText);
+		}*/
+
+		
+	</script>
+
+	<div id="area4" class="area">test</div>
+
+
+	<hr>
+	
+	<h3>기본이벤트의 제거</h3>
+	<pre>
+	태그에 기본적으로 설정되어 있는 이벤트 제거 
+	-> 이벤트 핸들러의 return 값을 false로 하면 제거됨
+
+	기본 이벤트 ex) 
+	- submit : 입력 양식 제출 후 페이지 갱신
+	</pre>
+	<form id="memberJoin" onsubmit="return validate();">
+		<label>비밀번호 : </label><input type="password" name="pwd1" id="pwd1"><br>
+		<label>비밀번호 확인 : </label><input type="password" name="pwd2" id="pwd2">
+		<button type="submit">제출</button>
+		<!-- <input type="submit" value="제출" onclick="return test5();"> -->
+											<!-- 이벤 -->
+	</form>
+	<script>
+		function validate(){ // validate : 유효성
+			var pwd1 = document.getElementById("pwd1");
+			var pwd2 = document.getElementById("pwd2");
+			
+			if(pwd1.value.trim().length == 0){ // 비밀번호가 입력되지 않은 경우
+				alert("비밀번호를 입력해주세요.");
+				pwd1.focus();
+				return false;
+			}
+			
+			if(pwd2.value.trim().length == 0){ // 비밀번호 확인이 입력되지 않은 경우
+				alert("비밀번호 확인을 입력해주세요.");
+				pwd2.focus();
+				return false;
+			}
+
+			// 비밀번호가 같은지 확인
+			if(pwd1.value != pwd2.value){
+				alert('비밀번호가 일치하지 않습니다.');
+
+				// submit의 기본 이벤트 제거를 위해 false 리턴
+				return false;
+			}else{
+				alert('비밀번호가 일치합니다');
+				return true;
+			}
+			
+		}
+		
+	</script>
+	
+	<hr>
+	
+	<h3>표준 이벤트 모델(addEventListener)</h3>
+	<pre>
+	- w3에서 공식적으로 지정한 이벤트 모델
+
+	- 한 번에 여러 개 이벤트 핸들러 설정 가능
+
+	- IE는 9버전 부터 지원
+
+	(참고)HTML DOM 이벤트 종류
+	https://www.w3schools.com/jsref/dom_obj_event.asp
+	</pre>
+
+	<button id="btn1">고전 이벤트 모델 확인</button>
+	<button id="btn2">표준 이벤트 모델 확인</button>
+	<script>
+		// 고전 이벤트 모델
+		var btn1 = document.getElementById("btn1");
+		btn1.onclick = function(){
+			alert('고전 이벤트 모델 테스트');
+		}
+
+		btn1.onclick = function(){
+			btn1.style.background = "red";
+		}
+		// 앞서 작성된 alert 이벤트 핸들러가 사라지고
+		// 마지막에 작성된 배경색 변경 이벤트 핸들러만 남음.
+
+
+		// 표준 이벤트 모델
+		var btn2 = document.getElementById("btn2");
+		
+		btn2.addEventListener('click', function(){
+			alert('표준 이벤트 모델 테스트');
+		});
+		
+		btn2.addEventListener('click', function(){
+			btn2.style.background = "red";
+		});
+		// 작성한 두 이벤트 핸들러가 모두 적용됨.
+			
+	
+	</script>	
+	
+	
+	
+</body>
+</html>

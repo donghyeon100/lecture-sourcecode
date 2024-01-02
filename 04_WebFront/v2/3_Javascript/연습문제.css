@@ -1,0 +1,21 @@
+/* .container{
+    display: flex;
+}
+
+.area{
+    width: 150px;
+    height: 170px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.box{
+    height: 150px;
+    border-bottom: 1px solid black;
+}
+
+.box-color{
+    border: none;
+    outline: none;
+} */

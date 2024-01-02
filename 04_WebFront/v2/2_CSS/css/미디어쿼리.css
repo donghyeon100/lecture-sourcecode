@@ -1,0 +1,81 @@
+.nav-btn{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-color: white;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    user-select: none;
+    display: none;
+}
+
+.nav-btn:hover{ color: #455ba8; }
+
+
+
+@media screen and (max-width : 1024px) {
+
+    main {
+        width: 100%;
+        min-width: 768px;
+        margin-top : 10px;
+    }
+
+    header{
+        flex-direction: column;
+        height: 150px;
+    }
+
+    header > section{ width: initial !important;}
+    
+    #home-logo{
+    width: 80px;
+    height: auto;
+    }
+
+    #homeLogo{
+    width: 80px;
+    height: auto;
+    }
+
+
+    .nav-btn{ display: block;}
+
+    nav{
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0,0,0,0.3);
+        display: none;
+    }
+
+    nav > ul{
+        flex-direction: column;
+        align-items: flex-start;
+        width: 300px;
+        background-color: white;
+        padding-top: 60px;
+        padding-left: 20px;
+    }
+
+    nav li{
+        flex-basis : auto;
+        /* 팽창, 수축, 기본값 */
+    }
+
+    nav a:hover{
+        background-color: initial;
+        color: #455ba8;
+        font-size: 1.5em;
+    }
+
+    .search-area {
+        width: 90%;
+    }
+
+    .content{ padding: 0 10px;}
+}
+

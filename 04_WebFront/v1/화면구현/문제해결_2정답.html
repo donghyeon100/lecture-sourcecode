@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제해결 2</title>
+
+    <style>
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            overflow: hidden;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <button class="accordion">HTML</button>
+    <div class="panel">
+        <p>HTML은 하이퍼텍스트 마크업 언어(HyperText Markup Language)라는 의미의 웹 페이지를 위한 마크업 언어다.</p>
+    </div>
+
+    <button class="accordion">CSS</button>
+    <div class="panel">
+        <p>CSS는 Casting Style Sheets의 약자로 html 요소들이 각종 디자인, 레이아웃 등 사용자에게 어떻게 보여지는지 정의하는 스타일 시트 언어입니다.</p>
+    </div>
+
+    <button class="accordion">JavaScript</button>
+    <div class="panel">
+        <p>자바스크립트는 1995년에 넷스케이프(Netscape)의 브렌던 아이크(Brendan Eich)에 의해 만들어졌습니다.</p>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        //1. 이 문서를 처음 로드하면 메뉴만 나타난다.   
+        const panelArr = document.getElementsByClassName("panel");
+
+        for(let panel of panelArr){
+            panel.style.display = "none";
+        }
+
+        const accordionArr = document.getElementsByClassName("accordion");
+        for(let accordion of accordionArr){
+            accordion.addEventListener("click", function(){
+                
+                //2. 메뉴를 클릭하면 메뉴와 관련된 내용이 나타난다.
+                if(this.nextElementSibling.style.display == "none"){
+                    this.nextElementSibling.style.display = "block";
+                }else{
+
+                     //3. 관련된 내용이 나타난 메뉴를 다시 클릭하면 내용이 사라진다.
+                    this.nextElementSibling.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

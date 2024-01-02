@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		.area {
+			background: lightgray;
+			border: 1px solid black;
+			height: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<p>HTML에 있는 태그들을 구조화(트리) 하였을 때<br>
+		각각의 태그를 노드(Node)라고 한다.
+	</p>
+	<h3>텍스트노드가 있는 노드 생성</h3>
+	<button onclick="test1();">실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1() {
+			//element생성
+			var title = document.createElement("h3");
+			// <h3></h3> 태그를 의미
+
+			//textnode생성
+			var textNode = document.createTextNode('안녕하세요?');
+			// h?, p 태그 등에 들어가는 텍스트를 의미
+
+			//노드를 연결
+			title.appendChild(textNode);
+			// title이라는 <h3>태그에 textNode의 텍스트를 연결
+			// -> <h3>안녕하세요?</h3>
+
+			// area1에 출력
+			document.getElementById("area1").appendChild(title);
+			// area1(div 요소)에 title 이라는 요소 노드를 연결
+
+		}
+	</script>
+	<hr>
+
+	<h3>텍스트노드가 없는 노드 생성</h3>
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		function test2() {
+			//img태그 생성
+			var imgTest = document.createElement('input');
+
+			// document.getElementById("area2").setAttribute()
+
+			document.getElementById("area2").appendChild(imgTest);
+		}
+	</script>
+
+	<hr>
+
+	<h3>노드 삭제</h3>
+	<button onclick="test3();">이미지 삭제</button>
+	<script>
+		function test3() {
+			var area2 = document.getElementById("area2");
+
+			area2.lastChild.remove();
+		}
+	</script>
+
+	<hr>
+
+	<h3>노드 추가/삭제</h3>
+	<button type="button" id="add">추가</button>
+	<button type="button" id="sum">합계</button><br>
+
+	<table>
+		<tbody id="wrapper">
+			<tr>
+				<td>입력 :</td>
+				<td><input type="text" class="inputNumbers"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="printArea"></div>
+
+	<script>
+		document.getElementById("add").onclick = function () {
+
+			var tr = document.createElement("tr");
+
+			var td1 = document.createElement("td");
+			td1.appendChild(document.createTextNode("입력 : "));
+
+
+			var td2 = document.createElement("td");
+			var input = document.createElement("input");
+			input.setAttribute("type", "text");
+			input.setAttribute("class", "inputNumbers");
+			td2.appendChild(input);
+
+
+			var td3 = document.createElement("td");
+			var deleteBtn = document.createElement("button");
+			deleteBtn.setAttribute("type", "button");
+			deleteBtn.setAttribute("onclick", "deleteRow(this)");
+			deleteBtn.appendChild(document.createTextNode("삭제"));
+			td3.appendChild(deleteBtn);
+
+
+			tr.appendChild(td1);
+			tr.appendChild(td2);
+			tr.appendChild(td3);
+
+			document.getElementById("wrapper").appendChild(tr);
+		}
+
+		// 삭제 함수
+		function deleteRow(btn) {
+			// btn == 클릭된 버튼 요소
+			// .parentNode : 해당 요소의 부모요소 선택
+			console.log(btn); // 삭제버튼
+			console.log(btn.parentNode); // td
+			console.log(btn.parentNode.parentNode); // tr
+
+			btn.parentNode.parentNode.remove();
+		}
+
+
+		document.getElementById("sum").onclick = function () {
+
+			var arr = document.getElementsByClassName("inputNumbers");
+
+			var sum = 0;
+			for(var item of arr){
+				sum += Number(item.value);
+			}
+
+			document.getElementById("printArea").innerHTML
+				= "<h3> 합계" + sum +"</h3>";
+
+		}
+
+
+	</script>
+
+
+
+
+	<h3>스타일 지정</h3>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4() {
+			var area4 = document.getElementById("area4");
+
+			area4.style.backgroundColor = "orangered";
+			area4.style.borderRadius = "50px";
+			area4.style.transitionDuration = "2s";
+		} 
+	</script>
+
+</body>
+
+</html>

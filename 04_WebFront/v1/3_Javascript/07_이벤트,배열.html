@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_이벤트, 배열</title>
+
+    <style>
+        .area{
+            border: 1px solid black;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>이벤트(Event)</h1>
+    <pre>
+        이벤트(Event) : 
+        동작, 행위    
+        ex) 클릭(click), 마우스오버(mouseover) 등
+
+
+        이벤트 리스너(Event Listener) : 
+        이벤트가 발생하는 것을 대기하고 있다가
+        이벤트가 발생하면 연결된 기능을 수행하도록 하는 것
+
+        ex) onclick, onmouseover 등
+
+
+        이벤트 핸들러(Event Handler) : 
+        이벤트 리스너에 연결된 기능으로
+        수행하고자 하는 내용을 작성해둔 함수(function)
+    </pre>
+
+    <hr>
+
+    <h3>인라인 이벤트 모델</h3>
+    <pre>
+        요소 내부에 이벤트를 작성하는 방법으로
+        on이벤트명 = 함수명(); 형태로 작성함.
+    </pre>
+
+    <button type="button" onclick="test1();">인라인 이벤트 모델</button>
+
+    <script>
+        function test1(){
+            console.log("인라인 이벤트 모델 테스트");
+        }
+    </script>
+
+    <hr>
+
+    <h3>고전 이벤트 모델</h3>
+    <pre>
+        요소가 가지고 있는 이벤트 속성에(이벤트 리스너)
+        이벤트 핸들러를 연결하는 방법으로
+        인라인 이벤트 모델과 달리 script에만 이벤트 관련 코드를 작성함.
+    </pre>
+
+    <button type="button" id="test2-1">고전 이벤트 모델 수행</button>
+    <button type="button" id="test2-2">test2-1의 이벤트 핸들러 제거</button>
+    <button type="button" id="test2-3">고전 이벤트 모델 단점</button>
+
+    <div id="area2"></div>
+
+    <script>
+        const btn1 = document.getElementById("test2-1");
+        const btn3 = document.getElementById("test2-3");
+        const area2 = document.getElementById("area2");
+
+        // 고전 이벤트 모델
+        // 요소.이벤트리스너 = 함수(==이벤트 핸들러)
+        btn1.onclick = function(){
+            area2.innerHTML = "고전 이벤트 모델에 의해서 출력된 내용";
+        }
+
+
+        // 고전 이벤트 모델 - 이벤트 핸들러 제거하기
+        document.getElementById("test2-2").onclick = function(){
+            area2.innerHTML = "test2-1의 이벤트 핸들러를 제거";
+
+            btn1.onclick = null; // 이벤트 제거
+        }
+
+
+        // 고전 이벤트 모델 - 단점
+        // 한 요소에 동일한 이벤트 리스너에 대한 
+        // 이벤트 핸들러가 여러번 작성된 경우
+        // 마지막으로 작성된 이벤트 핸들러만 적용된다.
+        btn3.onclick = function(){
+            btn3.style.backgroundColor = "red";
+        }
+
+        btn3.onclick = function(){
+            btn3.style.fontSize = "30px";
+        }
+    </script>
+
+    <hr>
+    <h3>표준 이벤트 모델(addEventListener)</h3>
+    <pre>
+        - W3C에서 공식적으로 지정한 이벤트 모델
+
+        - 한 요소에 여러 이벤트 핸들러를 설정할 수 있음.
+            (고전 이벤트 모델의 단점 보완)
+
+        - ie는 9버전 이상부터 사용 가능
+    </pre>
+
+    <button type="button" id="test3-1">표준 이벤트 모델 확인</button>
+    <script>
+        const stdBtn1 = document.getElementById("test3-1");
+
+        // 표준 이벤트 모델 작성 방법
+        // 요소.addEventListener( "click" , function(){} );
+                             //   이벤트명 ,  이벤트 핸들러
+
+        stdBtn1.addEventListener( "click" , function(){
+            stdBtn1.style.backgroundColor = "orange";
+        });
+
+        stdBtn1.addEventListener("click", function(){
+            stdBtn1.style.fontSize = "30px";
+        });
+
+    </script>
+
+
+    <hr><hr>
+
+    <h1>배열(Array)</h1>
+
+    <pre>
+        자바스크립트에서는 리터럴 값이 지정되기 전 까지
+        변수의 자료형이 지정되지 않음.
+            == 배열 요소에 어떤 자료형이든 대입할 수 있다. (자바 List랑 비슷)
+    
+        1) 자료형 제한 x
+        2) 길이 제한 X    
+    </pre>
+
+    <button type="button" id="arrBtn1">배열 예제1</button>
+    <div id="div1" class="area"></div>
+
+    <script>
+        // id가 arrBtn1인 요소를 클릭했을 때의 기능(표준 이벤트 모델)
+        
+        document.getElementById("arrBtn1").addEventListener("click", function(){
+
+            const div1 = document.getElementById("div1");
+            div1.innerHTML = "";
+
+            // 배열 선언 및 할당
+            // JAVA --> int[] arr = new int[4];  
+            const arr1 = new Array();
+            const arr2 = new Array(2);
+            // new Array(크기);  : 새로운 배열 객체 생성(할당)
+
+            console.log(arr1.length);
+            console.log(arr2.length);
+
+
+            // 길이 제한이 없으므로 알아서 길이가 증가됨.
+            // 별도 자료형 지정이 없으므로 어떤 값이든 대입 가능
+
+            arr1[0] = "김밥";
+            arr1[1] = 123;
+            arr1[2] = true;
+            arr1[3] = { id : "user01" , pw : "pass01"};
+
+            console.log(arr1);
+
+            // for ... of 구문 : 배열 내 요소를 순서대로 반복 접근
+            for(let item of arr1){
+
+                //console.log(typeof item == "object");
+
+                if(typeof item == "object"){ 
+                    // 자료형이 객체일 경우
+
+                    // for ... in 구문 : 객체 내 key 값을 순차적으로 반복 접근하는 구문
+
+                    for(let key in item){
+                        div1.innerHTML += key + " : " + item[key] + "<br>";
+                    }
+
+
+                }else{
+                    // 자료형이 객체가 아닌 경우
+                    div1.innerHTML += item + "<br>";
+                }
+
+            }
+
+
+        });
+        
+    </script>
+
+    <hr>
+
+    <h3>배열 관련 함수</h3>
+    <pre>
+        push() : 배열 맨 뒤 요소로 추가
+        pop()  : 배열 맨 뒤 요소를 꺼내옴(배열에서 제거됨)
+
+        indexOf() : 값이 일치하는 요소의 인덱스를 반환. 없으면 -1 반환
+
+        toString() 또는 join() : 배열 내 요소를 하나의 문자열 반환
+
+        -> toString()은 ", "로 구분, 
+           join("구분자")은 구분자 지정 가능
+
+        sort() : 배열 내 요소를 오름차순으로 정렬.
+        reverse() : 배열 순서를 반대로 뒤집음.
+    </pre>
+
+    <button type="button" id="arrBtn2">배열 관련 함수 확인</button>
+    <div id="div2" class="area"></div>
+
+
+    <script>
+        document.getElementById("arrBtn2").addEventListener("click" , function(){
+            const div2 = document.getElementById("div2");
+            div2.innerHTML = "";
+
+            //const arr = new Array();
+            //const arr = []; // == new Array(); // 비어있는 배열 객체 생성
+
+            const arr = ["김밥", "샌드위치"]; // 선언, 할당, 초기화 동시 진행
+
+            arr.push("한정식");
+            div2.innerHTML += "push 후 결과 : " + arr + "<br>";
+            
+            div2.innerHTML += "pop 1회 : " +  arr.pop()  + "<br>";
+            //div2.innerHTML += "pop 2회 : " +  arr.pop()  + "<br>";
+            
+            div2.innerHTML += "pop 이후 결과 : " + arr + "<br>";
+            
+            div2.innerHTML += "김밥의 인덱스 : " + arr.indexOf("김밥")  + "<br>";
+
+            div2.innerHTML += "라면의 인덱스 : " + arr.indexOf("라면")  + "<br>";
+            
+
+            div2.innerHTML += "arr.toString() : " + arr.toString()  + "<br>";
+            div2.innerHTML += "arr.join('/') : " + arr.join('/')  + "<br>";
+
+            
+
+            const arr2 = []; // 빈 배열
+
+            for(let i=0 ; i<10 ; i++){
+                const ran =   Math.floor( Math.random() * 100 + 1 );
+                // 1~100 사이 난수 발생(정수만)
+
+                arr2.push( ran  );
+            }
+
+            div2.innerHTML += "정렬 전 : " + arr2 + "<br>"
+
+            //div2.innerHTML += "오름차순 정렬 : " + arr2.sort() + "<br>";
+            // 별도 기준을 정해두지 않으면 
+            // 유니코드 순서, 글자 개수에 따라 오름차순으로 정렬됨.
+            
+            div2.innerHTML += "오름차순 정렬 : " 
+                + arr2.sort( function(a,b){ return a-b; }  ) + "<br>";
+
+            div2.innerHTML += "내림차순 정렬 : " +  arr2.reverse();
+            
+        });
+
+    </script>
+
+
+</body>
+</html>

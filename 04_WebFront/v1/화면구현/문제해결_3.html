@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제해결 3</title>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <p>탭 메뉴를 선택해 보세요</p>
+
+    <div class="tab">
+        <button class="tablinks">런던</button>
+        <button class="tablinks">파리</button>
+        <button class="tablinks">앙카라</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+        <h3>런던</h3>
+        <p>런던 (영어: London)은 잉글랜드와 영국의 수도이다.</p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>파리</h3>
+        <p>파리(Paris)는 프랑스의 수도이다.</p>
+    </div>
+
+    <div id="ankara" class="tabcontent">
+        <h3>앙카라</h3>
+        <p>터키의 수도이다.</p>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+
+        document.getElementsByClassName("tablinks")[1].classList.add("active");
+
+        document.getElementById("London").style.display = "none";
+
+        const tablinks = document.getElementsByClassName("tablinks");
+        const tabcontent = document.getElementsByClassName("tabcontent");
+
+        for (let tab of tablinks) {
+            tab.addEventListener("click", function () {
+
+                for (let i = 0; i < tablinks.length; i++) {
+                    if (tablinks[i] == this) {
+                        tabcontent[i].style.display = "none";
+
+                        tablinks[i].classList.remove("active");
+
+                    } else {
+
+                        tabcontent[i].style.display = "block";
+                        tablinks[i].classList.add("active");
+                    }
+                }
+
+            });
+        }
+    </script>
+</body>
+</html>

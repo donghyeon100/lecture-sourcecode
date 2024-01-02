@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_입력 관련 태그</title>
+</head>
+
+<body>
+    <pre>
+        input 태그 : 웹 문서에서 사용자가 입력할 수 있는 양식을 제공하는 태그.
+
+        form 태그 :  내부에 작성된 input 태그 값을 서버로 넘기는 역할을 하는 태그.
+
+        * form 태그 속성
+        1) action : form 태그 내부에 입력된 값을 전달할 페이지 url을 작성하는 속성.
+        2) method : 데이터 전송 방식 지정
+        3) name : form 태그의 이름 지정 속성. form태그 구분을 위해 사용
+        4) target : action에 지정된 페이지를 새탭/현재창 중 어디서 열지 선택
+    </pre>
+
+    <hr>
+
+    <h4>form 태그 예시</h4>
+    <form>
+        <label>검색할 내용</label>
+        <input type="text" size="20" name="search">
+        <input type="submit" value="검색">
+    </form>
+
+    <hr>
+
+    <h3>fieldset, legend</h3>
+    <pre>
+        fieldset : 폼 요소(태그)를 그룹으로 묶는 태그
+        legend : 묶은 fieldset 그룹에 이름을 붙이는 태그 
+    </pre>
+
+    <form>
+        <fieldset>
+            <legend>입력 그룹 1번</legend>
+            입력 1 : <input type="text"><br>
+            입력 2 : <input type="text"><br>
+            입력 3 : <input type="text"><br>
+        </fieldset>
+        <fieldset>
+            <legend>입력 그룹 2번</legend>
+            입력 1 : <input type="text"><br>
+            입력 2 : <input type="text"><br>
+            입력 3 : <input type="text"><br>
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <h3>text 관련 input 태그</h3>
+
+    <h5>type="text"</h5>
+    - 한 줄 짜리 문자열(텍스트)를 입력할 수 있는 입력 상자.
+    <br>
+    <label for="userId">아이디 입력 : </label>
+    <input type="text" name="id" size="15" maxlength="15" placeholder="ID 입력해주세요." id="userId">
+
+    <!-- 
+        name : 서버로 전달될 때 데이터의 key
+        size : 입력 상자의 크기
+        maxlength : 글자 최대 수 제한
+        placeholder : 입력상자에 입력할 내용을 설명
+        id : 태그를 구분하는 식별자
+        
+        label태그의 for 속성
+         : for에 작성된 값과 id가 일치하는 
+           input태그를 활성화 + 포커스 이동
+     -->
+
+
+    <h5>type="password"</h5>
+    <label for="userPw">비밀번호 입력 : </label>
+    <input type="password" id="userPw" name="pw">
+
+    <h5>search, url, email, tel</h5>
+    <!-- 겉모습은 type="text"와 비슷하지만
+        각각의 정보에 맞게 분화된 기능을 제공
+    -->
+
+    <form>
+        검색 : <input type="search"> <br>
+        홈페이지 : <input type="url" value="https://">
+        <br>
+        이메일 : <input type="email">
+        <br>
+        전화번호 : <input type="tel">
+        <!-- value 속성 : input 태그에 값을 작성하는 속성 -->
+
+        <input type="submit" value="전송">
+    </form>
+
+    <hr>
+
+    <h3>숫자 관련 input 태그</h3>
+
+    <h5>type="number"</h5>
+    <p>숫자만 입력할 수 있게하는 입력 상자 <br>
+        브라우저에 따라 스핀박스가 표시되기도 한다.
+    </p>
+
+    <h5>type="range"</h5>
+    <p>슬라이드 바를 이용해 숫자 지정</p>
+
+    <form>
+        number : <input type="number" name="num1" min="0" max="100" step="5" value="50"> <br><br>
+
+        range : <input type="range" name="num2" min="0" max="100" step="5" value="50"> <br><br>
+
+        <input type="submit" value="제출">
+        <input type="reset" value="초기화">
+    </form>
+
+    <hr>
+
+    <h3>날짜/시간 관련 input 태그 </h3>
+    <h5>type="date / month / week / time / datetime/ datetime-local"</h5>
+    <form>
+        <label>date</label>
+        <input type="date" name="dateIn"><br><br>
+
+        <label>month</label>
+        <input type="month" name="monthIn"><br><br>
+
+        <label>week</label>
+        <input type="week" name="weekIn"><br><br>
+
+        <label>time</label>
+        <input type="time" name="timeIn"><br><br>
+
+        <label>datetime</label>
+        <input type="datetime" name="dtIn"><br><br>
+
+        <label>datetime-local</label>
+        <input type="datetime-local" name="dtlIn"><br>
+
+        <br><br>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="초기화">
+    </form>
+
+    <hr>
+
+    <h3>라디오 버튼, 체크박스</h3>
+    <p>
+        여러 관련된 값을 하나의 용도로 사용할 경우 작성하는 input 태그로 <br>
+        <strong style="color:red">
+            반드시 연관된 input 태그의 name 속성값이 같아야 한다.
+        </strong>
+    </p>
+
+    <h5>type="radio"</h5>
+    팀 선택 :
+    <form>
+        <input type="radio" id="a" value="a" name="team">
+        <label for="a">A 팀</label>
+
+        <input type="radio" id="b" value="b" name="team">
+        <label for="b">B 팀</label>
+
+        <br><br>
+        <input type="submit" value="제출">
+    </form>
+
+    <hr>
+
+    <h5>type="checkbox"</h5>
+    <form>
+        취미 :
+        <input type="checkbox" id="baseball" name="hobby" value="baseball">
+        <label for="baseball">야구</label> &nbsp;
+
+        <input type="checkbox" id="basketball" name="hobby" value="basketball">
+        <label for="basketball">농구</label> &nbsp;
+
+        <input type="checkbox" id="football" name="hobby" value="football">
+        <label for="football">축구</label> <br><br>
+
+        <input type="submit" value="전송">
+        <input type="reset" value="초기화">
+    </form>
+
+    <hr>
+
+    <h3>기타 input 태그</h3>
+
+    <h5>type="color"</h5>
+    <form>
+        색상 선택 : <input type="color" name="color">
+        <input type="submit" value="전송">
+    </form>
+
+    <h5>type="file"</h5>
+    <input type="file" name="upload">
+
+
+    <h5>type="hidden"</h5>
+    <!-- 화면에는 보이지 않지만, 서버에 값을 전달해야되는 경우 사용하는 태그 -->
+    <form>
+        <input type="hidden" name="hhh" value="abc" >
+        <input type="submit" value="제출">
+    </form>
+
+    <hr>
+    <h5>버튼 관련 태그</h5>
+    <form>
+        <input type="text" name="str"> <br>
+
+        <input type="submit" value="서버에 데이터 제출"> <br>
+        <input type="reset" value="form 태그 내부 input 초기화"> <br>
+        <input type="button" value="버튼" id="btn1">
+        <!-- type="button" 자체에는 아무런 기능도 없음.
+            대신 클릭 시 수행되는 동작을 지정하는 용도로 사용
+        -->
+    </form>
+
+    <script>
+        document.getElementById("btn1").onclick 
+            = function(){  alert("버튼 클릭됨");     }
+    </script>
+
+    
+    <hr>
+
+    <form>
+        <input type="text" name="str"> <br>
+
+        <!-- <button> 태그 (기본값 submit)-->
+        <button>제출</button>   <br>
+        <button type="reset">초기화</button>  <br>
+        <button type="button">그냥 버튼</button>
+
+    </form>
+
+    <hr>
+
+    <h5>textarea 태그</h5> <!-- 여러 줄 입력 가능 -->
+    <form>
+        <textarea rows="5" cols="50" name="ta" 
+            style="resize:none;">이름 : 
+나이 : 
+직업 : 
+성별 :
+        </textarea>
+
+        <button>제출</button>
+    </form>
+
+    <hr>
+
+    <h5>select, option 태그</h5>
+    <form>
+        <select name="na">
+            <option value="ko">한국</option>
+            <option value="ch">중국</option>
+            <option value="jp">일본</option>
+            <option value="etc">기타</option>
+            <option selected>---</option>
+        </select>
+
+        <button>제출</button>
+    </form>
+
+
+</body>
+
+</html>

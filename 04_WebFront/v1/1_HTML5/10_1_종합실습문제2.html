@@ -1,0 +1,62 @@
+
+    <form>
+        <fieldset>
+            <legend>납품자 정보</legend>
+
+            <ol>
+                <li>
+                    <label> 납품자명(필수) : </label>
+                    <input type="text">
+                    <br><br>
+                </li>
+                <li>
+                    <label> email(필수) : </label>
+                    <input type="email"  placeholder="answer@naver.com">   
+                    <br><br>     
+                </li>
+                <li>
+                    <label> 홈페이지 : </label>
+                    <input type="url"  value="http://">
+                    <br><br>
+                </li>
+                <li>
+                    지역 : 
+                    <select name="lo">
+                        <option value="부산" selected>부산</option>
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                    </select>
+                </li>
+            </ol>
+           
+        </fieldset>
+        <fieldset>
+            <legend>납품 정보</legend>
+            <ul>
+                <li> 
+                    <label>
+
+                    상품명(필수) : <input type="text"></li><br>
+                    </label> 
+                <li>
+                    <label >
+
+                    납품수량(필수) : <input type="number" min="100" placeholder="최소 100"></li><br>
+                    </label> 
+                <li>
+                    <label >
+                    
+                    납품등급(필수) : <input type="range"></li><br>
+                    </label>
+                <li>
+                    <label >
+                        기타사항 : <textarea name="etc"  cols="20" rows="5"></textarea></li><br>
+                    
+                    </label>
+            </ul>
+
+        </fieldset>
+        <br>
+        <button>send message</button>
+
+    </form>

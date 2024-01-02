@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_레이아웃 스타일3</title>
+
+    <style>
+        div{
+            border : 1px solid black;
+        }
+
+        .float-test{
+            width: 300px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        .float-left{
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            float : left;
+        }
+
+        .float-clear{
+            background-color: red;
+            color: white;
+            clear : both;
+            /* float : left 상태 해제*/
+        }
+
+        .float-right{
+            width: 50px;
+            height: 50px;
+            background-color: violet;
+            float : right;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h2>요소 정렬 스타일(float/clear)</h2>
+
+    <h5>
+        float : 요소를 띄워서 좌,우로 정렬하는 속성
+    </h5>
+
+    <h5>
+        clear : float로 인해 띄워져 있는 상태를
+                해제하는 속성. <br>
+        왼쪽 정렬 해제 시 -> clear : left; <br>
+        오른쪽 정렬 해제 시 -> clear : right; <br>
+        양쪽 모두 해제 시 -> clear : both; <br>
+    </h5>
+
+
+    float 적용 X
+    <div class="float-test">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>Hello</div>
+        <div>World</div>
+        <div>5</div>
+    </div>
+
+    <hr>
+
+    float : left 적용
+    <div class="float-test">
+        <div class="float-left">1</div>
+        <div class="float-left">2</div>
+        <div class="float-left">3</div>
+        <div class="float-left">4</div>
+        <div class="float-clear">Hello</div>
+        <div>World</div>
+        <div>5</div>
+    </div>
+
+    <pre>
+    float가 적용된 요소와, 적용되지 않은 요소를
+    같은 위치에 작성하게되면 포개지는 효과가 발생함.
+    --> 해결 방법 : clear 속성을 사용;
+    </pre>
+
+    <hr>
+
+    float : right 적용
+    <div class="float-test">
+        <div class="float-right">1</div>
+        <div class="float-right">2</div>
+        <div class="float-right">3</div>
+        <div class="float-right">4</div>
+        <div class="float-clear">Hello</div>
+        <div>World</div>
+        <div>5</div>
+    </div>
+
+    
+
+</body>
+</html>

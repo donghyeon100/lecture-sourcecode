@@ -1,0 +1,184 @@
+.item{
+    width: 75px;
+    height: 75px;
+    border : 1px solid black;
+    box-sizing: border-box;
+}
+
+.item1{background-color: red;}
+.item2{background-color: orangered;}
+.item3{background-color: orange;}
+.item4{background-color: yellow;}
+.item5{background-color: yellowgreen;}
+.item6{background-color: green;}
+.item7{background-color: lightblue;}
+.item8{background-color: blue;}
+/* .item9{background-color: navy;} */
+.item9{background-color: violet;}
+
+/* align-items :  baseline 확인용 */
+/* .item2{padding: 10px;}
+.item3{padding: 20px;}
+.item4{padding: 30px;} */
+
+
+
+/*******************************************************************************************/
+/* container 전용 속성 */
+
+.flex-container{
+    /* height: 100vh; */
+    /* height: 100vh;  *//* 부모 요소에 상관 없이 보이는 뷰포트 화면의 100% */
+    height: 500px; /* 부모 요소에 상관 없이 보이는 뷰포트 화면의 100% */
+    /* background-color: #ddd; */
+    border : 3px solid black;
+
+    display : flex; /* 감싸는 요소의 형식을 flex 박스로 지정 -> 내부 요소가 정렬됨 */
+
+
+   
+
+    /**** flex-direction ****/
+    /* main axis방향과 시작 위치 지정 (row(기본값), row-reverse, column, column-reverse)*/
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+
+
+    /**** flex-wrap ****/
+    /* 내부 item들이 강제로 한줄에 배치되게 할 것인지,
+     벗어나지 않고 여러 행으로 표현할지 지정 
+     (nowrap(기본값), wrap, wrap-reverse)
+     */
+    flex-wrap: nowrap;
+    /* flex-wrap: wrap;  */
+    /* flex-wrap: wrap-reverse;  */
+
+
+    /**** flex-flow ****/
+    /* flex-direction + flex-wrap 속성 */
+    /* flex-flow: row nowrap; */
+
+
+    /**** justify-content  ****/
+    /* item들을 중심축(main-axis)방향으로 배치하는 방법을 지정하는 속성 */
+
+    /* 중심축 시작 지점을 기준 */
+    /* justify-content: flex-start; */   
+
+    /* 중심축 끝 지점을 기준*/
+    /* justify-content: flex-end;  */  
+
+    /* flex-direction에따라 start, end 기준이 바뀜 */
+
+    /* 중심축 가운데 기준*/
+    /* justify-content: center; */
+
+    /* item 주위에 일정한 크기에 공간을 추가*/
+    /* justify-content: space-around;   */
+
+    /* item이 중심축 내에서 동일한 간격으로 떨어져 있도록 공간을 추가*/
+    /*  justify-content: space-evenly;   */
+
+    /* space-evenly에서 양 끝은 container 양쪽에 붙게함*/
+    justify-content: space-between;  
+
+
+
+    /**** align-items ****/
+    /* item들을 반대축(cross-axis)방향으로 배치하는 방법을 지정하는 속성*/
+    
+    /* 반대축 시작 지점을 기준*/
+    /* align-items : flex-start; */
+
+    /* 반대축 종료 지점을 기준 */
+    /* align-items : flex-end; */
+
+    /* align-items : center; */
+
+    /* item 내부에 작성된 내용(텍스트)이 모두 한 줄에 배치되도록 정렬*/
+    align-items :  baseline;
+
+    /* item들의 높이를 감싸고있는 flex 컨테이너의 높이와 동일하게 변경
+      -> 확인하려면 item에 지정된 height가 없어야 함.*/
+    /* align-items :  stretch; */
+
+
+
+    /**** align-content ****/
+    /* flex-wrap: wrap인 경우에 생성되는 행들의 배치 방법을 지정하는 속성 
+       justify-content의 속성 값들을 다 사용할 수 있음.*/
+
+    /* 행을 반대축 시작 지점을 기준으로 배치 */
+    /* align-content: flex-start;    */
+
+    /* 행을 반대축 끝 지점을 기준으로 배치*/
+    /* align-content: flex-end;    */
+
+    /* 행을 반대축 가운데를 기준으로 배치*/
+    /* align-content: center; */
+
+    /* 각 행에 일정한 크기에 공간을 추가*/
+    /* align-content: space-around;   */
+
+    /* 각 행이 동일한 간격으로 떨어져 있도록 공간을 추가*/
+    /* align-content: space-evenly;   */
+
+    /* space-evenly에서 첫/마지막 행을 container 위/아래에 붙게함*/
+    align-content : space-between;
+  
+}
+
+
+/***********************************************************************************/
+/* item 전용 속성 */
+
+/**** order ****/
+/* flex-contianer에 존재하는 item의 순서를 지정하는 속성(기본값 0) */
+
+.item1{ order : 1; }
+.item2{ order : 2; }
+.item3{ order : 3; }
+
+/**** flex-grow(팽창) ****/
+/* item이 flex-container 내부에서 비어있는 공간을 메꾸는(팽창) 정도를 지정하는 속성
+
+  0(기본값) : flex-container 공간을 메꾸지 않고 width/height를 유지함
+  
+  0 초과 : 빈 공간을 가득 메꾸기 위해 item이 늘어나고
+          flex-grow를 가진 item이 다수 존재하는 경우
+          지정된 숫자의 비율에 맞게 flex-container의 메꿔진 부분의 영역을 차지하도록 늘어남.
+*/
+
+.item4{ flex-grow: 1; }
+.item5{ flex-grow: 2; }
+.item6{ flex-grow: 3; }
+
+
+/**** flex-shrink(수축) ****/
+/* flex-container의 크기가 줄어들 경우 item의 수축 정도를 지정하는 속성 
+  flex-grow의 반대, 기본값 1*/
+  .item7{ flex-shrink: 3;}
+  .item8{ flex-shrink: 2;}
+  .item9{ flex-shrink: 0;}
+  /* 0으로 지정 시 flex-container가 아무리 줄어들어도 수축하지 않음 */
+
+
+/**** flex-basis ****/
+/* item의 main-axis 방향으로 기본 점유 크기를 지정하는 속성 (각종 크기 단위 사용 가능) */
+.item1{ flex-basis: 5%;}
+.item2{ flex-basis: 15%;}
+.item3{ flex-basis: 30%;}
+
+
+/**** flex ****/
+/* flex-grow, flex-shrink, flex-basis 를 한 번에 작성하는 속성 */
+.item4{ flex : 3 0 }
+
+
+/**** align-self ****/
+/* item별로 반대축 정렬 지정하는 속성 */
+/* .item4{ align-self: center;} */
+/* .item5{ align-self: flex-start;} */
+/* .item6{ align-self: flex-end;} */

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_선택자 우선순위</title>
+   
+    <style>
+        /* 5순위 tag선택자 */
+        div{
+            width: 300px;
+            height: 300px;
+            border : 1px solid black;
+                            
+            /* 1순위 !impotant */
+            background-color: tomato !important;
+        }
+
+        /* 4순위 class 선택자 */
+        .cls1{
+            width: 200px;
+            height: 200px;
+            color : white;
+        }
+
+        /* 3순위 id 선택자*/
+        #test1{
+            height: 100px;
+            background-color: yellow;
+        }
+
+        div{  /* 동일한 선택자를 반복해서 작성할 수 있음 */
+            margin: auto;
+            background-color: black !important;
+            /* 동일 우선순위가 여러개 작성된 경우 제일 마지막(아래) CSS 설정이 적용됨 */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>선택자 우선순위</h1>
+    <pre>
+        기본적으로 CSS 속성은 style태그에 작성된 순서(위->아래)대로 해석되며
+        같은 요소에 여러 CSS 속성이 설정된 경우 우선순위에 따라 스타일이 적용된다.
+
+        1순위 : !important
+        2순위 : inline-style 속성
+        3순위 : id 선택자
+        4순위 : class 선택자
+        5순위 : tag 선택자
+
+        같은 우선순위로 설정 CSS가 있을 경우
+        마지막에 작성된 CSS 설정이 적용됨.
+    </pre>
+
+    <hr>
+
+    <!-- 2순위 inline-style -->
+    <div id="test1" class="cls1" style="height: 300px; background-color: green;" >우선순위 테스트</div>
+
+
+    :only-child  ->  자식요소가 하나밖에 없을 때 적용
+    :only-of-type  ->  같은 형제 요소가 없을 때 적용
+    :empty -> 자식이 없는 요소
+
+</body>
+</html>

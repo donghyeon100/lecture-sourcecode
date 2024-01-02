@@ -1,0 +1,258 @@
+회원가입 폼에서 회원 정보를 입력 받아 데이터베이스에 삽입하고
+삽입 성공/실패에 따라 서로 다른 메세지를 결과 페이지로 보내는 코드를 작성하였지만 정상 오류가 발생했습니다.
+
+아래 소스코드를 참고하여 오류 발생 원인(발생 위치, 원인)과 조치 사항을 작성하시오.
+
+(모든 클래스의 import는 알맞게 작성되어 있고, Service 구문은 정상적으로 완성되어 있다고 가정.)
+
+
+1. 데이터베이스
+CREATE TABLE MEMBER_TBL(
+    MEMBER_ID VARCHAR2(30) PRIMARY KEY,
+    MEMBER_PW VARCHAR2(30) NOT NULL,
+    MEMBER_NAME VARCHAR2(20) NOT NULL    
+);
+
+
+2. 회원가입 페이지(회원 가입 폼에서 전송버튼 클릭)
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<form action="/join" method="post">
+		아이디 : <input type="text" name="memberId" required><br>
+		비밀번호 : <input type="password" name="memberPw" required><br>
+		이름 : <input type="text" name="memberName" required><br>
+		<button>전송</button>
+	</form>
+</body>
+</html>
+
+
+
+3. 회원가입 처리 서블릿
+@WebServlet("/join")
+public class JoinServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String memberId = request.getParameter("id");
+		String memberPw = request.getParameter("pw");
+		String memberName = request.getParameter("name");
+
+		Member member= new Member();	
+
+
+		int result = new MemberService().insertMember(member);
+		
+        String msg = "";
+		if(result > 0) {
+			msg = "회원가입 성공";
+		}else {
+			msg = "회원가입 실패";
+		}
+
+		request.setAttribute("msg", msg);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/joinResult.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
+
+4. Member객체 클래스(Member.java)
+package com.iei.vo;
+
+public class Member {
+	private String memberId;
+	private String memberPw;
+	private String memberName;
+	
+    public Member() {
+		super();
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberPw() {
+		return memberPw;
+	}
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}	
+}
+
+
+5. 결과 처리 페이지(위치 : /WEB-INF/joinResult.jsp)
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>결과 페이지</title>
+</head>
+<body>
+	<h1>${message}</h1>
+</body>
+</html>				
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+회원가입 폼에서 회원 정보를 입력 받아 데이터베이스에 삽입하고
+삽입 성공/실패에 따라 서로 다른 메세지를 결과 페이지로 보내는 코드를 작성하였지만 정상 오류가 발생했습니다.
+
+아래 소스코드를 참고하여 오류 발생 원인(발생 위치, 원인)과 조치 사항을 작성하시오.
+
+(모든 클래스의 import는 알맞게 작성되어 있고, Service 구문은 정상적으로 완성되어 있다고 가정.)
+
+
+1. 데이터베이스
+CREATE TABLE MEMBER_TBL(
+    MEMBER_ID VARCHAR2(30) PRIMARY KEY,
+    MEMBER_PW VARCHAR2(30) NOT NULL,
+    MEMBER_NAME VARCHAR2(20) NOT NULL    
+);
+
+
+2. 회원가입 페이지(회원 가입 폼에서 전송버튼 클릭)
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<form action="/join" method="post">
+		아이디 : <input type="text" name="memberId" required><br>
+		비밀번호 : <input type="password" name="memberPw" required><br>
+		이름 : <input type="text" name="memberName" required><br>
+		<button>전송</button>
+	</form>
+</body>
+</html>
+
+
+
+3. 회원가입 처리 서블릿
+@WebServlet("/join")
+public class JoinServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+
+        // 파라미터가 일치하지 않음
+        //String memberId = request.getParameter("id");
+		//String memberPw = request.getParameter("pw");
+		//String memberName = request.getParameter("name");
+
+		String memberId = request.getParameter("memberId");
+		String memberPw = request.getParameter("password");
+		String memberName = request.getParameter("memberName");
+
+
+		Member member= new Member();	
+        // 값 세팅이 삭제됨
+        member.setMemberId(memberId);
+        member.setMemberPw(memberPw);
+        member.setMemberName(memberNmae);	
+
+		int result = new MemberService().insertMember(member);
+		
+        String msg = "";
+		if(result > 0) {
+			msg = "회원가입 성공";
+		}else {
+			msg = "회원가입 실패";
+		}
+
+		request.setAttribute("msg", msg);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/joinResult.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
+
+5. Member객체 클래스(Member.java)
+package com.iei.vo;
+
+public class Member {
+	private String memberId;
+	private String memberPw;
+	private String memberName;
+	
+    public Member() {
+		super();
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberPw() {
+		return memberPw;
+	}
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}	
+}
+
+
+7. 결과 처리 페이지(위치 : /WEB-INF/joinResult.jsp)
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>결과 페이지</title>
+</head>
+<body>
+    <!-- 요청 위임 시 request에 msg라는 이름으로 속성을 추가했으나 다른 이름으로 작성함.-->
+	<h1>${msg}</h1>
+</body>
+</html>				

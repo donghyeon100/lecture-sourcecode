@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_레이아웃 스타일 1</title>
+    
+    <style>
+        .test1{
+            border : 2px solid red;
+        }
+
+        #d1{
+            width: 600px;
+            height: 200px;
+        }
+
+        #d1-1{
+            background-color: greenyellow;
+            width: 300px;
+            height: 200px;
+            float: left;
+        }
+
+        #d1-2{
+            background-color: blue;
+            width: 300px;
+            height: 200px;
+            float: left;
+        }
+
+
+        #d2{
+            width: 60%;
+            height: 200px;
+        }
+
+        #d2-1{
+            width : 100%;  /* 상위 요소의 너비의 100%*/
+            height: 50%;   /* 상위 요소의 높이의 50%*/
+            background-color: yellow;
+        }
+
+        #d2-2{
+            width : 100%; /* 상위 요소의 너비의 100%*/
+            height: 50%;  /* 상위 요소의 높이의 50%*/
+            background-color: pink;
+        }
+
+
+        /* 화면 배치 방법 */
+        .block{
+            border : 1px solid black;
+            width: 150px;
+            height: 150px;
+            color: white;
+        }
+
+        .area1{ background-color: red; }
+        .area2{ background-color: orange; }
+        .area3{ background-color: yellow; }
+        .area4{ background-color: green; }
+        .area5{ background-color: blue; }
+
+        .div-inline{
+            display: inline;
+            /* display : 화면 배치 방법 지정 속성*/
+        }
+
+        .div-inline-block{
+            display: inline-block;
+            /*
+            inline-block : inline 특징인 수평분할 
+                            + block의 특징인 width/height 적용
+            */
+        }
+
+        .span-block{
+            display: block;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>width, height 속성</h1>
+    <pre>
+        요소가 차지하는 영역의 크기를 조절할 수 있는 속성.
+        단, block, inline-block 형식의 요소에만 사용 가능함.
+
+        고정 크기 단위 : px --> 화면이나 상위 요소 크기 관련 없이 크기 유지
+        가변 크기 단위 : %  --> 상위 요소 크기에 따라 크기 변경
+    </pre>
+
+    <!-- 가로,세로 고정 크기 -->
+    <div id="d1" class="test1">
+        <div id="d1-1"></div>
+        <div id="d1-2"></div>
+    </div>
+    <br>
+
+    <!-- 가로 : 가변, 세로 : 고정 -->
+    <div id="d2" class="test1">
+        <div id="d2-1"></div>
+        <div id="d2-2"></div>
+    </div>
+
+    <hr>
+
+    <h3>화면 배치 방법(display : block | inline | inline-block;) </h3>
+
+    <h5> div를 inline 형식으로 변경하기</h5>
+    <div class="block area1 div-inline">첫 번째 영역</div>
+    <div class="block area2 div-inline">두 번째 영역</div>
+    <div class="block area3 div-inline">세 번째 영역</div>
+    <div class="block area4 div-inline">네 번째 영역</div>
+    <div class="block area5 div-inline">다섯 번째 영역</div>
+    <!-- *** inline 형식은 width/height가 적용되지 않음!!! -->
+
+
+    <h5> div를 inline-block 형식으로 변경하기</h5>
+    <div class="block area1 div-inline-block">첫 번째 영역</div>
+    <div class="block area2 div-inline-block">두 번째 영역</div>
+    <div class="block area3 div-inline-block">세 번째 영역</div>
+    <div class="block area4 div-inline-block">네 번째 영역</div>
+    <div class="block area5 div-inline-block">다섯 번째 영역</div>
+
+
+    <h5> span를 block 형식으로 변경하기</h5>
+    <span class="block area1 span-block">첫 번째 영역</span>
+    <span class="block area2 span-block">두 번째 영역</span>
+    <span class="block area3 span-block">세 번째 영역</span>
+    <span class="block area4 span-block">네 번째 영역</span>
+    <span class="block area5 span-block">다섯 번째 영역</span>
+
+
+
+</body>
+</html>

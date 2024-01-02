@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_연습문제1</title>
+
+    <style>
+        .area{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        .div2{
+            display: inline-block;
+        }
+
+        .inputColor{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="area" id="box1"></div>
+    <input type="text" class="inputColor" id="input1"><br>
+    <button type="button" id="btn1">색 변경</button>
+
+
+    <script>
+        document.getElementById("btn1").addEventListener("click", function(){
+
+            // input 태그에 작성된 값을 얻어와 color 변수에 저장
+            const color = document.getElementById("input1").value;
+            
+            // color에 저장된 값으로 box1의 배경색을 변경
+            document.getElementById("box1").style.backgroundColor = color;
+        });
+    </script>
+
+    <hr>
+
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div class="area div2"></div>
+    <div>
+        <input type="text" class="inputColor input2">
+        <input type="text" class="inputColor input2">
+        <input type="text" class="inputColor input2">
+        <input type="text" class="inputColor input2">
+        <input type="text" class="inputColor input2">
+        <input type="text" class="inputColor input2">
+    </div>
+    <button type="button" id="btn2">색변경</button>
+    
+    <script>
+        document.getElementById("btn2").addEventListener("click", function(){
+
+            // div2 라는 클래스를 가지고있는 요소를 모두 얻어와(배열 형태) divArr에 저장
+            const divArr = document.getElementsByClassName("div2");
+            
+            // input2 라는 클래스를 가지고있는 요소를 모두 얻어와(배열 형태) inputArr에 저장
+            const inputArr = document.getElementsByClassName("input2");
+
+            // i번째 인덱스에 있는 div의 배경색을
+            // i번째 인덱스에 있는 input에 작성된 값으로 변경
+            for(let i=0 ; i<divArr.length ; i++){
+                divArr[i].style.backgroundColor = inputArr[i].value;
+            }
+        });
+
+    </script>
+</body>
+</html>

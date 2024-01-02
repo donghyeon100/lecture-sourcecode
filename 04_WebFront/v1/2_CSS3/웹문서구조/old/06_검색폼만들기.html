@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_검색폼 만들기</title>
+
+    <style>
+        div{
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        #header-2{
+            width: 650px;
+            height: 160px;
+
+            position: relative;
+        }
+
+        /* 복사 붙여넣기 해야되는 부분 시작 */
+
+        #search-form{
+            border: 1px solid red;
+            width: 80%;
+            height: 20%;
+
+            position: absolute;
+            top : 0;
+            bottom : 0;
+            left : 0;
+            right: 0;
+            margin : auto;
+        }
+
+        #search-text-area{
+            width: 80%;
+            height: 100%;
+            float: left;
+        }
+
+        #search-btn-area{
+            width: 20%;
+            height: 100%;
+            float: left;
+        }
+
+        #search-text-area > input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #search-btn-area > button{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+
+        /* 복사 붙여넣기 해야되는 부분 끝 */
+    </style>
+
+</head>
+<body>
+    <div id="header-2">
+        <form id="search-form">
+            <div id="search-text-area">
+                <input type="search" name="searchValue">
+            </div>
+
+            <div id="search-btn-area">
+                <button>검색</button>
+            </div> 
+        </form>
+    </div>
+</body>
+</html>

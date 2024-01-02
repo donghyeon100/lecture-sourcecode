@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_웹문서구조3</title>
+
+    <!-- 웹 폰트 적용을 위한 link태그 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+
+    <!-- 외부에 작성된 css파일 연결해서 적용하기 -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!-- rel 속성 : 연결할려는 문서(파일) 형식 지정 
+            -> stylesheet == css 파일
+        type="text/css"  : 글자(text)로 css파일
+    -->
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div id="header-1">
+                <a href="04_웹문서구조3.html">
+                    <img src="images/logo1.jpg" id="home-logo">
+                </a>
+            </div>
+
+            <div id="header-2">
+                <form id="search-form">
+                    <div id="search-text-area">
+                        <input type="search" name="searchValue">
+                    </div>
+        
+                    <div id="search-btn-area">
+                        <button>검색</button>
+                    </div> 
+                </form>
+            </div>
+
+            <div id="header-3"></div>
+        </div>
+
+        <div class="navigator">
+            <ul id="navi">
+                <li> <a href="#">Java</a> </li>
+                <li> <a href="#">Oracle</a> </li>
+    
+                <li> 
+                    <a href="#">Front-End</a> 
+                    
+                    <ul>
+                        <li> <a href="#">HTML5</a>  </li>
+                        <li> <a href="#">CSS3</a>  </li>
+                        <li> <a href="#">Javascript</a>  </li>
+                        <li> <a href="#">jQuery</a>  </li>
+                    </ul>
+                </li>
+    
+                <li> <a href="#">Server</a> </li>
+                <li> <a href="#">Framework</a> </li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div id="con-1"></div>
+            <div id="con-2"></div>
+
+            <div id="con-3">
+                <!-- 아이디, 비밀번호, 로그인 버튼이 위치할 form태그 -->
+                <form id="login-form">
+
+                    <!-- 아이디,비밀번호 입력 영역 -->
+                    <div id="input-area">
+                        <div>
+                            <input type="text" name="inputId" placeholder="ID 입력">
+                        </div>
+                        <div>
+                            <input type="password" name="inputPw" placeholder="PW 입력">
+                        </div>
+                    </div>
+
+                    <!-- 로그인 버튼 영역 -->
+                    <div id="login-btn-area">
+                        <button>로그인</button>
+                    </div>
+
+                </form>
+
+                <!-- 회원가입, ID/PW찾기 a태그가 위치할 div -->
+                <div id="join-area">
+                    <a href="#">회원가입</a>
+                    <a href="#">ID/PW찾기</a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="footer"></div>
+
+    </div>
+</body>
+
+</html>

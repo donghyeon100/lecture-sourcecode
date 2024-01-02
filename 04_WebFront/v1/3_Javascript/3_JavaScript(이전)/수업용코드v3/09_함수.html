@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+        <title>09. 함수</title>
+        <style>
+            p {
+                width:500px;
+                height:100px;
+                background:lightgray;
+                border:1px solid black;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>함수(Function)</h1>
+        <h3>기본적인 함수 작성, 호출 방법</h3>
+        <pre>
+            - function 함수명([매개변수]){ 소스 코드 작성 }
+
+            - 이벤트를 이용하여 함수명으로 호출.
+        </pre>
+        <button onclick="test1();">실행확인</button>
+        <p id="p1"></p>
+        <script type="text/javascript">
+            function test1(){
+                document.getElementById("p1").innerHTML = "test1() 함수 실행됨.";
+                    
+            }
+        </script>
+
+        <hr>
+
+        <h3>익명함수 (함수명이 없는 함수) </h3> 
+        <pre>
+            - function([매개변수]){ 소스 코드 작성 } 
+
+            - 이벤트 동작, 즉시 실행 함수에 주로 사용됨.    
+            - 변수에 함수를 할당시켜, 변수명을 통해 함수를 호출할 수 있음.
+        </pre>
+        <button id="btn2">실행확인</button>
+        <p id="p2"></p>
+        <script type="text/javascript">
+            // 특정 아이디를 가진 요소에 click 이벤트가 발생 한 경우
+           document.getElementById("btn2").onclick = function(){
+                document.getElementById("p2").innerHTML = "test2() 함수 실행 확인.";
+                    
+            }
+        </script>
+
+        <hr>
+
+        <h3>즉시 실행 함수</h3>
+        <pre>
+            - (function([매개변수]){ 소스 코드 작성 })();
+
+            - 익명 함수의 일종.
+
+            - 함수가 정의 되자마자 실행되는 함수
+            
+            * 사용 이유
+            - 함수 정의, 변수 저장, 함수 호출과 같은 함수와 관련된 일련의 과정을 거치지 않고 즉시 실행됨.
+                -> 일반적인 함수 사용법 보다 속도에서 우세.
+
+            - 사용하려는 변수명이 이미 전역변수로 사용되고 있는 경우 변수명 충돌을 막기위해
+              즉시 실행 함수를 이용하여 지역변수 형태로 변환하는 방법으로 충돌문제를 해결
+            <!-- 전역 변수의 이름이 겹치는 상황이 발생한 경우 이를 해결할 수 있는 방법으로 사용 -->
+
+           
+        </pre>
+        <p id="p3"></p>
+        <script type="text/javascript">
+
+            var str = "즉시함수<br>";
+
+            // 별도로 함수 정의, 호출 하지 않고
+            // 변수명이 겹치는 상황을 해결
+            (function(){
+                var str = "테스트 중입니다.<br>";
+                document.getElementById("p3").innerHTML += str;
+            })();
+
+            document.getElementById("p3").innerHTML += str;
+        </script>
+
+        <hr>
+
+        <h3>함수의 매개변수(전달인자)</h3>
+        <pre>
+            지정된 매개변수보다 많거나 적게 전달인자를 작성할 수 있음.
+        </pre>
+        <button id="btn1">실행확인</button>
+        <p id="p4"></p>
+        <script type="text/javascript">
+            function test4(value){
+                document.getElementById("p4").innerHTML += value + "<br>";
+            } 
+            
+            // 태그가 아닌 스크립트를 이용하여 버튼에 onclick 이벤트 선언하기
+            document.getElementById("btn1").onclick = function(){
+               
+                // 이전 내용 삭제
+                document.getElementById("p4").innerHTML = "";
+
+                //정상 호출
+                test4(window.prompt("메세지를 입력하세요."));
+
+                //지정된 매개변수보다 많은 개수를 호출하는 것을 허용한다.
+                // (단, 초과된 매개변수는 무시한다.)
+                test4('안녕하세요', '반갑습니다.');
+
+                //지정된 매개변수보다 적게 호출하는 것도 허용한다.
+                // (단, 선언이 안된 매개변수는 undefined로 자동 설정된다.)
+                test4();
+            }
+        </script>
+
+        <hr>
+
+        <h3>함수의 리턴처리</h3>
+        <pre>
+            함수를 호출한 부분이 리턴값으로 대체됨.
+        </pre>
+        <button onclick="test5();">실행확인</button>
+        <p id="p5"></p>
+        <script type="text/javascript">
+            function test5(){
+                
+                // 함수를 호출한 부분이 리턴값으로 대체됨.
+                
+                // 변수를 이용하여 리턴값을 저장하여 사용하거나
+                // 필요한 부분에서 직접 호출하여 사용
+                
+                //var value = returnFuction();
+                document.getElementById("p5").innerHTML = returnFuction();
+            }
+
+            function returnFuction(){
+                // 난수 발생
+                return Math.floor(Math.random() * 100) + 1;
+            }
+            
+        </script>
+
+        <hr>
+
+        <h3>가변인자 함수 테스트 </h3>
+        <pre>
+            매개변수의 개수가 변하는 함수를 말하며 
+            모든 함수 내부에 arguments라는 객체가 자동으로 생성되어 
+            배열 형태의 객체로 매개변수를 저장하게 됨.
+
+            매개변수가 지정되지 않은 값이 넘어오면 
+            arguments객체에 배열처럼 인덱스를 부여하고 순서대로 저장
+        </pre>
+        <button onclick="test6();">실행확인</button>
+        <p id="p6"></p>
+        <script type="text/javascript">
+             function test6(){
+                //전달값의 갯수가 사용시 달라짐
+                //sumAll(11, 22, 33, 44, 55);
+                sumAll(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            }
+
+            function sumAll(){
+                p6 = document.getElementById("p6");
+
+                p6.innerHTML = "";
+
+                p6.innerHTML += 'arguments의 타입 : ' + typeof(arguments) + "<br>";
+                p6.innerHTML += 'arguments의 길이 : ' + arguments.length + "<br>";
+                p6.innerHTML += 'arguments : ' + arguments + "<br>";
+
+                console.log(arguments);
+    
+                var sum = 0;
+                for(var i = 0; i < arguments.length; i++){
+                    sum += arguments[i];
+                }
+    
+                document.getElementById("p6").innerHTML += "더하기 결과 : " + sum;
+            }			
+    
+           
+        </script>
+
+        <hr>
+
+        <h3>내부(중첩된) 함수 테스트 </h3>
+        <label>삼각형 밑변 : </label>
+        <input type="number" min="1" max="100" id="width" required> <br>
+        <label>삼각형 높이 : </label>
+        <input type="number" min="1" max="100" id="height" required> 
+        <button id="test10" onclick="testFn10()">실행확인</button><br>
+        <p id="p7"></p>
+        <script type="text/javascript">
+            document.getElementById("test10").onclick = function(){
+                var width = document.getElementById("width").value;
+                var height = document.getElementById("height").value;
+    
+                document.getElementById("p7").innerHTML = 
+                    "빗변 길이(피타고라스 공식) : " + hypotenuse(width, height);
+            }
+
+            //함수 안에 함수를 중첩해서 정의할 수 있다.
+            // hypotenuse : 빗변
+            function hypotenuse(w, h){
+                function square(x){  
+                    console.log("내부 함수 구동 확인");
+                    return x * x;  
+                }
+                return Math.sqrt(square(w) + square(h));
+            }
+    
+            
+        </script>
+
+    </body>
+</html>

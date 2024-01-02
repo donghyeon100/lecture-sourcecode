@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_로그인폼 만들기</title>
+
+    <style>
+        div{
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        #con-3{
+            width: 300px;
+            height: 150px;
+        }
+
+        #login-form{
+            width: 100%;
+            height: 80%;
+        }
+
+        /* 아이디 비밀번호 입력 영역*/
+        #input-area{
+            width: 65%;
+            height: 100%;
+            float : left;
+        }
+
+        #input-area > div{
+            width: 100%;
+            height: 50%;
+        }
+
+        /* ID,PW 입력 상자 */
+        /*#input-area input{*/
+        #input-area > div > input{
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            /* input과 같은 화면에 표시되는 모양이 있는 태그는
+                자체적인 padding, border, margin을 가지고 있을 수 있다.
+                --> 그래서 width,height를 그냥 설정하면 벗어나는 일이 자주 있음
+                --> box-sizing: border-box; 이 문제를 해결
+             */
+        }
+
+
+        /* 로그인 버튼 영역*/
+        #login-btn-area{
+            width: 35%;
+            height: 100%;
+            float : left;
+        }
+
+        /* 로그인 버튼 */
+        #login-btn-area > button{
+            width: 100%;
+            height: 100%;
+            font-size: 18px;
+        }
+
+
+        #join-area{
+            width: 100%;
+            height: 20%;
+
+            /* 문자와 같은 inline 형식의 요소 정렬 방법*/
+            text-align: center;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="con-3">
+
+        <!-- 아이디, 비밀번호, 로그인 버튼이 위치할 form태그 -->
+        <form id="login-form">
+
+            <!-- 아이디,비밀번호 입력 영역 -->
+            <div id="input-area">
+                <div>
+                    <input type="text" name="inputId" placeholder="ID 입력">
+                </div>
+                <div>
+                    <input type="password" name="inputPw" placeholder="PW 입력">
+                </div>
+            </div>
+
+            <!-- 로그인 버튼 영역 -->
+            <div id="login-btn-area">
+                <button>로그인</button>
+            </div>
+
+        </form>
+
+        <!-- 회원가입, ID/PW찾기 a태그가 위치할 div -->
+        <div id="join-area">
+            <a href="#">회원가입</a>
+            <a href="#">ID/PW찾기</a>
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

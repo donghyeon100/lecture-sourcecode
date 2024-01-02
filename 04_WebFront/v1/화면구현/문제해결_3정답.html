@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제해결 3</title>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <p>탭 메뉴를 선택해 보세요</p>
+
+    <div class="tab">
+        <button class="tablinks">런던</button>
+        <button class="tablinks">파리</button>
+        <button class="tablinks">앙카라</button>
+    </div>
+
+    <div id="London" class="tabcontent">
+        <h3>런던</h3>
+        <p>런던 (영어: London)은 잉글랜드와 영국의 수도이다.</p>
+    </div>
+
+    <div id="Paris" class="tabcontent">
+        <h3>파리</h3>
+        <p>파리(Paris)는 프랑스의 수도이다.</p>
+    </div>
+
+    <div id="ankara" class="tabcontent">
+        <h3>앙카라</h3>
+        <p>터키의 수도이다.</p>
+    </div>
+
+
+
+    <script>
+
+        // 1. 이 문서를 처음 로드하면 런던탭의 색상이 #ccc로 표시된다.
+
+        document.getElementsByClassName("tablinks")[0].classList.add("active");
+
+        // 2. 런던이 선택되고 id = "London"의 내용이 나타난다.
+        document.getElementById("London").style.display = "block";
+
+
+        const tablinks = document.getElementsByClassName("tablinks");
+        const tabcontent = document.getElementsByClassName("tabcontent");
+
+        for (let tab of tablinks) {
+            tab.addEventListener("click", function () {
+
+                for (let i = 0; i < tablinks.length; i++) {
+                    // 3. 다른 탭을 선택하면 이전에 선택한 내용은 사라지고 선택한 내용이 나타난다.
+                    // 4. 선택한 탭만 버튼 색상을 '#ccc'로 설정한다.
+                    if (tablinks[i] == this) {
+
+                        tabcontent[i].style.display = "block";
+                        tablinks[i].classList.add("active");
+
+                    } else {
+
+                        tabcontent[i].style.display = "none";
+                        tablinks[i].classList.remove("active");
+                    }
+                }
+
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

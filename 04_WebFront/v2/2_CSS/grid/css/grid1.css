@@ -1,0 +1,46 @@
+.grid-container{
+    height: 400px;
+    background-color: #ccc;
+
+    /* 내부 요소를 grid로 배치할 수 있도록 지정 */
+    display: grid;
+
+    /* grid-template-columns : 컬럼의 개수와 각 컬럼의 크기 지정 */
+    /* grid-template-columns: 100px 100px 100px 100px; */
+
+    /* grid-tempate-rows : 행의 개수와 각 행의 크기 지정 */
+    /* grid-template-rows: 100px 100px 50px; */
+
+
+    /* repeat() 적용 */
+    /* grid-template-columns: repeat(4, 100px); */
+    grid-template-rows: repeat(2, 100px) 50px ;
+    
+    /* fr 적용 */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 2fr) 50px ;
+
+    /* minmax() 적용 */
+    /* grid-template-rows: repeat(2, 2fr) minmax(50px, 300px) ; */
+    /* grid-template-rows: repeat(2, 2fr) minmax(50px, 300px) ; */
+    grid-template-rows: repeat(2, 2fr) minmax(50px, auto) ;
+
+
+    /* auto-fit / auto-fill */
+    /* grid-template-columns: repeat(auto-fit,  minmax(100px, 1fr)); */
+    /* grid-template-columns: repeat(auto-fill,  minmax(100px, 1fr)); */
+
+
+    /* grid-gap */
+    /* grid-gap: 10px 50px; */
+            /* 행, 열 */
+    /* grid-row-gap : 10px; */
+    /* grid-column-gap : 50px; */
+
+
+    /* 대체된 gap 관련 속성 */
+    /* gap: 10px 50px; */
+    /* row-gap: 20px;
+    column-gap: 30px; */
+
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .row > label{
+            display: inline-block;
+            width: 50px;
+        }
+
+        .row > input[type="number"]{
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <input type="checkbox" class="fruit" id="apple">
+        <label for="apple">사과</label>
+        <span>2000</span>원
+        <input type="number"> 개
+    </div>
+    <div class="row">
+        <input type="checkbox" class="fruit" id="banana">
+        <label for="banana">바나나</label>
+        <span>3000</span>원
+        <input type="number"> 개
+    </div>
+    <div class="row">
+        <input type="checkbox" class="fruit" id="melon">
+        <label for="melon">메론</label>
+        <span>5000</span>원
+        <input type="number"> 개
+    </div>
+
+    <button id="btn">count</button>
+    <div id="result">
+        <!-- 사과 3개 바나나 2개 메론 1개 총합 17000원 -->
+    </div>
+
+    <script>
+        const btn = document.getElementById("btn");
+        const result = document.getElementById("result");
+
+        const fruitList = document.getElementsByClassName("fruit");
+
+        btn.addEventListener("click", () => {
+
+            let str = "";
+            let sum = 0;
+
+            for(let fruit of fruitList){
+
+                if(fruit.checked){
+                    const label = fruit.nextElementSibling.innerText;
+                    const price = fruit.nextElementSibling.nextElementSibling.innerText;
+                    const input = fruit.nextElementSibling.nextElementSibling.nextElementSibling.value;
+
+                    sum += Number(price) * input;
+
+                    str += label + " " + input + "개 " ;
+                }
+            }
+
+            str += "총합 " + sum + "원";
+            result.innerText = str;
+
+        });
+
+    </script>
+</body>
+</html>

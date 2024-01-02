@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="01_웹문서구조.css">
+    <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <a href="04_웹문서구조3.html">
+                    <img src="../images/logo1.jpg" id="home-logo">
+                </a>
+            </div>
+
+            <div>
+                <div class="search-area">
+                    <form action="#" name="search-form">
+                        <fieldset>
+                            <input type="search" id="search-input" name="query" autocomplete="off" placeholder="검색어를 입력해주세요.">
+                            <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+
+            <div></div>
+        </div>
+
+        <div class="nav">
+            <ul>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">자유 게시판</a></li>
+                <li><a href="#">질문 게시판</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">1:1문의</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="content-1"></div>
+            
+            <div class="content-2">
+                <form action="#" name="login-form" id="login-form">
+
+                    <!-- 아이디,비밀번호 입력 영역 -->
+                    <fieldset id="id-pw-area">
+                        <div>
+                            <input type="text" name="inputId" placeholder="아이디">
+                            <input type="password" name="inputPw" placeholder="비밀번호">
+                        </div>
+
+                        <div id="login-btn-area">
+                            <button>로그인</button>
+                        </div>
+                    </fieldset>
+
+                    <!-- 로그인 버튼 영역 -->
+
+
+                    <!-- 회원가입, ID/PW찾기 a태그가 위치할 div -->
+                    <div id="join-area">
+                        <a href="#">회원가입</a>
+                        <span>|</span>
+                        <a href="#">ID/PW찾기</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Copyright &copy; KH Information Educational Institute A-Class</p>
+        <div>
+            <a href="#">프로젝트 소개</a>
+            <span>|</span>
+            <a href="#">이용약관</a>
+            <span>|</span>
+            <a href="#">개인정보처리방침</a>
+            <span>|</span>
+            <a href="#">고객센터</a>
+        </div>
+    </div>
+</body>
+</html>

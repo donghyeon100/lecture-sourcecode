@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_객체</title>
+
+    <style>
+        .area{
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+    <h3>자바스크립트 객체</h3>
+    <pre>
+        - 자바스크립트의 객체는 key:value의 집합으로 이루어져 있음.
+
+        - 객체 생성 방법
+        1) {} 객체 리터럴을 이용한 생성 방법
+        2) 생성자 함수 + new 연산자를 이용해 생성하는 방법
+
+    </pre>
+
+    <button type="button" id="btn1">확인1</button> 
+    <div id="div1" class="area"></div>
+
+    <script>
+        // {} : 객체 리터럴 표기법
+        // [] : 배열 리터럴 표기법
+        const product = {
+            pName : "갤럭시Z폴드2",
+            brand : "Samsung",
+            option : ["bronze", "black"],
+
+            // 객체의 메소드(객체의 기능)
+            // == value가 function
+            player : function(app){
+                console.log(app + "어플 재생");
+            }
+
+        };
+
+        document.getElementById("btn1").addEventListener("click", function(){
+            
+            const div1 = document.getElementById("div1");
+            div1.innerHTML = ""; // 이전 내용 삭제
+
+            // 객체명.속성명
+            div1.innerHTML += "product.pName : " + product.pName + "<br>";
+            
+            // 객체명['속성명']
+            div1.innerHTML += "product['brand'] : " + product['brand'] + "<br>";
+            
+            div1.innerHTML += "product.option : " + product.option + "<br>";
+            div1.innerHTML += "product['option'] : " + product['option'] + "<br>";
+         
+
+            div1.innerHTML += "product.option[0] : " + product.option[0] + "<br>";
+            div1.innerHTML += "product['option'][1] : " + product['option'][1] + "<br>";
+
+
+            // 참고 1
+            // 객체 접근을 위한 for ... in문은  
+            // 객체명['속성명'] 형태만 사용 가능하다
+
+            for(let key in product){
+                console.log(product[key]);
+                //console.log(product.key);
+            }
+
+
+            // 객체 내 메소드 호출
+            product.player("유튜브");
+            product.player("멜론");
+
+            // 참고 2
+            // 객체 내 메소드 호출 시에는
+            // 객체명.메소드명만 가능하다
+            //product[player]("유튜브"); // 에러
+            //product[player("유튜브")]; // 에러
+
+
+            // 객체 속성 추가!
+            product.price = 1800000;
+            // 없어던 속성 price에 값을 대입
+            // --> 객체에 기존에 없는 속성일 경우 속성 자체를 추가함
+            console.log(product); 
+            
+            // 객체 속성 제거
+            delete(product.brand);
+            // --> product 객체 내부에 속성 중 brand가 제거됨
+            console.log(product);
+
+        });
+    </script>
+
+    <hr>
+
+    <h3>생성자 함수</h3>
+    <pre>
+        - 객체를 생성할 때 사용하는 함수.
+
+        - 일반적인 함수와 다르게 
+          호출 시 new 키워드를 사용해야 하며
+          반환 값으로 객체를 반환함.
+    </pre>
+
+    <button type="button" id="btn2">생성자 함수 확인</button>
+    
+    <script>
+
+        // 생성자 함수 정의
+        // * 생성자 함수의 함수명은 반드시 대문자로 작성되어야 한다!
+        function Student(name, java, db, html, css, js){
+
+            // 속성
+            // 여기서 this는 생성되는 객체를 의미함
+            this.name = name;
+            this.java = java;
+            this.db = db;
+            this.html = html;
+            this.css = css;
+            this.js = js;
+
+            // 기능
+            this.getAvg = function(){
+                const avg = (this.java + this.db + this.html + this.css + this.js) / 5; 
+
+                // 숫자.toFixed(자릿수) : 소수점 자리수를 지정하는 함수
+                return avg.toFixed(2); // 소수점 아래 셋째자리에서 반올림
+            }
+        }
+
+
+        document.getElementById("btn2").addEventListener("click", function(){
+            const std1 = new Student("홍길동", 100, 90, 80, 70, 60);
+            const std2 = new Student("신사임당", 100, 100, 90, 80, 50);
+
+            console.log(std1);
+            console.log(std2);
+
+            console.log(std1.getAvg());
+            console.log(std2.getAvg());
+        });
+
+
+    </script>
+
+
+
+</body>
+</html>

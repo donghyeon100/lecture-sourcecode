@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빙고v1</title>
+    <link rel="stylesheet" href="bingo.css">
+</head>
+<body>
+
+    <div class="input-area">
+        <h1>빙고게임</h1>
+        <div>
+            <span>크기 : </span><input type="number" id="size" min="3"  placeholder="최소3, 기본값 5">
+        </div>
+        <!-- <div>
+            <span>빙고개수 : </span><input type="number" id="count" min="1"  placeholder="최소1, 기본값 3">
+        </div> -->
+        <button id="newBtn">새 빙고판 만들기</button>
+    </div>
+
+    <div class="container">
+        <div id="bingoBoard">
+            <div class="row">
+                <div class="col selected">1</div>
+                <div class="col bingo">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
+                <div class="col">5</div>
+            </div>
+            <div class="row">
+                <div class="col">1</div>
+                <div class="col">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
+                <div class="col">5</div>
+            </div>
+            <div class="row">
+                <div class="col">1</div>
+                <div class="col">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
+                <div class="col">5</div>
+            </div>
+            <div class="row">
+                <div class="col">1</div>
+                <div class="col">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
+                <div class="col">5</div>
+            </div>
+            <div class="row">
+                <div class="col">1</div>
+                <div class="col">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
+                <div class="col">5</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="bingo.js"></script>
+</body>
+</html>

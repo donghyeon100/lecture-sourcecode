@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력된 색상으로 배경색 변경</title>
+    <style>
+        *{ box-sizing: border-box; padding: 0; margin: 0; }
+
+        .container{
+            display: inline-block;
+            width: 200px;
+        }
+        .container > div{
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        .container > *{width: 100%;}
+    </style>
+
+</head>
+<body>
+    <h1>입력된 색상으로 배경색 변경</h1>
+
+    <div class="container">
+        <div></div>
+        <input type="text">
+        <button class="change-btn">변경</button>
+    </div>
+    <div class="container">
+        <div></div>
+        <input type="text">
+        <button class="change-btn">변경</button>
+    </div>
+    <div class="container">
+        <div></div>
+        <input type="text">
+        <button class="change-btn">변경</button>
+    </div>
+
+    <script>
+        const btnList = document.getElementsByClassName("change-btn");
+
+        for(let btn of btnList ){
+            btn.addEventListener("click", e => {
+                
+                const value = e.target.previousElementSibling.value;
+                const div = e.target.parentElement.children[0];
+                div.style.backgroundColor = value;
+            });
+        }
+    </script>
+</body>
+</html>

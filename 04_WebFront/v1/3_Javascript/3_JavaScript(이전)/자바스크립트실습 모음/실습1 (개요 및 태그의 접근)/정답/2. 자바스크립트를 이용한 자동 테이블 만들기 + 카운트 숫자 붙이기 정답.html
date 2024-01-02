@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>학생정보 입력</title>
+</head>
+<body>
+    <h1> 자동 테이블 만들기 + 카운트 </h1>
+    
+<script>
+    function table_make(){
+            var row = prompt("테이블 행의 갯수는? ");
+            var col = prompt("테이블 열의 갯수는? ");
+        
+            document.write("<table border='1px'>");
+            var count = 1;
+            for(var y=0;y<row;y++)
+                {
+                    document.write("<tr height='50px' align='center'>");
+                    for(var i=0;i<col;i++)
+                    {
+                        document.write("<td width='50px'>");
+                        document.write(count);
+                        document.write("</td>")
+                        count++;
+                    }
+                    document.write("</tr>");
+                }
+            
+            
+    }
+</script>
+
+<button onclick="table_make();">테이블 생성</button>
+
+
+    
+</body>
+</html>

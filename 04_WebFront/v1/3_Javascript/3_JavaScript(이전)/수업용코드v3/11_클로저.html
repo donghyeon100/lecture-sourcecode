@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>11. 클로저</title>
+	</head>
+	<body>
+		<h1>클로저(Closure)</h1>
+		
+		<h3>클로저란?</h3>
+		<p>
+
+			- 리턴되는 내부 함수가 바깥쪽 함수의 지역 변수를 포함하고 있을때
+			해당 내부 함수를 클로저(Closure)라 한다. <br><br>
+
+			- 지역 변수의 scope(범위)는 선언된 함수 내부로<br>
+			함수가 실행될 때 생성되고 함수가 종료될 때 사라진다.<br><br>
+			
+			- 하지만 함수를 리턴하는 함수(클로저)를 이용하면 <br>
+			규칙을 위반하고 사라진 지역변수에 접근이 가능해짐.<br>
+			그리고 이러한 변수를 자유 변수(free variable)이라고 함.
+		</p>
+		<button onclick="testFn('홍길동')();">실행확인</button>
+		<script>
+			// 특정 함수
+			function testFn(name){
+
+				// 특정 함수의 지역 변수
+				var testFnVal = name + "님 환영합니다!!";
+				
+				// 내부 함수
+				function innerFn(){
+
+					// 내부 함수에 특정 함수의 지역 변수가 포함되어 있음.
+					alert(testFnVal);
+				}
+
+				// 특정 함수의 지역변수가 포함된 내부 함수 리턴
+				return innerFn; // --> 클로저(Closure)
+			}
+		</script>
+
+
+		<hr>
+		
+		<h4>Closure Test</h4>
+
+		<button onclick="test3(this);">Javascript - Function</button><br>
+		<button onclick="test3(this);">Javascript - Object</button>
+		<script>
+			function test2(subject){
+				var output = subject + "입니다.";
+				return function(){
+					return "오늘 배울 내용은 " + output;
+				}
+			}
+			
+			function test3(button){
+				console.log(button);
+				var subject = button.innerHTML;
+				alert(test2(subject)());
+			}
+			
+		</script>
+	</body>
+</html>

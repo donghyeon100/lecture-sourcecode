@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 슬라이드</title>
+
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+
+        .container{
+            width: 100vw;
+            height: 400px;
+            background-color: #ccc;
+        }
+
+        .slide-container{
+            width: 800px;
+            height: 100%;
+            background-color: gray;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides, .controller{
+            width: 800px;
+            height: 100%;
+            margin: auto;
+            position: absolute;
+        }
+
+        .slides{ 
+            list-style: none; 
+            display: flex;
+            transition-duration: 0.5s;
+            z-index: 100;
+            /* transform: translateX(-800px); */
+        }
+
+        .item{
+            width: 100%;
+            height: 100%;
+            float: left;
+            flex-shrink: 0;
+        }
+
+        .item > a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .item > a > img{
+            height: 100%;
+        }
+
+
+        .controller > div{
+            z-index: 110;
+        }
+
+
+
+
+        .slide-btn{
+            position: absolute;
+            top: 150px;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .slide-btn:hover{
+            color : rgba(200, 200, 200, 0.5);
+        }
+
+        .prev-btn{left:10px}
+        .next-btn{right:10px}
+
+
+        .slied-page-btn{
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            margin: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .slied-page-btn > span{
+            cursor: pointer;
+            display: inline-block;
+            background-color: white;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .slied-page-btn > span.active{
+            background-color: orangered;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide-container">
+            <ul class="slides">
+                <li class="item active">
+                    <a href="#">
+                        <img src="https://github.com/baekdh0206/workspace/blob/main/04_WebFront/images/cats/cat1.jpg?raw=true">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <img src="https://github.com/baekdh0206/workspace/blob/main/04_WebFront/images/cats/cat2.jpg?raw=true">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <img src="https://github.com/baekdh0206/workspace/blob/main/04_WebFront/images/cats/cat3.jpg?raw=true">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <img src="https://github.com/baekdh0206/workspace/blob/main/04_WebFront/images/cats/cat4.jpg?raw=true">
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#">
+                        <img src="https://github.com/baekdh0206/workspace/blob/main/04_WebFront/images/cats/cat5.jpg?raw=true">
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="controller">
+                <div class="slide-btn prev-btn">&lang;</div>
+                <div class="slied-page-btn">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="slide-btn next-btn">&rang;</div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const slides = document.querySelector(".slides");
+        const items = document.querySelectorAll(".item");
+        const pages = document.querySelectorAll(".slied-page-btn > span");
+
+        // 현재 active 클래스의 인덱스 확인
+        function currentIndex(){
+            // NodeList도 forEach 지원
+            let i = 0;
+            document.querySelectorAll(".item").forEach((el, index) => {
+                if(el === document.querySelector(".slides .active")){
+                    i = index;
+                }
+            })
+            return i
+        }
+
+        function nextPage(){
+            const index = currentIndex();
+            let nextIndex = index == items.length -1 ? 0 : index + 1;
+
+            const offset = -800 * nextIndex;
+            slides.style.transform = "translateX("+offset+"px)";
+
+            items[index].classList.toggle("active");
+            items[nextIndex].classList.toggle("active");
+
+            pages[index].classList.toggle("active");
+            pages[nextIndex].classList.toggle("active");
+        }
+
+
+        // 이전 버튼
+        document.querySelector(".prev-btn").addEventListener("click", nextPage)       
+
+
+        // 다음 버튼
+        document.querySelector(".next-btn").addEventListener("click", () => {
+            const index = currentIndex();
+            let nextIndex = index == items.length -1 ? 0 : index + 1;
+
+            const offset = -800 * nextIndex;
+            slides.style.transform = "translateX("+offset+"px)";
+
+            items[index].classList.toggle("active");
+            items[nextIndex].classList.toggle("active");
+
+            pages[index].classList.toggle("active");
+            pages[nextIndex].classList.toggle("active");
+        });
+
+
+
+        // 페이지 버튼 클릭 시
+        pages.forEach(btn => {
+            btn.addEventListener('click', e => {
+                document.querySelector(".slied-page-btn > span.active").classList.toggle("active");
+                e.target.classList.toggle("active");
+
+
+                pages.forEach((el, index) => {
+                    if(el === e.target){
+                        document.querySelector(".slides .active").classList.toggle("active");
+                        items[index].classList.toggle("active");
+
+                        slides.style.transform = "translateX("+(-800 * index)+"px)";
+                    }
+                })
+            })
+        });
+
+
+        // 3초마다 다음 페이지로 이동
+        let interval = setInterval(nextPage, 3000);
+
+
+        // 슬라이드에 마우스가 올라가면 자동 이동 멈춤
+        document.querySelector(".slide-container").addEventListener("mouseenter", e => {
+            clearInterval(interval);
+        })
+
+        // 슬라이드에서 마우스가 나가면 다시 자동 이동
+        document.querySelector(".slide-container").addEventListener("mouseleave", e => {
+            interval = setInterval(nextPage, 3000);
+        })
+
+
+    </script>
+</body>
+</html>

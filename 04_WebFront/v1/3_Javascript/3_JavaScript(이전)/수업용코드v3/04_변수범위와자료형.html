@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>04. 변수범위와 자료형</title>
+	<script>
+		//한줄 주석
+		/*
+			여러줄 주석
+		*/
+
+		// 전역변수의 선언
+		str = '전역변수';	//자동으로 window 객체의 필드가 됨
+
+		// 함수 외부에 선언한 변수는 var를 붙여도 전역변수이다.
+		var str2 = "var전역변수";
+
+		function varTest() {
+			// 전역변수와 동일한 변수명을 지닌 지역변수 선언
+			var str = '지역변수';	//지역변수 앞에는 var를 붙인다.
+
+
+			// 전역변수를 호출할 때 this. 혹은 window.을 붙일 수 있다.
+			console.log("str 호출");
+			console.log(str); // 지역
+			console.log(this.str); // 전역
+			console.log(window.str); // 전역
+			console.log("-------------------------");
+
+			console.log("str2 호출");
+			console.log(str2); //var전역
+			console.log(this.str2); // var전역
+			console.log(window.str2); // var전역
+			console.log("-------------------------");
+
+
+			//지역변수에는 this. 혹은 window.을 사용하지 못한다.
+			var str3 = '새로운 지역변수';
+
+			console.log("str3 호출");
+			console.log(str3); // 새로운 지역변수
+			console.log(this.str3); // undefined -> 전역변수로 선언된 str3라는 변수가 없음
+			console.log(window.str3); // undefined -> 전역변수로 선언된 str3라는 변수가 없음
+			console.log("-------------------------");
+
+
+			//함수 안에 작성되어도 var를 사용하지 않으면 전역변수가 된다.
+			str4 = "새로운 전역변수";
+
+			console.log("str4 호출");
+			console.log(str4); // 새로운 전역변수
+			console.log(this.str4); // 새로운 전역변수
+			console.log(window.str4); // 새로운 전역변수
+
+			//showStr4();
+		}
+
+		varTest();
+
+		// function showStr4(){
+		// 	console.log("str4 전역변수 확인");
+		// 	console.log(str4);
+		// 	console.log(this.str4);
+		// 	console.log(window.str4);
+		// }
+
+	</script>
+	<style>
+		.area1 {
+			border: 1px solid red;
+			height: 150px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>변수와 자료형</h1>
+
+	<h3>window 객체</h3>
+	<p>
+		웹 브라우저에서 제공하는 창(window) 자체를 나타내는 객체 <br>
+	</p>
+
+	<h3>변수 선언</h3>
+	<pre>
+	&lt;script&gt;
+		변수명; // 전역 변수(global)
+
+		var 변수명; // 전역 변수(global)
+
+		function 함수명(){
+			변수명; // 전역 변수(global)
+
+			var 변수명; // 지역 변수(local)
+		}
+	
+	&lt;/script&gt;
+	</pre>
+
+	<h4>* 전역 변수명과 지역 변수명이 같을 경우 </h4>
+	<p>
+		함수 내부에서 변수명을 호출하면 지역 변수가 우선권을 가짐. <br>
+
+		전역 변수 사용 시 this.변수명 또는 window.변수명으로 사용하여
+		지역 변수와 구분가능.
+	</p>
+
+
+	<h3>콘솔창 확인!</h3>
+
+	<hr>
+
+	<h3>window.onload 함수</h3>
+	<p>페이지가 로드가 완료된 후 실행될 함수를 지정</p>
+
+	<p id="p1">window.onload 테스트 1</p>
+
+	<script>
+		// 1. html 문서 로딩 순서 대로 진행 시
+		/*var p1 = document.getElementById("p1");
+		var p2 = document.getElementById("p2");
+
+		console.log(p1);
+		console.log(p2); // p2가 null이 나옴
+		
+		*/
+
+		// 2. window.onload
+		window.onload = function () {
+			var p1 = document.getElementById("p1");
+			var p2 = document.getElementById("p2");
+
+			console.log(p1);
+			console.log(p2); // 요소가 console에 출력됨을 확인
+		}
+
+	</script>
+
+	<p id="p2">window.onload 테스트 2</p>
+
+
+	<hr>
+
+	<h3>자료형</h3>
+	<p>자바스크립트는 변수의 자료형을 별도로 지정하지 않음. <br>
+		-> 변수에 저장되는 값(리터럴)에 의해 자료형이 결정됨.
+	</p>
+
+	<h3>자바 스크립트의 자료형</h3>
+	<ul>
+		<li>string(문자열)</li>
+		<li>number(숫자)</li>
+		<li>boolean(논리값)</li>
+		<li>object(객체)</li>
+		<li>function(함수)</li>
+		<li>undefined(초기값이 없는 변수)</li>
+	</ul>
+
+	<button onclick="typeTest();">자료형 테스트</button>
+	<br><br>
+	<div id="area1" class="area1"></div>
+	<script type="text/javascript">
+
+		function typeTest() {
+			var name = '홍길동'; // string
+			var age = 20; // number
+			var check = true; // boolean
+			var hobby = ['영화', '음악', '낮잠']; // object
+			var user = {
+				name: "홍길동",
+				age: 20,
+				id: 'user01'
+			}; // object
+
+			var ttt = function testFunction(num1, num2) {
+				var sum = num1 + num2;
+
+				alert(sum);
+			}; // 함수
+
+			var noVal;
+			// undefined와 null의 차이점
+			// - undefined : 변수의 자료형이 정의 되지 않은 상태, 
+			//					변수 생성 시 초기값이 없는 상태
+			// - null : 의도적으로 변수가 참조하고 있는 값이 없다는걸 
+			//			알리는 상태.
+
+			var area1 = document.getElementById("area1");
+
+
+			// typeof : 값의 자료형을 확인하는 연산자
+			area1.innerHTML = ""; // area1의 기존 내용 삭제
+			area1.innerHTML += name + "의 자료형 : " + typeof name + "<br>";
+			area1.innerHTML += age + "의 자료형 : " + typeof age + "<br>";
+			area1.innerHTML += check + "의 자료형 : " + typeof check + "<br>";
+
+			area1.innerHTML += hobby + "의 자료형 : " + typeof hobby + "<br>";
+			// for문으로 배열 요소 접근
+			for (var i = 0; i < hobby.length; i++) {
+				console.log(hobby[i]);
+			}
+
+			area1.innerHTML += user + "의 자료형 : " + typeof user + "<br>";
+
+			// 객체 내부 멤버변수 접근
+			console.log(user);
+			console.log("객체 : " + user.name + ", " + user.age + ", " + user.id);
+
+			area1.innerHTML += ttt + "의 자료형 : " + typeof ttt + "<br>";
+			ttt(10, 20);
+
+			area1.innerHTML += noVal + "의 자료형 : " + typeof noVal;
+
+		}
+
+	</script>
+
+
+</body>
+
+</html>

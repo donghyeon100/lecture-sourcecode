@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+	<h2>간이 계산기 만들기</h2>
+	
+       
+	첫번째 값 : <input id="num1"><br>
+	두번째 값 : <input id="num2"><br>
+	<input type="button" value="+" onclick="calculator(this.value);"> 
+	<input type="button" value="-" onclick="calculator(this.value);"> 
+	<input type="button" value="x" onclick="calculator(this.value);"> 
+	<input type="button" value="/" onclick="calculator(this.value);"> 
+	<input type="button" value="%" onclick="calculator(this.value);"> <br><br>
+    계산결과 : <span id="calc"></span>
+    
+   <hr>
+   Hint <br>
+	1. 함수에 인자값을 넘길 경우 함수 처리 방법 <br>  
+	ex) -> onclick="calculator(this.value); 일경우 <br>
+	-> 	function calculator(value) 처리 할 수 있음 <br><br>
+	
+	2. 변수에 담겨진 값은 string 입니다. -> "10" <br>
+        "10"을 숫자형으로 바꾸려면 Number() 함수를 사용하세요. <br><br>
+        --> var num1 = Number("10");<br><br>
+      
+    3. switch 문은 자바에서 사용한 switch 문과 동일 합니다.<br>
+        
+    
+    <script>
+    function calculator(value)
+    {
+        var su1 = Number(document.getElementById("num1").value);
+        var su2 = Number(document.getElementById("num2").value);
+        var result = 0;
+            switch(value)
+            {
+                case "+": result = su1+su2; break;
+                case "-": result = su1-su2; break;
+                case "x": result = su1*su2; break;
+                case "/": result = su1/su2; break;
+                case "%": result = su1%su2; break;
+            }
+        document.getElementById("calc").innerHTML = result;
+        console.log(result);
+            
+    }
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

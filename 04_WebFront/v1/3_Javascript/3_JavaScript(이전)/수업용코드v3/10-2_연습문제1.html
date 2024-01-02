@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+        <title></title>
+        <style>
+            .area{
+                height: 100px;
+                border: 1px solid black;
+                transition-duration: 2s;
+            }
+
+            .inputColor{
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                box-sizing: border-box;
+                transition-duration: 2s;
+            }
+
+            td{
+                width: 100px;
+                vertical-align: top;
+                border-radius: 15%;
+            }
+
+            .inputColor[type="radio"]{
+                width: initial;
+            }
+            
+        </style>
+    </head>
+    <body>
+       
+        <table>
+            <tr>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+                <td class="area"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="color1" class="inputColor">
+                </td>
+                <td>
+                    <input type="text" name="color2" class="inputColor">
+                </td>
+                <td>
+                    <input type="text" name="color3" class="inputColor">
+                </td>
+                <td>
+                    <input type="text" name="color4" class="inputColor">
+                </td>
+                <td>
+                    <input type="text" name="color5" class="inputColor">
+                </td>
+                <td>
+                    <select name="color7" class="inputColor">
+                        <option value="red">빨강색</option>
+                        <option value="orange"">주황색</option>
+                        <option value="yellow">노랑색</option>
+                        <option value="green">초록색</option>
+                        <option value="blue">파랑색</option>
+                        <option value="navy">남색</option>
+                        <option value="purple">보라색</option>
+                        <option value="white" selected>흰색</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="color8" class="inputColor" list="colorList">
+                    <datalist id="colorList">
+                        <option value="red">빨강색</option>
+                        <option value="orange"">주황색</option>
+                        <option value="yellow">노랑색</option>
+                        <option value="green">초록색</option>
+                        <option value="blue">파랑색</option>
+                        <option value="navy">남색</option>
+                        <option value="purple">보라색</option>
+                    </datalist>
+                </td>
+                <td>
+                    <input type="radio" name="color6" value="red" id="c6-red"> 
+                    <label for="c6-red">빨강색</label><br>
+
+                    <input type="radio" name="color6" value="orange" id="c6-orange">
+                    <label for="c6-orange">주황색</label><br>
+                    
+                    <input type="radio" name="color6" value="yellow" id="c6-yellow">
+                    <label for="c6-yellow">노랑색</label><br>
+
+                    <input type="radio" name="color6" value="green" id="c6-green">
+                    <label for="c6-green">초록색</label><br>
+
+                    <input type="radio" name="color6" value="blue" id="c6-blue">
+                    <label for="c6-blue">파랑색</label><br>
+
+                    <input type="radio" name="color6" value="navy" id="c6-navy">
+                    <label for="c6-navy">남색</label><br>
+                    
+                    <input type="radio" name="color6" value="purple" id="c6-purple"> 
+                    <label for="c6-purple">보라색</label><br>
+
+                    <input type="radio" name="color6" value="white" id="c6-white"checked > 
+                    <label for="c6-white">흰색</label>
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <button id="btn">색변경</button>
+
+        <script>
+            var degree = 0;
+
+            document.getElementById("btn").onclick = function(){
+                var inputArr = document.getElementsByClassName("inputColor");
+                var tdArr = document.getElementsByClassName("area");
+
+                degree += 360;
+                for(var i =0 ; i< inputArr.length ; i++){
+                    var bgColor = inputArr[i].value;
+
+                    tdArr[i].style.backgroundColor = bgColor;
+                    tdArr[i].style.transform = "rotateZ("+ degree + "deg)";
+                    inputArr[i].style.backgroundColor = bgColor;
+                }
+
+                var radioBtn = document.getElementsByName("color6");
+                for(var item of radioBtn){
+                    if(item.checked){
+                        tdArr[tdArr.length-1].style.backgroundColor = item.value;
+                        tdArr[tdArr.length-1].style.transform = "rotateZ("+ degree + "deg)";
+                    }
+                }
+            }
+
+        </script>
+    </body>
+
+
+</html>

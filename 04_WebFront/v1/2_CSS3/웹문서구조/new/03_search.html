@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .search-area{
+            width: 500px;
+        }
+
+        .search-area  fieldset{   
+            padding: 2px;
+            margin : 0;
+            border: 1px solid #455ba8;
+            display: flex;
+            border-radius: 5px;
+        }
+
+        #search-input{
+            padding: 10px;
+            width: 92%;
+            border: 0;
+            outline: none;
+
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #search-btn{
+            width: 8%;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            color : #455ba8;
+            font-size: 1.2em;
+        }
+
+    </style>
+
+    <script src="https://kit.fontawesome.com/f7459b8054.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="search-area">
+        <form action="#" name="search-form">
+            <fieldset>
+                <input type="search" id="search-input" name="query" autocomplete="off" placeholder="검색어를 입력해주세요.">
+                <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

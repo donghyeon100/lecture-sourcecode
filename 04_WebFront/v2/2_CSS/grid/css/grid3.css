@@ -1,0 +1,22 @@
+.grid-container{
+    background-color: #ccc;
+
+    display: grid;
+    
+    grid-template-columns: repeat(3, 1fr);
+
+    /* grid-auto-rows : 행 개수를 별도 지정 안하고 모든행에 적용 */
+    grid-auto-rows: minmax(100px, auto);
+
+    gap: 10px;
+    grid-template-areas: 
+        "a a a" /* "" 한 줄 */
+        "b c c"
+        "b d .";
+}
+
+.item1{ grid-area: a; }
+.item3{ grid-area: b; }
+.item5{ grid-area: c; }
+.item7{ grid-area: d; }
+
