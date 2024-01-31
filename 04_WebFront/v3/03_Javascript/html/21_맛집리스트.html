@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21_맛집 리스트</title>
+  
+  <link rel="stylesheet" href="../css/21_맛집리스트.css">
+</head>
+<body>
+
+  <header>
+    가게명 : <input type="text" id="resName"> <br>
+    주 소 : <input type="text" id="resAddress"> <br>
+    메 뉴 : <input type="text" id="resMenu" size="100"> <br>
+
+    <!-- Restaurant 객체를 생성해서 객체 배열에 추가 -->
+    <button id="addBtn">추가</button>
+
+    <!-- 객체 배열에 저장된 모든 요소를 화면에 출력 -->
+    <button id="selectBtn">조회</button>
+  </header>
+
+  <main>
+    <ol id="printList">
+      <li>식당명 / 메뉴 /주소</li>
+      <li>김밥천국 / [김밥, 라면, 볶음밥] / 서울시 중구 </li>
+    </ol>
+
+  </main>
+
+  
+  <script src="../js/21_맛집리스트.js"></script>
+</body>
+</html>

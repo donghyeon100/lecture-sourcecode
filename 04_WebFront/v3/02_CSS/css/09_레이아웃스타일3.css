@@ -1,0 +1,82 @@
+div{
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.test{
+  width: 300px;
+  height: 200px;
+  background-color: #ddd;
+}
+
+/* float 지정 시 block의 성질 해제(한 줄 차지 X) */
+
+.float-left{
+  width: 50px;
+  height: 50px;
+  float:left; /* 띄워서 왼쪽 정렬 */
+  background-color: pink;
+}
+
+/* float : left 상태 해제 */
+.clear-left{
+  clear : left;
+}
+
+/* float:right 시 먼저 작성된 요소가 제일 오른쪽 */
+
+.float-right{
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  float: right;
+}
+
+.clear-right{
+  clear: right;
+}
+
+/* 하나의 요소에 동일한 css 속성을 여러번 지정할 수 없다!
+  -> 여러번 작성하게 되면 마지막 작성된 속성 값으로 덮어 씌워진다.
+*/
+.clear-both{
+  /* clear: left; */
+  /* clear: right; */
+  clear:both;
+}
+
+/* float를 이용한 좌우 분할 */
+.container{
+  width: 500px;
+  height: 500px;
+}
+
+/* 클래스 기반 CSS(스타일) */
+.bg-1{background-color: red;}
+.bg-2{background-color: orange;}
+.bg-3{background-color: yellow;}
+.bg-4{background-color: green;}
+.bg-5{background-color: blue;}
+.bg-6{background-color: navy;}
+.bg-7{background-color: purple;}
+
+/* 열(column)을 나타내는 요소에 작성되어야 하는 클래스 */
+.col{
+  height: 100%;
+  float: left;
+}
+
+.col-1{width:10%}
+.col-2{width:20%}
+.col-3{width:30%}
+.col-4{width:40%}
+.col-5{width:50%}
+
+
+.row{width: 100%;}
+
+.row-1{height:10%}
+.row-2{height:20%}
+.row-3{height:30%}
+.row-4{height:40%}
+.row-5{height:50%}

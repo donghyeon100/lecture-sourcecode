@@ -1,0 +1,58 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div{ border: 1px solid black;}
+
+/* 감싸는 요소 */
+.container{
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 행 */
+.row{
+  flex-grow: 1;
+}
+
+
+/* 2행 */
+.row2{
+  display: flex;
+}
+
+.col{
+  width : 50%;
+  height: 100%;
+
+  /* 
+    flex-grow : 1;
+    align-items : stretch;
+  */
+}
+
+/* 2행 1열 */
+.col1{
+  display: flex;
+  flex-direction: column;
+}
+
+.col1 > div{
+  flex-grow: 1;
+}
+
+/* 2행 2열 내부 행(row) */
+.col2 > div{
+  height: 50%;
+  display: flex;
+}
+
+/* 2행 2열 내부 열(column) */
+.col2 > div > div{
+  width: 50%;
+  height: 100%;
+}

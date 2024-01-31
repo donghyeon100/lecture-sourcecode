@@ -1,0 +1,398 @@
+/* 전체 설정 ---------------------------------------- */
+
+:root{
+    /* font-size: 62.5%;  *//* 10px */
+    --main-color : #455ba8;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* border: 1px solid black;  */
+}
+
+a{
+    color : black;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-width: 768px;
+    min-height: 100vh;
+}
+
+/* 고령 딸기체 */
+@font-face {
+    font-family: 'GoryeongStrawberry';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* header -------------------------------------------- */
+header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0 ;
+    border-bottom: 2px solid grey;
+}
+
+
+.header-container{ /* 헤더 내용 감싸는 요소 */
+    max-width: 1200px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.header-container > div{
+    height: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.header-container-left *{ /* 왼쪽 상단 로고 */
+    height: 100%;
+}
+
+.header-container-right a{ /* 로그인, 회원 가입 */
+    margin: 0 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: grey;
+}
+
+/* nav -------------------------------------------- */
+nav{
+    padding: 5px 10px;
+    position: sticky;
+    top: -1px;
+    border-bottom: 2px solid grey;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+}
+
+.navbar > li{
+    width: 20%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar > li > a{
+    width: 100%;
+    text-align: center;
+    padding: 3px 10px;
+    font-size: 1.2em;       
+    font-weight: bold;
+    color: grey;
+    font-family: 'GoryeongStrawberry';
+}
+
+.navbar > li > a:hover{
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.navbar > li:not(:last-child) > a{
+    border-right: 2px solid grey;
+}
+
+/* main -------------------------------------------- */
+main{ flex-grow: 1; }
+
+/* 배너 -------------------------------------------- */
+.banner-container{
+    height: 550px;
+    border-bottom: 2px solid gray;
+}
+
+.banner{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+
+    background-image: url('../images/banner1.png');
+    background-size: auto 145%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 배너 제목 */
+.banner-text > h1{
+    margin-top: 200px;
+    font-size: 48px;
+    font-family: 'GoryeongStrawberry';
+}
+
+/* 배너 내용 */
+.banner-text > p{
+    margin: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+/* 메인 내용 -------------------------------------------- */
+
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1440px;
+    min-width: 800px;
+    margin: auto;
+}
+
+.content-row{
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 30px;
+    margin : 20px;
+    
+    display: flex;
+}
+
+/* 썸네일 / 내용(설명) ---------------------*/
+
+/* 썸네일 이미지를 감싸는 요소 */
+.thumbnail-col{
+    width: 400px;
+    flex-shrink: 0;
+}
+
+/* 썸네일 이미지 */
+.thumbnail {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* 설명 열 */
+.description-col{
+    flex-grow: 1;
+    padding: 20px;
+    margin: 0 30px;
+}
+
+/* 설명 제목 */
+.description-col > h1:hover{
+    text-decoration: underline;
+}
+
+.description-col > hr{
+    margin : 20px 0;
+}
+
+.description-col > p{
+    /* white-space : 텍스트 요소에서 공백을 처리하는 방법 설정 */
+    /* pre : 작성된 텍스트 모양 그대로 출력(pre 태그 처럼) */
+    /* pre-wrap : pre + 텍스트가 요소의 너비를 초과하며 줄바꿈*/
+    /*  */
+    /* white-space: pre; */
+    white-space: pre-wrap; 
+    font-size: 20px;
+}
+
+/* 카드 --------------------- */
+.card-container{
+    flex-wrap: wrap;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.card-item{
+    flex-shrink: 0;
+    /* border: 1px solid black; */
+    width : 25%;
+    min-width: 200px;
+    padding: 15px;
+}
+
+.card{
+    display: block;
+}
+
+.card:hover .card-tunbnail{
+    transform: scale(1.05);
+}
+.card:hover .card-content{
+    text-decoration: underline;
+}
+
+.card-tunbnail-container{
+    height: 200px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.card-tunbnail{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.25s ease;
+
+    /* object-fit : 이미지 요소의 내용 크기 조절 */    
+    /* object-fit: cover; */
+    object-fit: contain;
+}
+
+.card-content{
+    padding-top: 10px;
+    white-space: pre-wrap;
+}
+
+
+
+/* footer -------------------------------------------- */
+footer{
+    flex-shrink: 0;
+
+    height: 200px;
+    background-color: #eee6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer > p{ 
+    font-weight: bold;
+    margin : 16px 0;
+}
+
+footer > article > *{
+    font-size: 14px;
+}
+
+footer a{
+    color:black;
+    text-decoration: none;
+}
+
+footer span{
+    padding : 0 10px;
+}
+
+
+/* 사이드 메뉴 */
+aside{
+    display: flex;
+    flex-direction: column;
+
+    width: 80px;
+    height: 370px;
+    position: fixed;
+
+    /* fixed 사용 시 상단에서 50% 위치에 고정하는 방법 */
+    top : 50%;
+    transform: translateY(-50%);
+
+    right: 50px;
+
+    background-color: white;
+
+    /* 그림자 */
+    /* box-shadow: h-offset v-offset blur spread color inset; */
+    box-shadow: 0px 0px 5px 0px grey;
+}
+
+aside > a{
+    display: block;
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+}
+
+aside > a:not(:last-of-type){
+    border-bottom: 1px solid grey;
+}
+
+
+aside img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.top-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    user-select: none;
+    color: grey;
+    font-weight: bold;
+}
+
+
+/* 반응형 웹 : 브라우저나 장치 환경(크기)에 따라 
+            웹페이지의 모습이 변하는 웹페이지 */
+
+/* @media (미디어 쿼리) : 사용 환경, 크기에 따라 
+                        CSS를 지정 가능하게 해주는 구문 */
+
+/* 
+    min-width : 최소 너비
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 넓으면 자동으로 증가
+
+    min-height : 최소 높이
+        -> 내부 요소 또는 화면의 크기가
+            지정된 높이보다 높으면 자동으로 증가
+
+    max-width : 최대 너비
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 좁으면 자동으로 축소
+        -> 내부 요소 또는 화면의 크기가
+            지정된 너비보다 크더라도 
+            지정된 값 이상으로 증가 X
+
+    max-height : 최대 높이
+*/
+
+/* @media 미디어유형 and (속성)*/
+/* 미디어유형 : 지정할 미디어의 종류 (all, screen, print,...) */
+/* 
+    1024px 이상 : 16:9 비율 모니터, 노트북
+    768 ~ 1024 : 태블릿 가로, 4:3비율 모니터
+    480 ~ 768 : 태블릿 세로, 모바일 가로
+    ~ 480 : 모바일
+*/
+
+@media screen and (max-width : 1500px){
+    aside{
+        display: none;
+    }
+}
+
+@media screen and (max-width : 1024px){
+    .card-item{
+        width: 33.33%;
+    }
+
+    .thumbnail-col{
+        width: 350px;
+    }
+}

@@ -1,0 +1,463 @@
+/* --------------- 전체 설정 --------------- */
+
+/* :root  - 전역 요소 지정을 위한 가상 선택자
+  - 페이지 내부에서 공통으로 사용할 값을 변수로 선언
+
+  * 변수 : 값을 저장하는 것
+*/
+:root{
+  --main-color : gray;
+  /* --main-font-size : 20px; */
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* border: 1px solid black;  */
+  /* 완성 시 삭제 예정 */
+}
+
+a{
+  color : black;
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+ul{
+  list-style : none; /* 목록의 스타일(앞에 붙는 점) 제거 */
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+
+  /* min-width/height : 
+    화면(기기, 브라우저) 크기가 작아져도 유지해야 할 최소 크기
+  */
+  min-width: 768px;
+  min-height: 100vh; /* 화면 높이 100% */
+}
+
+/* 웹폰트 추가 */
+/* -> 폰트를 적용하고 싶은 곳에서 
+  font-family: 'GoryeongStrawberry' 작성 */
+@font-face {
+  font-family: 'GoryeongStrawberry';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/GoryeongStrawberry.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* -------------- header -------------- */
+header{
+  padding: 15px 0; /* 상하  좌우 */
+  border-bottom : 2px solid var(--main-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 70px;
+  width: 100%;
+
+  /* 화면이 커져도 width 최대 값은 1200px */
+  max-width: 1200px;
+}
+
+.header-container > div{
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+/* 헤더 왼쪽 모든 후손 요소 */
+.header-container-left *{
+  height: 100%;
+}
+
+/* 헤더 오른쪽 후손 a태그 */
+.header-container-right a{
+  font-weight: bold;
+  color : var(--main-color);
+  font-size : 0.8em; /* 0.8배 */
+  margin: 0 10px;
+}
+
+/* ------------- nav ------------- */
+nav{
+  padding: 5px 10px;
+  border-bottom: 2px solid var(--main-color);
+  
+  background-color: white;
+  position: sticky;
+  top: -1px;
+  z-index: 1000;
+}
+
+.navbar{
+  display: flex;
+  justify-content: center;
+}
+
+.navbar > li{
+  width: 20%;
+  height: 40px;
+
+  /* item(a) 태그 정가운데 배치 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar > li > a{
+  font-size: 1.2em; /* 1.2배 */
+  font-weight: bold;
+  color: var(--main-color);
+  font-family: 'GoryeongStrawberry';
+
+  padding: 3px 10px;
+  width: 100%;
+  text-align: center; /* 글자 가운데 정렬 */
+}
+
+/* 마우스가 a태그 올라갔을 때 */
+.navbar > li > a:hover{
+  color : #455ba8;
+}
+
+/* 메뉴 사이 구분선 추가 */
+.navbar > li:not(:last-child) > a{
+  border-right: 2px solid var(--main-color);
+}
+
+
+
+/* ------------- main ------------ */
+main{ 
+  flex-grow : 1;
+}
+
+/* ------------- 배너 ------------ */
+.banner-container{
+  height: 550px;
+  border-bottom: 2px solid var(--main-color);
+}
+
+.banner{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  /* 배경 이미지 추가 */
+  background-image: url(../images/banner1.png);
+  
+  /* 배경 크기 */
+  background-size: auto 145%;
+
+  /* 반복 X */
+  background-repeat: no-repeat; 
+
+  /* 배경 위치 조정 */
+  background-position: center;
+}
+
+/* 배너 텍스트 */
+
+.banner-text > h1{ /* 제목 */
+  margin-top: 180px;
+  font-size: 48px;
+  font-family: 'GoryeongStrawberry';
+}
+
+.banner-text > p{ /* 내용 */
+  margin: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ------------ 메인 내용 ------------ */
+.content-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  min-width: 800px; /* 최소 너비 800px */
+  max-width: 1440px; /* 최대 너비 1440px */
+  margin: auto; /* 좌우 가운데 정렬 */
+}
+
+/* 내용 행 */
+.content-row{
+  border: 1px solid var(--main-color);
+  border-radius: 20px; /* 테두리 모서리 둥글게 */
+  padding : 30px;
+  margin: 20px;
+
+  display: flex;
+
+  /* content-row 내부에 작성되는 내용, 요소의 높이에 맞게 
+    자동으로 content-row의 height가 지정될 수 있도록
+    별도 설정을 하지 않음
+  */
+}
+
+
+/* 썸네일 열 */
+.thumbnail-col{
+  width: 400px;
+  flex-shrink: 0;
+}
+
+/* 썸네일 이미지 */
+.thumbnail{
+  /* width <-> height 반대로도 가능 */
+  width: 100%;
+  height: auto; /* width 비율에 맞게 자동으로 height 조정 */
+}
+
+/* 설명 열 */
+.description-col{
+  flex-grow: 1;
+  padding: 20px;
+  margin: 0 30px;
+}
+
+/* 제목 */
+.description-col > h1:hover{ 
+  text-decoration: underline;
+}
+
+/* 구분선 */
+.description-col > hr{
+  margin: 20px 0;
+}
+
+/* 내용 */
+.description-col > p{
+  font-size: 20px;
+
+  /* white-space : 텍스트 요소에서 공백을 처리하는 방법 설정 */
+  /* pre : 작성된 텍스트 모양 그대로 출력(pre 태그 처럼) */
+  /* pre-wrap : pre + 텍스트가 요소의 너비를 초과하며 줄바꿈*/
+  white-space: pre-wrap;
+}
+
+
+/* -------------- 카드 ------------- */
+.card-container{
+  /* card 다 만들고 나서 설정 */
+  flex-wrap: wrap;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* 카드를 감싸는 요소(flex의 item) */
+.card-item{
+  flex-shrink: 0;
+  width: 25%;
+  min-width: 200px; 
+  padding: 15px;
+}
+
+/* 카드(a) 태그 */
+.card{
+  display: block; /* 크기 조정 O */
+}
+
+/* 카드 썸네일 */
+.card-thumbnail-container{
+  height: 200px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--main-color);
+}
+
+.card-thumbnail{ /* img 태그 */
+  width: 100%;
+  height: 100%;
+
+  /* object-fit : 이미지 요소의 내용(진짜 이미지)의 크기 조절 */
+  /* cover: 이미지가 초과되는 부분을 안보이게함 */
+  /* contain : 이미지 전체가 화면에 보여지도록 이미지 크기 조절 */
+  /* object-fit : cover; */
+  object-fit : contain;
+}
+
+.card-content{ /* p태그 */
+  padding-top: 10px;
+  white-space: pre-wrap;
+}
+
+
+/* 카드에 마우스가 올라왔을 때 후손 이미지(썸네일) 확대하기 */
+.card:hover .card-thumbnail{
+  /* transform : 요소의 크기, 각도, 회전율 등을 변환/변형 */
+  /* scale(숫자) : 숫자 만큼 요소의 크기를 변환(배율) */
+  transform: scale(1.1);
+}
+
+.card-thumbnail{
+  /* transition : 요소의 변환 시간, 속도 등을 조절하는 속성 */
+  /* transition-duration : 요소 변환 시간 조절*/
+  transition-duration: 0.25s; /* 0.25초 */
+}
+
+
+/* -------------- footer -------------- */
+footer{
+  /* flex container에 의해서 크기가 변형되는걸 방지 */
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  height: 200px;
+
+  /* rgba(R, G, B, A) 
+    : Red(0~255), Green(0~255), Blue(0~255), Alpha(0.0 ~ 1.0 , 투명도)
+
+    R,G,B 값은 0에   가까울수록 어두운 색(검은색)
+               255에 가까울수록 선명한 색(각 색상이 뚜렷해짐)
+
+    A 값은 0에 가까울수록 투명, 1에 가까울수록 불투명
+  */
+  background-color: rgba(210, 210, 210, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer > p{
+  font-weight: bold;
+  margin: 16px 0px;
+}
+
+footer span{
+  padding: 0 10px;
+}
+
+
+/* -------------- 사이드 메뉴 -------------- */
+aside{
+  display: flex;
+  flex-direction: column;
+
+  width: 80px;
+  height: 370px;
+
+  /* 화면에 고정 */
+  position: fixed;
+
+  /* 고정되는 위치 설정 */
+  right: 50px; 
+
+  top:50%;
+  transform : translateY(-50%); /* Y축(세로) 위치 조정 */
+
+  background-color: white;
+
+  /* 그림자 */
+  /* box-shadow: h-offset v-offset blur spread color inset; */
+  box-shadow: 0px 0px 5px 0px grey;
+}
+
+aside > a{
+  display: block;
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+}
+
+aside img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 위로 이동 */
+.top-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  user-select: none;
+  color: grey;
+  font-weight: bold;
+}
+
+
+
+
+/* 반응형 웹 : 브라우저나 장치 환경(크기)에 따라 
+            웹페이지의 모습이 변하는 웹페이지 */
+
+/* @media (미디어 쿼리) : 사용 환경, 크기에 따라 
+                        CSS를 지정 가능하게 해주는 구문 */
+                        
+/* 
+  min-width : 최소 너비
+      -> 내부 요소 또는 화면의 크기가
+          지정된 너비보다 넓으면 자동으로 증가
+
+  min-height : 최소 높이
+      -> 내부 요소 또는 화면의 크기가
+          지정된 높이보다 높으면 자동으로 증가
+
+  max-width : 최대 너비
+      -> 내부 요소 또는 화면의 크기가
+          지정된 너비보다 좁으면 자동으로 축소
+      -> 내부 요소 또는 화면의 크기가
+          지정된 너비보다 크더라도 
+          지정된 값 이상으로 증가 X
+
+  max-height : 최대 높이
+*/
+
+/* @media 미디어유형 and (속성)*/
+/* 미디어유형 : 지정할 미디어의 종류 (all, screen, print,...) */
+/* 
+  1024px 이상 : 16:9 비율 모니터, 노트북
+  768 ~ 1024 : 태블릿 가로, 4:3비율 모니터
+  480 ~ 768 : 태블릿 세로, 모바일 가로
+  ~ 480 : 모바일
+*/
+
+@media screen and (max-width : 1500px){
+  /* 화면 너비가 0~1500px 사이일 때 적용할 CSS 코드 작성 */
+
+  /* 1500px 이하일 때 사이드 메뉴를 보이지 않게 함 */
+  aside{ 
+    display : none;
+  }
+}
+
+
+@media screen and (max-width: 1024px){
+  /* 화면 너비가 0~1024px 사이일 때 적용할 CSS 코드 작성 */
+
+  .card-item{
+    width: 33.33%;
+  }
+
+  .thumbnail-col{
+    width: 330px;
+  }
+}
+
+@media screen and (max-width: 800px){
+   /* 화면 너비가 0~800px 사이일 때 적용할 CSS 코드 작성 */
+
+  .card-item{
+    width: 50%;
+  }
+}
+
+
+

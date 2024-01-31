@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24_기본 이벤트 제거</title>
+</head>
+<body>
+    
+
+    <h1 style="color:royalblue"> HTML요소의 기본 이벤트 제거 </h1>
+
+    <pre>
+      a 태그의 기본 이벤트 : 
+        클릭하면 href 속성에 작성된 주소로 이동
+  
+      form 태그의 기본 이벤트 : 
+        action 속성에 작성된 주소로 
+        내부에 작성된 input 값들을 제출
+    </pre>
+  
+    <h3>a태그 기본 이벤트 제거</h3>
+    <a href="https://www.naver.com" id="move">NAVER로 이동</a>
+    
+  
+    <hr>
+  
+    <h3>form 태그 기본 이벤트 제거</h3>
+  
+    <!-- action : 제출할 주소 -->
+    <form action="24_result.html" id="login" name="loginForm" 
+      onsubmit="return validateFn()">
+      <!-- onsubmit = "return false"  : 제출 X -->
+  
+      아이디 : <input type="text" id="inputId" name="id">
+      <br>
+      비밀번호 : <input type="password" id="inputPw" name="pw">
+  
+      <button type="submit">로그인</button>
+  
+      <button type="button" id="loginBtn">버튼 타입 로그인</button>
+    </form>
+
+    <script src="../js/24_기본이벤트제거.js"></script>
+</body>
+</html>

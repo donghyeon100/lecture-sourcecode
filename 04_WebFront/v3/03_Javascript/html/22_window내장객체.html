@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>22_window내장객체</title>
+
+  <link rel="stylesheet" href="../css/22_window내장객체.css">
+</head>
+<body>
+
+  <h1>window 내장 객체</h1>
+  <pre>
+    - 브라우저 창 자체를 나타내는 객체
+
+    - 자바스크립트 모든 객체의 최상위 부모
+
+    - window의 자식 객체
+      1) DOM (Document Object Model) : document
+         (브라우저에서 내용(페이지) 출력 부분)
+
+      2) BOM (Browser Object Model) : location, history, screen, navigator
+         (DOM을 제외한 브라우저 나머지 부분)
+  </pre>
+
+  <hr>
+
+  <h3>[window.]alert("문자열") 
+    / [window.]prompt("문자열") 
+    / [window.]confirm("문자열")</h3>
+
+  <pre> console에서 확인 </pre>
+
+  <hr>
+
+  <h1>시간 지연 함수</h1>
+  <pre>
+    - window에서 제공하는 시간 관련 함수들은 
+      모두 비동기로 동작
+  </pre>
+
+  <h2>비동기(Asynchronous)란?</h2>
+    - 코드 해석(작업)이 작성 순서대로 수행되지 않고
+      여러 작업이 동시 수행되는 것
+
+    -> 먼저 읽은 코드가 수행이 완료되는 것을 기다리지 않고
+       바로 다음 코드를 수행하는 것
+
+
+    [참고] 동기
+    - 앞에 코드가 수행이 종료 되어야 다음 코드 수행
+  <hr>
+
+
+
+  <h3>[window.]setTimeout(함수, 지연시간(ms))</h3>
+  <pre>
+    - 지연시간이 지난 후 함수를 1회 수행하도록 하는 
+      window 객체 내장 함수
+  </pre>
+  <button id="btn1">setTimeout() 확인</button>
+
+
+
+  <h3>[window.]setInterval(함수, 지연시간(ms))</h3>
+  <pre>
+    - 지연시간이 지날 때 마 함수를 계속 수행하도록 하는 
+    window 객체 내장 함수
+  </pre>
+
+  <div id="box2"> <span>0</span> 초 </div>
+
+  <button id="btn2">setInterval() 확인</button>
+
+
+
+  <h3>[window.]clearInterval( setInterval() )</h3>
+
+  <pre>
+    - setInterval()로 인해 생성된 인터벌을 삭제하는 함수
+  </pre>
+
+
+  <h1 id="target3">0</h1>
+  <button id="start3">시작</button>
+  <button id="stop3"> 멈춤</button>
+
+
+  <hr>
+
+  
+  <script src="../js/22_window내장객체.js"></script>
+</body>
+</html>

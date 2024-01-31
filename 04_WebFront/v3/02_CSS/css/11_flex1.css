@@ -1,0 +1,54 @@
+.flex-container{
+  height: 700px;
+  background-color: #ccc;
+
+  /* flex container로 지정 */
+  display : flex;
+
+  /* ***** flex-direction ***** */
+  /* 중심축 방향(기본값 row) */
+  /* flex-direction: row; */
+  /* flex-direction: row-reverse; */
+  /* flex-direction: column; */
+  flex-direction: column-reverse;
+
+  
+
+  /* ***** justify-content ***** */
+  /* 중심축 방향 item 정렬(기본 값 : flex-start) */
+
+  /* justify-content: flex-start; */
+  justify-content: flex-end;
+  /* justify-content: center; */
+
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+  /* justify-content: space-between; */
+
+
+
+  /* ***** align-items ***** */
+  /* 교차축 방향 item 정렬(기본 값 : stretch) */
+
+  /* stretch를 확인하려면 
+  item에 교차축 방향 크기 지정 속성이 설정되지 않아야 한다*/
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  /* align-items: flex-end; */
+  align-items: center;
+  /* align-items: baseline; */
+
+
+}
+
+
+.item2{padding: 5px;}
+.item3{padding: 10px;}
+.item4{padding: 15px;}
+.item5{padding: 20px;}
+
+
+
+
+
+

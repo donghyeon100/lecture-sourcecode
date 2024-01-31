@@ -1,0 +1,17 @@
+요소.style.[css속성] = 요소에 inline 스타일 지정
+
+ex)
+const temp = document.getElementById("temp");
+
+// 글자색 변경
+temp.style.color = "red";     
+
+// 배경색
+temp.style.backgroundColor = "yellow";  
+
+// 글자 크기
+temp.style.fontSize = "12px";     
+
+// display 변경
+temp.style.display = "none";     
+

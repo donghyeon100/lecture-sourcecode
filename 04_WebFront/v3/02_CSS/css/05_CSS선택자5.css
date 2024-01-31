@@ -1,0 +1,59 @@
+/* :only-child */
+
+/* #test1의 유일한 자식이 p 태그이면 선택 */
+#test1 > p:only-child{
+  background-color: orange;
+}
+
+/* #test2의 유일한 자식이 p 태그이면 선택
+  -> 자식 요소가 2개 존재(p, pre) -> 선택 X 
+*/
+#test2 > p:only-child{
+  background-color: green;
+}
+
+
+/* :only-of-type */
+
+/* #test3의 자식 p태그를 모두 선택했는데
+  딱 하나만 존재할 경우
+ */
+#test3 > p:only-of-type{
+  background-color: pink;
+}
+
+#test3 > pre:only-of-type{
+  background-color: skyblue;
+}
+
+/* :empty */
+#test4 > p:empty{
+  height: 30px;
+  background-color: greenyellow;
+}
+
+
+/* 여러 요소 동시 선택 */
+
+#test5-1, .test5-2, [name="test5-3"]{
+  font-weight: bold; /* 두꺼운 글씨 */
+  font-size: 24px;
+  font-family: '궁서체';
+
+  /* 아랫쪽 테두리 */
+  border-bottom: 3px solid black;
+}
+
+
+
+.test6{ background-color: yellow;}
+.aaa{ font-size: 30px;}
+
+/* class 속성 값으로 
+ test6, aaa 둘 다 가지고 있는 요소만 선택
+ (클래스 선택자를 이어서 작성!)
+ (중간에 띄어쓰기 X (띄어쓰기는 후손 선택자))
+ */
+.test6.aaa{
+  color : red;
+}
