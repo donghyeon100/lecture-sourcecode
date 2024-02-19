@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타이머</title>
+
+    <style>
+        .container > div {padding: 5px;}
+
+        .container > div:first-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container > div:last-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 310px;
+        }
+
+        #time {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            width: 300px;
+            height: 100px;
+            border: 2px solid black;
+            font-size: 70px;
+        }
+
+        button {width: 150px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>타이머</div>
+
+        <div>
+            <div id="time">
+                <span id="hour">00</span>
+                <span>:</span>
+                <span id="minute">00</span>
+                <span>:</span>
+                <span id="second">00</span>
+            </div>
+    
+            <div>
+                <button type="button" id="status">start</button>
+                <button type="button" id="reset">reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const hour = document.getElementById("hour");
+        const minute = document.getElementById("minute");
+        const second = document.getElementById("second");
+        const status = document.getElementById("status");
+
+        let interval; // 새로운 인터벌이 세팅되면 1 이상의 숫자, 없을 땐 undefined
+        
+
+        let initialTime = {}; // start 클릭 시 시간 시작 값 저장할 객체
+
+
+        /** 휠 이벤트 핸들러(동작) 함수
+         *  @param e : 이벤트 객체
+         *  @param max : 휠로 증가할 수 있는 최대값
+         * */
+        const wheelEnventHandler = (e, max) => {
+            if(interval !== undefined) return;
+
+            let val = Number(e.target.innerText);
+
+            // 휠을 위로 밀었을 때
+            if(e.deltaY < 0){ 
+                if(val >= max - 1)   e.target.innerText = "00";
+                else            e.target.innerText = addzero(val + 1);
+
+            // 휠을 아래로 당겼을 때
+            } else { 
+                if(val == 0) e.target.innerText = max - 1;
+                else         e.target.innerText = addzero(val - 1);
+            }
+        }
+
+
+        // hour, minute, second 휠 이벤트 리스너 추가
+        hour.addEventListener("wheel", e => { wheelEnventHandler(e, 100) });
+        minute.addEventListener("wheel", e => { wheelEnventHandler(e, 60) });
+        second.addEventListener("wheel", e => { wheelEnventHandler(e, 60) });
+        
+        const endSound = new Audio('BombExplosion.mp3'); // 소리 출력용 객체 생성
+
+        function timer() {
+
+            interval = setInterval(() => {
+
+                if (second.innerText > 0) {
+                    second.innerText = addzero(second.innerText -1);
+
+                    // 0시 0분 0초일 때
+                    if (hour.innerText == 0 && minute.innerText == 0 && second.innerText == 0){
+                        clearInterval(interval); // 인터벌 종료
+                        interval = undefined;    // 인터벌이 종료 되었음을 undefined로 기록
+                        status.innerText = "start"; // stop -> start로 변경
+                        endSound.play(); // 종료 소리 실행
+                    }
+                    
+                    return;
+
+                } 
+
+                if (minute.innerText > 0) {
+                    minute.innerText = addzero(minute.innerText - 1);
+                    second.innerText = 59;
+                    return;
+                }
+
+                if (hour.innerText > 0) {
+                    hour.innerText = addzero(hour.innerText - 1);
+                    minute.innerText = 59;
+                    second.innerText = 59;
+                    return;
+                }
+
+            }, 1000);
+        }
+
+
+        function addzero(num) {
+            if (num < 10) return "0" + num;
+            else return num;
+        }
+
+
+        document.getElementById("status").addEventListener("click", () => {
+
+            if (hour.innerText == 0 && minute.innerText == 0 && second.innerText == 0) return;
+
+            // start
+            if (status.innerText === "start") {
+                status.innerText = "stop";
+
+                initialTime.hour = hour.innerText;
+                initialTime.minute = minute.innerText;
+                initialTime.second = second.innerText;
+                timer();
+
+            // stop
+            } else {
+                status.innerText = "start";
+                clearInterval(interval);
+                interval = undefined; // 인터벌이 종료 되었음을 undefined로 기록
+
+            }
+
+        });
+
+        // reset
+        document.getElementById("reset").addEventListener("click", () => {
+            status.innerText = "start";
+            hour.innerText = initialTime.hour;  
+            minute.innerText = initialTime.minute;
+            second.innerText = initialTime.second;
+            clearInterval(interval);
+            interval = undefined; // 인터벌이 종료 되었음을 undefined로 기록
+        });
+
+
+    </script>
+</body>
+</html>
