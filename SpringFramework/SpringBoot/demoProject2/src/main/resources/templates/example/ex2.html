@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임 리프 예제 2</title>
+</head>
+<body>
+
+    <h3>요청 위임된 파라미터 확인</h3>
+    
+    <ul>
+
+        <li th:text="${param.inputName}"></li>
+        <li th:text="${param.inputAge}"></li>
+        <li th:text="${param.asd}"></li>  <!-- null을 빈칸으로 표시 -->
+
+        <li th:text="${param.color}"></li>
+        <li th:text="${param.color[0]}"></li>
+        <li th:text="${param.color[1]}"></li>
+        <li th:text="${param.color[2]}"></li>
+    </ul>
+
+    <hr>
+
+    <h3>
+        th:text   <!--  [[...]]  -->
+        <br>
+        th:utext  <!--  [(...)] -->
+    </h3>
+
+    <div>
+        <h4>th:text는 HTML 태그를 해석 X </h4>
+        <th:block th:text="${str}">str</th:block>
+        <br>
+        다른 작성 방법[] : [[${str}]]
+    </div>
+    
+    <div>
+        <h4>th:utext는 HTML 태그를 해석 O</h4>
+        <th:block th:utext="${str}">str</th:block>
+        다른 작성 방법() : [(${str})]
+    </div>
+
+
+
+
+</body>
+</html>

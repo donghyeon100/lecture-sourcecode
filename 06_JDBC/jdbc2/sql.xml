@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="insertDepartment">
+		INSERT INTO DEPARTMENT4 VALUES(?, ?, ?)
+	</entry>
+	
+	
+	<!-- XML 태그 오류 시 -->
+	<!-- https://stackoverflow.com/questions/77252112/downloading-from-external-resources-is-disabled-in-hibernate-dtd -->
+</properties>

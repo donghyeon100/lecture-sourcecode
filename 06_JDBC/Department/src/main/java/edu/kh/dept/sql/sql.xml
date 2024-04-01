@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<!-- 부서 전체 조회 -->
+	<entry key="selectAll">
+		SELECT * FROM DEPARTMENT4
+		ORDER BY DEPT_ID ASC
+	</entry>
+	
+	<!-- 부서 추가 -->
+	<entry key="insertDepartment">
+		INSERT INTO DEPARTMENT4 VALUES(?, ?, ?)
+	</entry>
+
+	<!-- 부서 수정 -->
+	<entry key="updateDepartment">
+		UPDATE DEPARTMENT4 SET
+		DEPT_TITLE = ?,
+		LOCATION_ID = ?
+		WHERE DEPT_ID = ?
+	</entry>
+</properties>

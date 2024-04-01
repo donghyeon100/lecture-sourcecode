@@ -59,6 +59,7 @@ public class EmailServiceImpl implements EmailService{
         }
         
         
+        // Session에 저장하는 코드로 변경!
         
         // 이메일과 인증번호를 DB에 저장
         Map<String, String> map = new HashMap<String, String>();

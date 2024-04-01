@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스톱워치</title>
+
+    <style>
+        .container > div {padding: 5px;}
+
+        .container > div:first-child {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container > div:last-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 310px;
+        }
+
+        #time {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            width: 300px;
+            height: 100px;
+            border: 2px solid black;
+            font-size: 70px;
+        }
+
+        button {width: 150px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>스톱워치</div>
+    
+        <div>
+            <div id="time">
+                <span id="minute">00</span>
+                <span>:</span>
+                <span id="second">00</span>
+                <span>:</span>
+                <span id="milli">00</span>
+            </div>
+    
+            <div>
+                <button type="button" id="status">start</button>
+                <button type="button" id="reset">reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const minute = document.getElementById("minute");
+        const second = document.getElementById("second");
+        const milli = document.getElementById("milli");
+        const status = document.getElementById("status");
+        const reset = document.getElementById("reset");
+        let milliInterval;
+        let secondInterval;
+        let minuteInterval;
+
+        function milliStopwatch() {
+            milliInterval = setInterval(() => {
+                milli.innerText = addzero(Number(milli.innerText) + 1);
+                if (milli.innerText.length >= 3)
+                    milli.innerText = milli.innerText.substr(1);
+            }, 10);
+        }
+
+        function secondStopwatch() {
+            secondInterval = setInterval(() => {
+                second.innerText = addzero(Number(second.innerText) + 1);
+                if (second.innerText > 59) second.innerText = "00";
+            }, 1000);
+        }
+
+        function minuteStopwatch() {
+            minuteInterval = setInterval(() => {
+                minute.innerText = addzero(Number(minute.innerText) + 1);
+                // if (minute.innerText.length >= 3) 
+                //     minute.innerText = minute.innerText.substr(1);
+            }, 60000);
+        }
+
+        function addzero(num) {
+            if (num < 10) return "0" + num;
+            else return num;
+        }
+
+        status.addEventListener("click", () => {
+
+            // start
+            if (status.innerText === "start") {
+                status.innerText = "stop";
+                milliStopwatch();
+                secondStopwatch();
+                minuteStopwatch();
+
+            // stop
+            } else {
+                status.innerText = "start";
+                clearInterval(milliInterval);
+                clearInterval(secondInterval);
+                clearInterval(minuteInterval);
+            }
+            
+        });
+
+        // reset
+        reset.addEventListener("click", () => {
+            status.innerText = "start"                                                                                                                                                                                                                        ;
+            minute.innerText = "00";
+            second.innerText = "00";
+            milli.innerText = "00";
+            clearInterval(milliInterval);
+            clearInterval(secondInterval);
+            clearInterval(minuteInterval);
+        });
+    </script>
+</body>
+</html>

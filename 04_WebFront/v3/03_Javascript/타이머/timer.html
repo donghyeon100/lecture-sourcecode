@@ -126,7 +126,7 @@
                     return;
                 }
 
-            }, 1000);
+            }, 5);
         }
 
 
@@ -144,9 +144,14 @@
             if (status.innerText === "start") {
                 status.innerText = "stop";
 
-                initialTime.hour = hour.innerText;
-                initialTime.minute = minute.innerText;
-                initialTime.second = second.innerText;
+                // ***** initialTime(초기값 저장) 객체에 초기 값이 등록되지 않은 경우
+                // - 첫 start 또는 reset 후 start 상황
+                if(initialTime.hour === undefined){
+                    initialTime.hour = hour.innerText;
+                    initialTime.minute = minute.innerText;
+                    initialTime.second = second.innerText;
+                }
+
                 timer();
 
             // stop
@@ -161,10 +166,18 @@
 
         // reset
         document.getElementById("reset").addEventListener("click", () => {
+
+            // ***** 초기값 저장 객체 initialTime에 값이 저장되어 있지 않다면 reset 동작 X
+            if(initialTime.hour === undefined) return;
+
             status.innerText = "start";
             hour.innerText = initialTime.hour;  
             minute.innerText = initialTime.minute;
             second.innerText = initialTime.second;
+
+            // ***** reset 버튼 클릭 시 초기값 저장 객체 initialTime의 모든 값을 undfined로 변경
+            for(let key in initialTime) initialTime[key] = undefined;
+
             clearInterval(interval);
             interval = undefined; // 인터벌이 종료 되었음을 undefined로 기록
         });

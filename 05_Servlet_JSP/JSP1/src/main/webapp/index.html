@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSP 프로젝트 1</title>
+</head>
+<body>
+  <h1>회원 가입</h1>
+
+  <form action="/signup" method="POST">
+    <table>
+      <tr>
+        <td>아이디 : </td>
+        <td> <input type="text" name="inputId"> </td>
+      </tr>
+      <tr>
+        <td>비밀번호 : </td>
+        <td> <input type="password" name="inputPw"> </td>
+      </tr>
+      <tr>
+        <td>비밀번호 확인: </td>
+        <td> <input type="password" name="inputPwCheck"> </td>
+      </tr>
+      <tr>
+        <td>이름 :  </td>
+        <td> <input type="text" name="inputName"> </td>
+      </tr>
+      <tr>
+        <td>나이 :  </td>
+        <td> <input type="number" name="inputAge"> </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <button>회원 가입</button>
+        </th>
+      </tr>
+    </table>
+  </form>
+
+  <hr>
+
+  <h3>Servlet/JSP로 페이지 이동하기</h3>
+  
+  
+  <pre>
+  	a태그의 href 속성을 이용해서 요청 (GET 방식)
+  	
+  	- 특정 html/JSP 까지의 파일 경로를 작성해서 페이지 이동 (X)
+  	
+  	- 서버 요청 주소를 작성하여 JSP로 만든 페이지로 응답 (O)
+  </pre>
+
+  <!-- 서버 요청 주소 작성 -->
+  <!-- 
+    [GET방식 요청 종류]
+    a태그, JS(location), 직접 주소 작성, form method="GET"
+  -->
+  <a href="/pizza/order">피자 주문하기</a>
+
+
+
+</body>
+</html>

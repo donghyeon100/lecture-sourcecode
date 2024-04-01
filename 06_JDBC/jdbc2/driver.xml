@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="driver">oracle.jdbc.driver.OracleDriver</entry>
+	
+	<entry key="url">jdbc:oracle:thin:@localhost:1521:xe</entry>
+	
+	<entry key="user">KH_BDH</entry>
+	
+	<entry key="pw">KH1234</entry>
+	
+	<!-- XML 태그 오류 시 -->
+	<!-- https://stackoverflow.com/questions/77252112/downloading-from-external-resources-is-disabled-in-hibernate-dtd -->
+</properties>

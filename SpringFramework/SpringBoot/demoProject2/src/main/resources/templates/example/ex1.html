@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- th속성을 사용하기 위해 선언된 네임스페이스 -->
+<html lang="en" xmlnsLth="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임 리프 예제 1</title>
+</head>
+<body>
+    <h1>타임 리프 예제 1</h1>
+
+    <hr>
+
+    <h3>전달 받은 단일 값 출력하기</h3>
+    
+    <!-- th:block 태그 
+        - 타임리프로 Java 데이터를 출력하고 싶은데
+        감싸는 태그가 존재하지 않았으면 할 때 사용하는 태그
+        
+        - HTML 랜더링 시 출력하려는 내용만 남고 
+        th:block 태그는 사라진다
+    -->
+
+    <!-- th:text 속성 : 속성 값을 태그 내용으로 출력 -->
+
+    <!-- th:block 태그가 브라우저에선 없어져 보이는 것 확인 -->
+    <!-- html 파일을 따로 실행했을 때 th:text가 아닌 태그 내용이 출력 된는 것을 확인 -->
+    <th:block th:text="${v1}">
+        여기에 작성하면 출력되지 않습니다
+        HTML 단독 수행 시 보여지게 됩니다
+    </th:block>
+
+    <hr>
+
+
+    <!-- 타임리프 속성이 적용된 태그의 내용으로는
+        출력될 내용의 샘플 또는 예시 또는 설명을 작성 
+    -->
+    <th:block th:text="${v1}">v1</th:block>
+
+    <hr>
+
+    <th:block th:text="${v2}">v2</th:block>
+
+    <hr>
+    <h3>객체의 필드 하나씩 꺼내 출력하기 - 1</h3>
+    <ul>
+        <li th:text="${std.studentNo}">학생 번호</li>
+        <li th:text="${std.name}">이름</li>
+        <li th:text="${std.age}">나이</li>
+    </ul>
+
+
+    <hr>
+    <h3>객체의 필드 하나씩 꺼내 출력하기 - 2</h3>
+    <p>
+        th:object 와 *{필드명} 이용
+    </p>
+
+    <ul th:object="${std}">
+        <li th:text="*{studentNo}">학생 번호</li>
+        <li th:text="*{name}">이름</li>
+        <li th:text="*{age}">나이</li>
+    </ul>
+
+    <hr>
+    <h1>message.properties에 작성된 값 출력( #{} )</h1>
+
+    <h3 th:text="#{app.name}">프로젝트명</h3>
+
+    <!-- th:src  :  타임리프를 이용해 출력한 값으로 src 속성을 작성한다는 의미 -->
+    <img th:src="#{user.default.image}">
+
+</body>
+</html>
