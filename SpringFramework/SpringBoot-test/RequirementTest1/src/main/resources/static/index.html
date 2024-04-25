@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>요구사항 확인 1</title>
+</head>
+
+<body>
+	<h1>학생 전체 조회(Ajax)</h1>
+
+	<button id="selectBtn">전체 조회</button>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>학번</th>
+				<th>이름</th>
+				<th>전공</th>
+				<th>성별</th>
+			</tr>
+		</thead>
+
+		<tbody id="tbody">
+
+		</tbody>
+	</table>
+
+
+	<hr>
+
+
+	<h1>학생 추가(Ajax)</h1>
+
+
+	<div>
+		이름 : <input type="text" id="nameInput"> <br>
+		전공 : <input type="text" id="majorInput"> <br>
+		성별 : 남 <input type="radio" class="genderInput" value="M">  
+		       여 <input type="radio" class="genderInput" value="F">
+		<br>
+		<button id="addBtn">학생 추가</button>  
+		<br>
+	</div>
+
+
+	<hr>
+
+	<h1>학생 삭제(Ajax)</h1>
+
+	<div>
+		학번 : <input type="text" id="studentNoInput"> 
+		<button id="deleteBtn">학생 삭제</button>
+	</div>
+
+
+
+	<script src="/js/main.js"></script>
+</body>
+
+</html>

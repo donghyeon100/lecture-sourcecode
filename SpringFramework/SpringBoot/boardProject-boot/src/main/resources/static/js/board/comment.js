@@ -1,4 +1,4 @@
-// REST(REpresentaional State Transfer) API
+// REST(REpresentational State Transfer) API
 // - 자원을 이름(주소)으로 구분(REpresentaional)하여
 //   자원의 상태(State)를 주고 받는 것(Transfer)
 
@@ -36,7 +36,7 @@ const selectCommentList = () => {
             commentRow.classList.add("comment-row");
 
             // 답글일 경우 child-comment 클래스 추가
-            if(comment.parentNo != 0)  commentRow.classList.add("child-comment");
+            if(comment.parentCommentNo != 0)  commentRow.classList.add("child-comment");
 
 
             // 삭제된 댓글이지만 자식 댓글 때문에 조회된 경우
@@ -349,7 +349,7 @@ function updateComment(commentNo, btn){
 // 답글 작성 화면 추가 
 // -> 답글 작성 화면은 전체 화면에 1개만 존재 해야한다!
 
-function showInsertComment(parentNo, btn){
+function showInsertComment(parentCommentNo, btn){
                         // 부모 댓글 번호, 클릭한 답글 버튼
 
 
@@ -383,7 +383,7 @@ function showInsertComment(parentNo, btn){
 
     const insertBtn = document.createElement("button");
     insertBtn.innerText = "등록";
-    insertBtn.setAttribute("onclick", "insertChildComment("+parentNo+", this)");
+    insertBtn.setAttribute("onclick", "insertChildComment("+parentCommentNo+", this)");
 
 
     const cancelBtn = document.createElement("button");
@@ -408,13 +408,13 @@ function insertCancel(btn){
 
 
 // 답글 등록
-function insertChildComment(parentNo, btn){
+function insertChildComment(parentCommentNo, btn){
                         // 부모 댓글 번호, 답글 등록 버튼
 
     // 누가?                loginMemberNo(로그인한 회원의 memberNo )(전역변수)
     // 어떤 내용?           textarea에 작성된 내용
     // 몇번 게시글?         현재 게시글 boardNo (전역변수)
-    // 부모 댓글은 누구?    parentNo (매개변수)
+    // 부모 댓글은 누구?    parentCommentNo (매개변수)
 
     // 답글 내용
     const commentContent = btn.parentElement.previousElementSibling.value;
@@ -430,7 +430,7 @@ function insertChildComment(parentNo, btn){
     const data = {"commentContent" : commentContent,
                     "memberNo" : loginMemberNo,
                     "boardNo" : boardNo,
-                    "parentNo" : parentNo}; // JS객체
+                    "parentCommentNo" : parentCommentNo}; // JS객체
 
     fetch("/comment",{
         method : "POST",

@@ -263,7 +263,7 @@
 	<!-- 좋아요 테이블 삽입 --> 
 	<!-- 각자 테이블 확인해서 values 순서 파악! -->
 	<insert id="insertBoardLike" >
-		INSERT INTO "BOARD_LIKE" VALUES (#{memberNo}, #{boardNo})
+		INSERT INTO "BOARD_LIKE" VALUES (#{boardNo}, #{memberNo})
 	</insert>
 	
 	

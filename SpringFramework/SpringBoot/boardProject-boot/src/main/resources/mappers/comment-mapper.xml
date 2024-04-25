@@ -31,7 +31,7 @@
 						WHERE SUB.PARENT_NO = C.COMMENT_NO
 						AND COMMENT_DEL_FL = 'N')
 		START WITH PARENT_NO IS NULL
-		CONNECT BY PRIOR COMMENT_NO = PARENT_NO
+		CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
 		ORDER SIBLINGS BY COMMENT_NO
 	</select>
 	
@@ -40,14 +40,14 @@
 		VALUES(SEQ_COMMENT_NO.NEXTVAL, 
 				#{commentContent}, 
 				DEFAULT, DEFAULT, 
-				#{memberNo}, #{boardNo},
+				#{boardNo}, #{memberNo},
 				
 				<!-- 동적 sql : if문 -->
 				<!-- 부모 댓글 -->
-				<if test="parentNo == 0"> NULL </if>
+				<if test="parentCommentNo == 0"> NULL </if>
 				
 				<!-- 자식 댓글 -->
-				<if test="parentNo != 0"> #{parentNo} </if>
+				<if test="parentCommentNo != 0"> #{parentCommentNo} </if>
 				
 				)
 	</insert>

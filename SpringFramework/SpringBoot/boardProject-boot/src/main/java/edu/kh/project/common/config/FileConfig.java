@@ -44,6 +44,9 @@ public class FileConfig implements WebMvcConfigurer{
 //		String resourcePath = "file:///D:/uploadImages/";
 		registry.addResourceHandler(connectPath)
         .addResourceLocations(resourcePath);
+		
+		registry.addResourceHandler("/temp/**")
+		.addResourceLocations("file:///D:/temp/");
 	}
 	
 	

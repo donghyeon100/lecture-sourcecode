@@ -1,0 +1,89 @@
+.container{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
+}
+
+.container > section{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.id-container{
+    border-right: 3px solid #ccc;
+}
+
+.container > section > h2{
+    font-size: 30px;
+    padding: 30px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.container > section > div{
+    width: 70%;
+    height: 30px;
+    margin: 10px;
+    display: flex;
+    font-size: 20px;
+}
+
+.container > section label{
+    width: 30%;
+    font-weight: bold;
+    
+}
+
+.container > section input{
+    width: 70%;
+    /* height: 100%; */
+    font-size: 20px;
+    padding: 0 5px;
+}
+
+.container > section button{
+    width: 70%;
+    height: 40px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+
+    border-radius: 10px;
+    border: 2px solid var(--main-color);
+    background-color: white;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.container > section button:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+
+
+.auth-container{
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #ccc;
+    margin-top: 10px;
+    padding: 20px 0;
+}
+
+.auth-container > div { display: flex;}
+
+#authTimer{
+    text-align: right;
+}
+
+#authBtn{
+    width: 100%;
+    margin: 20px 0;
+}

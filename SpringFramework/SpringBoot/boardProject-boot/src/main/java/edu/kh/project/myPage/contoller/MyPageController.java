@@ -1,6 +1,7 @@
 package edu.kh.project.myPage.contoller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.service.MyPageService;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("myPage")
@@ -196,6 +196,56 @@ public class MyPageController {
 	 * - getSize() : 파일 크기
 	 * */
 	
+	@GetMapping("fileTest")
+	public String fileTest() {
+		return "myPage/myPage-fileTest";
+	}
+	
+	
+	@PostMapping("file/test1")
+	public String fileUpload(
+			@RequestParam("uploadFile") MultipartFile uploadFile,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+
+		String result = service.fileUpload(uploadFile);
+		
+		if(result != null) {
+			ra.addFlashAttribute("uploadPath", result);
+		}
+		System.out.println(result);
+		
+		return "redirect:fileTest";
+	}
+	
+	@PostMapping("file/test2")
+	public String fileUpload2(
+			@RequestParam("uploadFile") MultipartFile uploadFile,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		String result = service.fileUpload2(uploadFile);
+		
+		
+		return "redirect:fileTest";
+	}
+	
+	@PostMapping("file/test3")
+	public String fileUpload3(
+			@RequestParam("uploadFile") List<MultipartFile> uploadFile,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+//		String result = service.fileUpload(uploadFile);
+//		
+//		if(result != null) {
+//			ra.addFlashAttribute("uploadPath", result);
+//		}
+//		System.out.println(result);
+		
+		return "redirect:fileTest";
+	}
+	
+	
+	
+	
 	// 프로필 이미지 수정
 	@PostMapping("profile")
 	public String updateProfile(
@@ -216,6 +266,12 @@ public class MyPageController {
 		
 		return "redirect:profile";
 	}
+	
+	
+	
+	
+
+	
 	
 
 }

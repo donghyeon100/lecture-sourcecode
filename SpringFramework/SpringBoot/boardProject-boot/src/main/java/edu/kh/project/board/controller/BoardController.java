@@ -198,7 +198,7 @@ public class BoardController {
 					Date a = new Date(); // 현재 시간
 
 					Date temp = new Date(cal.getTimeInMillis()); // 다음날 (24시간 후)
-					// 2023-10-31 2:00:10
+					// 2024-04-15 12:30:10
 
 					Date b = sdf.parse(sdf.format(temp)); // 다음날 0시 0분 0초
 
@@ -208,8 +208,7 @@ public class BoardController {
 
 					c.setMaxAge((int) diff); // 수명 설정
 
-					resp.addCookie(c); // 응답 객체를 이용해서
-										// 클라이언트에게 전달
+					resp.addCookie(c); // 응답 객체를 이용해서 클라이언트에게 전달
 				}
 				
 				
@@ -250,7 +249,7 @@ public class BoardController {
 	 * @param loginMember : 로그인한 회원 정보가 담긴 객체
 	 * @return
 	 */
-	@PostMapping("/like")
+	@PostMapping("like")
 	@ResponseBody // 반환되는 값이 비동기 요청한 곳으로 돌아가게 함
 	public int like(@RequestBody Map<String, Integer> paramMap, 
 			@SessionAttribute("loginMember") Member loginMember) {

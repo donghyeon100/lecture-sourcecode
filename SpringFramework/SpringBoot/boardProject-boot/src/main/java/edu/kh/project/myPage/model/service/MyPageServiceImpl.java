@@ -100,6 +100,41 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
+	// 파일 업로드 테스트
+	@Override
+	public String fileUpload(MultipartFile uploadFile) throws IllegalStateException, IOException {
+		
+		// 업로드된 파일이 없으면
+		if(uploadFile.isEmpty()) {
+			return null;
+		}
+		
+		String forder = "D:/temp/";
+		
+		uploadFile.transferTo(new File( forder + uploadFile.getOriginalFilename()));
+		
+		
+		return "/temp/" + uploadFile.getOriginalFilename();
+		
+	}
+	
+	
+	@Override
+	public String fileUpload2(MultipartFile uploadFile) {
+		
+		// 업로드된 파일이 없으면
+		if(uploadFile.isEmpty()) {
+			return null;
+		}
+		
+		String forderPath = "D:/temp/";
+		String webPath = "D:/temp/";
+		
+		
+		return null;
+	}
+	
+	
 	// 프로필 이미지 수정 서비스
 	@Override
 	public int updateProfileImg(MultipartFile profileImage, Member loginMember) throws IllegalStateException, IOException {
@@ -143,6 +178,8 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return result;
 	}
+	
+	
 
 	
 }

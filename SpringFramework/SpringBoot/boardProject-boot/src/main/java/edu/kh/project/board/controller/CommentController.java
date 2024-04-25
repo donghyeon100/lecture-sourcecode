@@ -22,8 +22,8 @@ public class CommentController {
 	
 	private final CommentService service;
 	
-	// 댓글 목록 조회
-	@GetMapping(value="/comment", produces="application/json; charset=UTF-8")
+	// 댓글 목록 조회 // , produces="application/json; charset=UTF-8"
+	@GetMapping(value="/comment")
 	public List<Comment> select(int boardNo) {
 		return service.select(boardNo); // HttpMessageConverter List->JSON 변환
 	}

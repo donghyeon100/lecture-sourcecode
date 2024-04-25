@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ID/PW 찾기</title>
+
+	<th:block th:replace="~{common/common}"></th:block>
+
+	<link rel="stylesheet" href="/css/member/findIdPw.css">
+</head>
+
+<body>
+
+	<main>
+		<!-- 헤더 추가 -->
+		<th:block th:replace="~{common/header}"></th:block>
+
+		<section class="container">
+
+			<section class="id-container">
+				<h2>ID(Email) 찾기</h2>
+
+				<div>
+					<label>닉네임</label>
+					<input type="text" name="inputNickname" placeholder="닉네임"/>
+				</div>
+				<div>
+					<label>전화번호</label>
+					<input type="text" name="inputTel" placeholder="(-) 제외"/>
+				</div>
+
+				<button id="findIdBtn">ID(Email) 찾기</button>
+
+
+			</section>
+
+
+			<section class="pw-container">
+				<h2>비밀번호 찾기</h2>
+
+				<div>
+					<label>ID(Email)</label>
+					<input type="text" name="inputEmail" placeholder="ID(Email)"/>
+				</div>
+				<div>
+					<label>닉네임</label>
+					<input type="text" name="inputNickname" placeholder="닉네임"/>
+				</div>
+				<div>
+					<label>전화번호</label>
+					<input type="text" name="inputTel" placeholder="(-) 제외"/>
+				</div>
+
+				<button>비밀번호 찾기</button>
+
+				<hr>
+
+				<div class="auth-container">
+					<div>
+						<label>인증번호</label>
+						<input type="text" name="inputTel" placeholder="(-) 제외"/>
+					</div>
+					<span id="authTimer">05:00</span>
+					<button type="button" id="authBtn">인증하기</button>
+				</div>
+
+			</section>
+
+		</section>
+
+	</main>
+
+	<!-- 푸터 추가 -->
+	<th:block th:replace="~{common/footer}"></th:block>
+
+
+	<script src="/js/member/findIdPw.js"></script>
+</body>
+
+</html>

@@ -29,8 +29,15 @@ const changeImageFn = (imageInput, order) => {
     if(uploadFile == undefined){ 
         console.log("파일 선택이 취소됨");
 
+
+
+
         // 요소/노드.cloneNode(true) : 요소/노드 복제 (true == 하위 요소도 모두 복제)
-        const temp = backupInputList[order].cloneNode(true);
+        const temp = backupInputList[order];// .cloneNode(true);
+
+
+
+
 
         imageInput.after(temp); // input 요소 다음에 백업 요소를 추가하고
         

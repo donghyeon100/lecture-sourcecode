@@ -14,6 +14,11 @@ public interface MyPageService {
 
 	int secession(String memberPw, int memberNo);
 
+	String fileUpload(MultipartFile uploadFile) throws IllegalStateException, IOException ;
+	
 	int updateProfileImg(MultipartFile profileImage, Member loginMember) throws IllegalStateException, IOException ;
+
+	String fileUpload2(MultipartFile uploadFile);
+
 
 }
