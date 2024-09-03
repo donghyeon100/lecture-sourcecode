@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="me.bdh.mapper.TestMapper">
+  
+	<select id="dtoInsertTest" statementType="CALLABLE" parameterType="BoardDTO">
+		{call DTO_INSERT_TEST(
+			#{boardTitle, jdbcType=VARCHAR, mode=IN},
+			#{boardContent, jdbcType=VARCHAR, mode=IN},
+			#{writeDate, jdbcType=VARCHAR, mode=IN},
+			#{boardNo, jdbcType=INTEGER, mode=OUT}
+		)}
+	</select>
+	
+	<select id="listInsertTest" statementType="CALLABLE">
+		<foreach collection="list" item="BoardDTO" open="BEGIN " close="END">
+			{call DTO_INSERT_TEST2(
+				#{BoardDTO.boardTitle, jdbcType=VARCHAR, mode=IN},
+				#{BoardDTO.boardContent, jdbcType=VARCHAR, mode=IN},
+				#{BoardDTO.writeDate, jdbcType=VARCHAR, mode=IN}
+			)}
+		</foreach>
+	</select>
+	
+	
+<!-- 	<select id="listInsertTest" statementType="CALLABLE">
+		{call DTO_INSERT_TEST(
+			#{boardList, jdbcType=ARRAY, jdbcTypeName=BOARD_DTO_TABLE, mode=IN}
+		)}
+	</select> -->
+	
+	
+	<!-- 
+	<select id="listInsertTest" statementType="CALLABLE">
+		{call LIST_INSERT_TEST(
+			#{boardList, jdbcType=ARRAY, typeHandler=me.bdh.typehandler.BoardListTypeHandler}
+		)}
+	</select> -->
+</mapper>

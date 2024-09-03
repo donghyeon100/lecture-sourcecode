@@ -54,7 +54,12 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
         
         Message msg = objectMapper.readValue( message.getPayload(), Message.class);
         // Message 객체 확인
-        System.out.println(msg); 
+//        System.out.println(msg); 
+        
+        HttpSession currentSession =  (HttpSession)session.getAttributes().get("session");
+    	Member sendMember = ((Member)currentSession.getAttribute("loginMember"));
+    	msg.setSenderNo(sendMember.getMemberNo());
+    	
         
         // DB 삽입 서비스 호출
         int result = service.insertMessage(msg);
@@ -64,27 +69,20 @@ public class ChattingWebsocketHandler extends TextWebSocketHandler{
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh:mm");
             msg.setSendTime(sdf.format(new Date()) );
             
-            log.info("세션 수 : " + sessions.size());
-            
             // 전역변수로 선언된 sessions에는 접속중인 모든 회원의 세션 정보가 담겨 있음
             for(WebSocketSession s : sessions) {
                 // WebSocketSession은 HttpSession의 속성을 가로채서 똑같이 가지고 있기 때문에
                 // 회원 정보를 나타내는 loginMember도 가지고 있음.
                 
                 // 로그인된 회원 정보 중 회원 번호 얻어오기
-//            	log.info(s.toString());
-//            	log.info(s.getAttributes().toString());
-//            	log.info(s.getAttributes().get("session").toString());
-            	
             	HttpSession temp = (HttpSession)s.getAttributes().get("session");
-//            	log.info(temp.getAttribute("loginMember").toString());
-            	
                 int loginMemberNo = ((Member)temp.getAttribute("loginMember")).getMemberNo();
-                log.debug("loginMemberNo : " + loginMemberNo);
                 
                 // 로그인 상태인 회원 중 targetNo가 일티하는 회원에게 메세지 전달
                 if(loginMemberNo == msg.getTargetNo() || loginMemberNo == msg.getSenderNo()) {
-                    s.sendMessage(new TextMessage(new Gson().toJson(msg)));
+                	TextMessage textMessage 
+						= new TextMessage( objectMapper.writeValueAsString(msg) ); 
+                    s.sendMessage(textMessage);
                 }
             }
         }

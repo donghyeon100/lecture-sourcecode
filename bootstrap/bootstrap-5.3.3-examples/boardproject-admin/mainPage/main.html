@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <script src="../assets/js/color-modes.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Main Page</title>
+
+  <!-- Bootstrap Icon -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* sidebar */
+    .b-example-divider {
+      width: 100%;
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .public-sidebar .nav-link{
+      color: black;
+    }
+
+    .public-sidebar .nav-item > a{
+      font-size: 1.1em;
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="sidebars.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- sidebar -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="bootstrap" viewBox="0 0 118 94">
+      <title>Bootstrap</title>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z">
+      </path>
+    </symbol>
+  </svg>
+
+
+  <div class="public-container d-flex flex-nowrap min-vh-100">
+    <!-- sidebar -->
+
+    <aside class="public-sidebar d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary border-end" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center m-2 mb-5  me-md-auto link-body-emphasis text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32">
+          <use xlink:href="#bootstrap" />
+        </svg>
+        <span class="fs-4">Admin Page</span>
+      </a>
+
+
+      <ul class="nav nav-pills flex-column mb-auto">
+
+        <li class="nav-item">
+          <!-- <a href="#" class="nav-link d-flex align-items-center active" aria-current="page"> -->
+          <a href="#" class="nav-link d-flex align-items-center" aria-current="page">
+            <i class="bi bi-house-door pe-none me-3"></i>
+            Home
+          </a>
+        </li>
+
+
+        <!-- 드롭다운 메뉴 만드는 방법 
+          1) 드롭 다운 토클 버튼 요소에 data-bs-toggle="collapse" 를 추가
+          2) 드롭 다운 토클 버튼 href 속성에 하위 요소 id를 추가
+          3) 하위 요소에 class="collapse" 작성
+        -->
+
+        <!-- Member(회원) -->
+        <li class="nav-item">
+          <a href="#memberCollapse" class="nav-link link-body-emphasis d-flex align-items-center" data-bs-toggle="collapse">
+            <i class="bi bi-people pe-none me-3"></i>
+
+            Member(회원)
+          </a>
+
+          <!-- .collapse.show : 드롭 다운 하위 내용 열어서 보이게 하기 -->
+          <!-- .nav-link.active : 요소 선택된것 처럼 보이게 하기 -->
+          <ul class="collapse list-unstyled show " id="memberCollapse">
+            <li>
+              <a href="#" class="side-sub-menu nav-link ps-5 py-1 active">전체 회원 관리</a>
+            </li>
+            <li>
+              <a href="#" class="side-sub-menu nav-link ps-5 py-1">회원 추가</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <!-- Board(게시판) -->
+        <li class="nav-item">
+          <a href="#boardCollapse" class="nav-link  d-flex align-items-center" data-bs-toggle="collapse">
+            <i class="bi bi-journal-text pe-none me-3"></i>
+            Board(게시판)
+          </a>
+
+
+          <ul class="collapse list-unstyled" id="boardCollapse">
+            <li>
+              <a href="#" class="side-sub-menu nav-link ps-5 py-1">게시글 관리</a>
+            </li>
+            <li>
+              <a href="#" class="side-sub-menu nav-link ps-5 py-1">게시판 종류 관리</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <!-- Comment(댓글) -->
+        <li class="nav-item">
+          <a href="#" class="nav-link d-flex align-items-center">
+            <i class="bi bi-chat-square-text pe-none me-3"></i>
+            Comment(댓글)
+          </a>
+        </li>
+
+
+        <!-- Setting(설정) -->
+        <li class="nav-item">
+          <a href="#" class="nav-link d-flex align-items-center">
+            <i class="bi bi-gear pe-none me-3"></i>
+            Setting(설정)
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+
+    <!-- header + main -->
+    <section class="public-header-main d-flex flex-column flex-grow-1">
+
+      <!-- header -->
+      <header class="public-header px-0 mx-0 w-100 border-bottom">
+        <div class="d-flex justify-content-between p-3 w-100">
+          
+          <!-- 페이지 타이틀 -->
+          <h3 class="current-page-title">Home</h3>
+    
+          <ul class="nav nav-pills">
+            <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li> -->
+            <!-- <li class="nav-item"><a href="#" class="nav-link">Schedule</a></li> -->
+            <li class="nav-item"><a href="#" class="btn btn-outline-secondary">Sign-Out</a></li>
+          </ul>
+        </div>
+      </header>
+    
+      <!-- main(본문) -->
+      <main class="public-main">
+
+      </main>
+      
+    </section>
+  </div>
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="sidebars.js"></script>
+</body>
+
+</html>

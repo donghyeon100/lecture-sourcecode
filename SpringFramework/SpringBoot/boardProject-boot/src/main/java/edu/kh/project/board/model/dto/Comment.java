@@ -15,7 +15,7 @@ public class Comment {
     private int boardNo;
     private int memberNo;
 //    private int parentCommentNo;
-    private int parentNo;
+    private int parentCommentNo;
     
     private String memberNickname;
     private String profileImg;

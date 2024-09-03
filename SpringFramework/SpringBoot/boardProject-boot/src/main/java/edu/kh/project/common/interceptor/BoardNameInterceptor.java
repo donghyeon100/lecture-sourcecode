@@ -46,18 +46,35 @@ public class BoardNameInterceptor implements HandlerInterceptor{
 		
 		List<Map<String, Object>> boardTypeList = (List<Map<String, Object>>)application.getAttribute("boardTypeList");
 		
+		// Uniform Resource Identifier : 통합 자원 식별자
+		// - 자원 이름(주소)만 봐도 무엇인지 구별할 수 있는 문자열
 		String uri = request.getRequestURI();
+//				log.debug("uri : " + uri);
 		
-		// uri.split("/") -> ["", "board", "1"]
-		int boardCode = Integer.parseInt(uri.split("/")[2]);
-		
-		// [{boardCode=1, boardName=공지사항}, {boardCode=2, boardName=자유 게시판}, {boardCode=3, boardName=질문 게시판}]
-		for(Map<String, Object> map : boardTypeList) {
-			int temp =  Integer.parseInt( String.valueOf(map.get("boardCode")) );
+		try {
+											// ["", "board", "1"]
+			int boardCode = Integer.parseInt( uri.split("/")[2] );
 			
-			if(temp == boardCode) {
-				request.setAttribute("boardName",  map.get("boardName"));
+			
+			// boardTypeList에서 boardCode를 하나씩 꺼내어 비교
+			for(Map<String, Object> boardType : boardTypeList) {
+				
+				// String.valueOf(값) : String으로 변환
+				
+				int temp = 
+						Integer.parseInt( String.valueOf( boardType.get("boardCode") ));
+				
+				
+				// 비교 결과가 같다면
+				// request scope에 boardName을 추가
+				if(temp == boardCode) {
+					request.setAttribute("boardName", boardType.get("boardName"));
+					break;
+				}
 			}
+		
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		

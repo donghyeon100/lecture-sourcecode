@@ -99,3 +99,17 @@ testSock.onmessage = e => {
 
     console.log(`보낸사람 : ${obj.name} / ${obj.str}`);
 }
+
+
+const sendSMSFn = (toNumber, msg) => {
+    fetch("/sms/send-one", {
+        method : "POST",
+        headers: {"Content-Type": "application/json"},
+        body : JSON.stringify({"toNumber":toNumber, "msg":msg})
+    })
+    .then(resp => resp.json())
+    .then(result => {
+        console.log(result)
+    })
+
+}

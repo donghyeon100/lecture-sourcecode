@@ -18,13 +18,14 @@ public class TodoListView {
 	// 기본 생성자
 	public TodoListView() {
 		
-		// 객체 생성 시 발생되는 예외를 모아서 처리
 		try {
-			service = new TodoListServiceImpl();
+			service = new TodoListServiceImpl();			
 			br = new BufferedReader(new InputStreamReader(System.in));
 			
 		} catch (Exception e) {
+			System.out.println("*** 프로그램 실행 중 오류 발생 ***");
 			e.printStackTrace();
+			System.exit(0); // 프로그램 종료
 		}
 	}
 	
@@ -45,13 +46,17 @@ public class TodoListView {
 				
 				switch (selectNumber) {
 				case 1: todoListFullView(); break; 
-				case 2: todoDetailView(); break; 
-				case 3: todoAdd(); break; 
-				case 4: todoComplete(); break; 
-				case 5: todoUpdate(); break; 
-				case 6: todoDelete(); break; 
+				case 2: todoDetailView(); 	break; 
+				case 3: todoAdd(); 					break; 
+				case 4: todoComplete(); 		break; 
+				case 5: todoUpdate(); 			break; 
+				case 6: todoDelete(); 			break; 
 				
-				case 0: System.out.println("@@@ 프로그램 종료 @@@"); break; 
+				case 0: 
+					System.out.println("@@@ 프로그램 종료 @@@"); 
+					br.close();
+				break; 
+				
 				default: System.out.println("### 메뉴에 작성된 번호만 입력해 주세요 ###");
 				}
 				

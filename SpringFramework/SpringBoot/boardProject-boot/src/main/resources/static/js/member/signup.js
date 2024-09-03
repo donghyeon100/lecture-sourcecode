@@ -489,3 +489,11 @@ checkAuthKeyBtn.addEventListener("click", function(){
 
 
 
+
+
+
+window.addEventListener('popstate', function(event) {
+    // 뒤로가기 버튼을 클릭하거나 브라우저의 이동 히스토리가 변경될 때 실행되는 코드
+    // 원하는 동작을 여기에 작성
+    console.log('뒤로가기 이벤트가 발생했습니다!');
+});

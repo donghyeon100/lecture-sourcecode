@@ -7,7 +7,7 @@ public class Test1 {
 	public static void main(String[] args) {
 		
 		// 과일 바구니 만들기
-		// 과일이름을 5개 담을 수 있는 배열을 생성하고
+		// 과일 이름을 5개 담을 수 있는 배열을 생성하고
 		// 과일 이름이 5개가 배열에 저장될 때 까지 반복
 		// 단, 중복되는 과일이 존재하는 경우 추가 X
 
@@ -46,8 +46,6 @@ public class Test1 {
 		}
 		
 		System.out.println("과일 목록 : " + Arrays.toString(fruits));
-		
-		
 		
 	}
 }

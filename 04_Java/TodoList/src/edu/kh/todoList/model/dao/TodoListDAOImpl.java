@@ -15,7 +15,7 @@ import edu.kh.todoList.model.dto.Todo;
 
 public class TodoListDAOImpl implements TodoListDAO{
 	
-	private final String FILE_PATH = "/io_test/TodoList.dat";
+	private final String FILE_PATH = "TodoList.dat";
 	
 	private List<Todo> todoList = null;
 	

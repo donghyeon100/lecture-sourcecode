@@ -35,6 +35,9 @@ const selectCommentList = () => {
             const commentRow = document.createElement("li");
             commentRow.classList.add("comment-row");
 
+            // 댓글 번호를 아이디로 추가
+            commentRow.id = comment.commentNo;
+
             // 답글일 경우 child-comment 클래스 추가
             if(comment.parentCommentNo != 0)  commentRow.classList.add("child-comment");
 
@@ -49,12 +52,12 @@ const selectCommentList = () => {
                 commentWriter.classList.add("comment-writer");
 
                 // 프로필 이미지
-                const profileImage = document.createElement("img");
+                const profileImg = document.createElement("img");
 
-                if( comment.profileImage != null ){ // 프로필 이미지가 있을 경우
-                    profileImage.setAttribute("src", comment.profileImage);
+                if( comment.profileImg != null ){ // 프로필 이미지가 있을 경우
+                    profileImg.setAttribute("src", comment.profileImg);
                 }else{ // 없을 경우 == 기본이미지
-                    profileImage.setAttribute("src", userDefaultImage);
+                    profileImg.setAttribute("src", userDefaultImage);
                 }
 
                 // 작성자 닉네임
@@ -67,7 +70,7 @@ const selectCommentList = () => {
                 commentDate.innerText =   comment.commentWriteDate;
 
                 // 작성자 영역(p)에 프로필,닉네임,작성일 마지막 자식으로(append) 추가
-                commentWriter.append(profileImage , memberNickname , commentDate);
+                commentWriter.append(profileImg , memberNickname , commentDate);
 
                 
 
@@ -172,12 +175,16 @@ addComment.addEventListener("click", e => { // 댓글 등록 버튼이 클릭이
     .then(resp => resp.text())
     .then(result => {
         if(result > 0){ // 등록 성공
+            // result == 삽입된 댓글 번호
+
             alert("댓글이 등록되었습니다.");
 
             commentContent.value = ""; // 작성했던 댓글 삭제
 
             selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
             // -> 새로운 댓글이 추가되어짐
+
+            sendNotificationFn("insertComment", `${location.pathname}?cn=c${result}`, boardNo);
 
         } else { // 실패
             alert("댓글 등록에 실패했습니다...");
@@ -442,6 +449,8 @@ function insertChildComment(parentCommentNo, btn){
         if(result > 0){ // 등록 성공
             alert("답글이 등록되었습니다.");
             selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+
+            sendNotificationFn("insertComment", `${location.pathname}?cn=c${result}`, boardNo);
 
         } else { // 실패
             alert("답글 등록에 실패했습니다...");

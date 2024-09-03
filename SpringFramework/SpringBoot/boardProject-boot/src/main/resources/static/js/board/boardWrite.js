@@ -127,3 +127,9 @@ for(let i=0 ; i< inputImageList.length ; i++){
     });
     
 }
+
+
+window.addEventListener('pageshow', function(event) {
+    console.log('뒤로가기 이벤트가 발생했습니다!');
+    document.querySelector("#boardWriteFrm").reset();
+});

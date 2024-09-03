@@ -20,8 +20,7 @@ public class TodoListView {
 		
 		// 객체 생성 시 발생되는 예외를 모아서 처리
 		try {
-			service = new TodoListServiceImpl();
-			br = new BufferedReader(new InputStreamReader(System.in));
+			service = new TodoListServiceImpl();			br = new BufferedReader(new InputStreamReader(System.in));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

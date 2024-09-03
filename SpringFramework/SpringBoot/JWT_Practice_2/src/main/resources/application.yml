@@ -1,0 +1,49 @@
+server:
+  port: 80
+  
+  servlet:
+    session:
+      tracking-modes: cookie  #URL에 jsessionid가 보여질 때
+ 
+spring:
+  application:
+    name: JWY_Practice_2
+    
+  #Spring devTools 관련 설정
+  devtools:
+    livereload:
+      enabled: true
+      
+    restart:
+      enabled: true
+      
+  thymeleaf:
+    cache: false
+    
+  jpa:
+    #sql 보기
+    show-sql: true
+    
+    hibernate:
+      ddl-auto: validate
+      
+    properties:
+      dialect: org.hibernate.dialect.OracleDialect
+      
+      #sql 예쁘게 보기  
+      hibernate:
+        format_sql: true   
+    
+    
+logging:
+  level:
+    root: info
+    
+    #?에 어떤 값이 들어갔는지 확인하기    
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+    
+ 

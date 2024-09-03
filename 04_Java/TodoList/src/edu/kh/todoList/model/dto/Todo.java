@@ -3,8 +3,19 @@ package edu.kh.todoList.model.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-// 직렬화
-public class Todo implements Serializable {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+
+public class Todo implements Serializable { // 직렬화
 	private String title;						// 할 일 제목
 	private String detail;					// 상세 내용
 	private boolean complete;				// 완료 여부
@@ -17,54 +28,4 @@ public class Todo implements Serializable {
   // 날짜와 시간을 원하는 포맷으로 출력하기
   //  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
   //  String formattedDateTime = currentDateTime.format(formatter);
-	
-	public Todo() {	}
-
-	public Todo(String title, String detail, boolean complete, LocalDateTime regDate) {
-		super();
-		this.title = title;
-		this.detail = detail;
-		this.complete = complete;
-		this.regDate = regDate;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDetail() {
-		return detail;
-	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
-
-	public boolean isComplete() {
-		return complete;
-	}
-
-	public void setComplete(boolean complete) {
-		this.complete = complete;
-	}
-
-	public LocalDateTime getRegDate() {
-		return regDate;
-	}
-
-	public void setRegDate(LocalDateTime regDate) {
-		this.regDate = regDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Todo [title=" + title + ", detail=" + detail + ", complete=" + complete + ", regDate=" + regDate + "]";
-	}
-	
-	
-	
 }

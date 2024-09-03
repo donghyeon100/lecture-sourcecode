@@ -199,7 +199,6 @@ function selectRoomList(){
 
 			// 현재 채팅방을 보고있는게 아니고 읽지 않은 개수가 0개 이상인 경우 -> 읽지 않은 메세지 개수 출력
 			if(room.notReadCount > 0 && room.chattingNo != selectChattingNo ){
-			// if(room.chattingNo != selectChattingNo ){
 				const notReadCount = document.createElement("p");
 				notReadCount.classList.add("not-read-count");
 				notReadCount.innerText = room.notReadCount;
@@ -211,7 +210,7 @@ function selectRoomList(){
 				fetch("/chatting/updateReadFlag",{
 					method : "PUT",
 					headers : {"Content-Type": "application/json"},
-					body : JSON.stringify({"chattingNo" : selectChattingNo, "memberNo" : loginMemberNo})
+					body : JSON.stringify({"chattingNo" : selectChattingNo})
 				})
 				.then(resp => resp.text())
 				.then(result => console.log(result))
@@ -227,20 +226,7 @@ function selectRoomList(){
 		roomListAddEvent();
 	})
 	.catch(err => console.log(err));
-
-
-	/*$.ajax({
-		url: "/chatting/roomList",
-		data : {"memberNo" : loginMemberNo},
-		dataType : "JSON",
-		success : roomList => {
-			
-		}
-	})*/
 }
-
-
-
 
 
 
@@ -255,9 +241,6 @@ function roomListAddEvent(){
 	for(let item of chattingItemList){
 		item.addEventListener("click", e => {
 	
-			// 클릭한 채팅방의 번호 얻어오기
-			//const id = item.getAttribute("id");
-			//const arr = id.split("-");
 			// 전역변수에 채팅방 번호, 상대 번호, 상태 프로필, 상대 이름 저장
 			selectChattingNo = item.getAttribute("chat-no");
 			selectTargetNo = item.getAttribute("target-no");
@@ -283,12 +266,10 @@ function roomListAddEvent(){
 }
 
 
-
-
 // 비동기로 메세지 목록을 조회하는 함수
 function selectChattingFn() {
 
-	fetch("/chatting/selectMessage?"+`chattingNo=${selectChattingNo}&memberNo=${loginMemberNo}`)
+	fetch(`/chatting/selectMessage?chattingNo=${selectChattingNo}`)
 	.then(resp => resp.json())
 	.then(messageList => {
 		console.log(messageList);
@@ -358,7 +339,7 @@ function selectChattingFn() {
 // /chattingSock 이라는 요청 주소로 통신할 수 있는  WebSocket 객체 생성
 let chattingSock;
 
-if(loginMemberNo != ""){
+if(notificationLoginCheck){
 	chattingSock = new SockJS("/chattingSock");
 }
 
@@ -375,7 +356,7 @@ const sendMessage = () => {
 		inputChatting.value = "";
 	} else {
 		var obj = {
-			"senderNo": loginMemberNo,
+			// "senderNo": loginMemberNo,
 			"targetNo": selectTargetNo,
 			"chattingNo": selectChattingNo,
 			"messageContent": inputChatting.value,
@@ -403,7 +384,7 @@ inputChatting.addEventListener("keyup", e => {
 
 // WebSocket 객체 chattingSock이 서버로 부터 메세지를 통지 받으면 자동으로 실행될 콜백 함수
 chattingSock.onmessage = function(e) {
-	// 메소드를 통해 전달받은 객체값을 JSON객체로 변환해서 obj 변수에 저장.
+	 // 메소드를 통해 전달받은 JSON을 JS Object로 변환해서 msg 변수에 저장.
 	const msg = JSON.parse(e.data);
 	console.log(msg);
 

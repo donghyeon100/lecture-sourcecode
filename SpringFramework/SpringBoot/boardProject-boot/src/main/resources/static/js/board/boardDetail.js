@@ -50,6 +50,13 @@ boardLike.addEventListener("click", e => {
         // 현재 게시글의 좋아요 수를 화면에 출력
         e.target.nextElementSibling.innerText = count;
 
+        // 기존에 좋아요 -> 취소인 경우
+        if(check == 1) return;
+
+        
+        // 빈하트 -> 좋아요인 경우 알림 보내기
+        sendNotificationFn("boardLike", location.pathname, boardNo);
+
 
     }) // 파싱된 데이터를 받아서 처리하는 코드 작성
 

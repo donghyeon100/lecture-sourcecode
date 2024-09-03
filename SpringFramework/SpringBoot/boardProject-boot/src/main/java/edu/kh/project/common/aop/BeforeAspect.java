@@ -73,7 +73,7 @@ public class BeforeAspect {
 	
 	
 	
-	public static String getRemoteAddr(HttpServletRequest request) {
+	private String getRemoteAddr(HttpServletRequest request) {
 
         String ip = null;
 

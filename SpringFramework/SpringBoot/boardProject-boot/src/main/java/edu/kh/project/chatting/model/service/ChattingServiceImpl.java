@@ -35,10 +35,6 @@ public class ChattingServiceImpl implements ChattingService{
     public int createChattingRoom(Map<String, Integer> map) {
     	int result = mapper.createChattingRoom(map);
     	
-//    	int chattingNo = 0;
-//        if(result > 0)  chattingNo = (int)map.get("chattingNo");
-//        return  chattingNo;
-        
         return result <= 0 ? 0 : (int)map.get("chattingNo"); 
     }
 
@@ -46,7 +42,6 @@ public class ChattingServiceImpl implements ChattingService{
     @Override
     public int insertMessage(Message msg) {
         msg.setMessageContent(Util.XSSHandling(msg.getMessageContent()));
-//        msg.setMessageContent(Util.newLineHandling(msg.getMessageContent()));
         return mapper.insertMessage(msg);
     }
 
@@ -66,7 +61,6 @@ public class ChattingServiceImpl implements ChattingService{
         return messageList;
     }
 
-    // 채팅 상대 검색
 	@Override
 	public List<Member> selectTarget(Map<String, Object> map) {
 		return mapper.selectTarget(map);

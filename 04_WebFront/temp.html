@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+      border: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">class = "box" 인 요소</div>
+
+  <script>
+
+    const box = document.querySelectorAll('.box');
+
+    box[0].onclick = function(){
+      console.log("인라인 또는 고전 이벤트 모델은" 
+                + "요소가 기본적으로 가지고 있는"
+                + "onclick이라는 이벤트 리스너 저장 변수에 함수를 대입하는 것");
+    }
+
+    box[0].addEventListener('click', function(){
+      console.log("표준 이벤트 모델은"
+                + "요소가 기본적으로 가지고 있는 이벤트 리스너 저장 변수가 아니라"
+                + "새로운 변수를 만들어서 거기에 함수를 대입하는 것" );
+    })
+
+    console.log(box)
+
+  </script>
+</body>
+</html>

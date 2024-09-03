@@ -153,7 +153,7 @@
         // 게시글 번호 전역 변수로 선언
         const boardNo = /*[[${board.boardNo}]]*/ "게시글번호";
         console.log(`boardNo : ${boardNo}`);
-        
+
         // const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
         // console.log(loginMemberNo);
         // if(loginMemberNo == null) loginMemberNo = "";
@@ -166,7 +166,6 @@
 
         // 이미지가 있을 경우 배치하기
         console.log(document.querySelectorAll('.boardImg > img'));
-        // setTimeout(()=>{
         const imageList = /*[[${board.imageList}]]*/ [];
         
         const previewList = document.querySelectorAll('.boardImg > img');
@@ -175,8 +174,6 @@
             console.log(preview);
             preview.src = imageList[i].imgPath + imageList[i].imgRename;
         })
-        // },300);
-
     </script>
 
     <script src="/js/board/boardDetail.js"></script>

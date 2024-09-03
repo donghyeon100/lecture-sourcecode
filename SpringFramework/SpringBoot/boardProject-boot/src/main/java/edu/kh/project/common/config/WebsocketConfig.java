@@ -8,6 +8,7 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 
 import edu.kh.project.chatting.model.websocket.ChattingWebsocketHandler;
 import edu.kh.project.main.model.websocket.TestWebsocketHandler;
+import edu.kh.project.notification.model.websocket.NotificationWebsocketHandler;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -19,6 +20,8 @@ public class WebsocketConfig implements WebSocketConfigurer {
 	private final TestWebsocketHandler testWebsocketHandler;
 	
 	private final ChattingWebsocketHandler chattingWebsocketHandler;
+	
+	private final NotificationWebsocketHandler notificationWebsocketHandler;
 	
 	private final HandshakeInterceptor handshakeInterceptor;
 	
@@ -35,13 +38,22 @@ public class WebsocketConfig implements WebSocketConfigurer {
 		
 		registry.addHandler(testWebsocketHandler, "/testSock")
 			.addInterceptors(handshakeInterceptor)
-			.setAllowedOriginPatterns("http://localhost/", "http://127.0.0.1/", "http://192.168.10.12/")
+			.setAllowedOriginPatterns("http://localhost/", "http://127.0.0.1/", "http://192.168.10.235/")
 			.withSockJS();
 		
 		registry.addHandler(chattingWebsocketHandler, "/chattingSock")
 			.addInterceptors(handshakeInterceptor)
-			.setAllowedOriginPatterns("http://localhost/", "http://127.0.0.1/", "http://192.168.10.12/")
+			.setAllowedOriginPatterns("http://localhost/", "http://127.0.0.1/", "http://192.168.10.235/")
 			.withSockJS();
+		
+		
+		registry.addHandler(notificationWebsocketHandler, "/notification/send")
+		.addInterceptors(handshakeInterceptor)
+		.setAllowedOriginPatterns("http://localhost/", "http://127.0.0.1/", "http://192.168.10.5/")
+		.withSockJS();
+		
+		
+		
 	}
 	
 }

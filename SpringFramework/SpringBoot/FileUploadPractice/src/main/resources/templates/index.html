@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>다중 파일 업로드</h1>
+
+    <form action="/fileTest" method="post" enctype="multipart/form-data">
+
+        <label for="selectFile" style="border:2px solid black; background-color: yellow;">파일 선택하기</label>
+        
+        <input type="file" name="selectFile" id="selectFile" multiple > <!-- style="display:none" -->
+
+        <hr>
+
+        <div id="fileConrainer">
+
+        </div>
+
+        <button>제출하기</button>
+    </form>
+
+    
+
+    <script src="/js/index.js"></script>
+
+    <script th:inline="javascript">
+        const message = /*[[${message}]]*/ null;
+
+        if(message != null){
+            alert(message);
+        }
+    </script>
+</body>
+</html>

@@ -27,7 +27,10 @@ public class CommentServiceImpl implements CommentService{
 	// 댓글 삽입
 	@Override
 	public int insert(Comment comment) {
-		return mapper.insert(comment);
+		int result =   mapper.insert(comment);
+		
+		if(result > 0) return comment.getCommentNo(); // 댓글 삽입 성공 시 댓글 번호 반환
+		return 0;
 	}
 
 	// 댓글 삭제

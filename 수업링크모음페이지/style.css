@@ -1,0 +1,89 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2.6rem;
+  /* 30% 증가 */
+  text-align: center;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.3rem;
+  max-width: 900px;
+  width: 100%;
+  padding: 1.3rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.8rem;
+  font-size: 1.3rem;
+  /* 30% 증가 */
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  /* 최소 높이 설정 */
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button i {
+  font-size: 2rem;
+  /* 30% 증가 */
+}
+
+.button img{
+  width: 50px;
+  
+}
+
+
+.button-container > a{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 반응형 디자인 개선 */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button-container {
+    grid-template-columns: 1fr;
+  }
+
+  .button {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .button i {
+    font-size: 1.7rem;
+  }
+}

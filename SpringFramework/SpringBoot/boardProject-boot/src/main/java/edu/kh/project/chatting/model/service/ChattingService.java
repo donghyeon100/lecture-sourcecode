@@ -22,10 +22,6 @@ public interface ChattingService {
 
     List<Message> selectMessageList( Map<String, Object> paramMap);
 
-	/** 채팅 상대 검색
-	 * @param map 
-	 * @return memberList
-	 */
 	List<Member> selectTarget(Map<String, Object> map);
 
 }
