@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kh.test.customer.mapper.CustomerMapper">
+  <!-- namespace 미작성 -->
+
+  <!-- 호출된 Mapper 인터페이스 메서드명과 insert 태그 id가 불일치 하여 SQL이 수행되지 않음-->
+  <!-- SQL에 대입되는 파라미터 값이 Customer DTO 객체의 필드명과 다르기 때문에 필드값을 얻어와 대입할 수 없음 -->
+  
+<!--   <insert id="insertCustomer" parameterType="Customer">
+    INSERT INTO CUSTOMER
+    VALUES(SEQ_CUSTOMER_NO.NEXTVAL, #{customerName}, #{customerTel}, #{customerAddress})
+  </insert>
+ -->
+
+  <update id="updateCustomer" parameterType="Customer">
+      UPDATE CUSTOMER SET 
+      CUSTOMER_NAME = #{customerName}, 
+      CUSTOMER_TEL = #{customerTel},
+      CUSTOMER_ADDRESS = #{customerAddress}
+      WHERE CUSTOMER_NO = #{customerNo}
+	</update>
+
+</mapper>

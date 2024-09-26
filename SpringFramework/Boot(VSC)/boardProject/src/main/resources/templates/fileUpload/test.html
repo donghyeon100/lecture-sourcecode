@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 선택 및 표시</title>
+    <style>
+        /* 파일 항목의 스타일 */
+        .file-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .file-item a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>파일 선택 및 표시</h1>
+    <!-- 다중 파일 선택을 위한 입력 필드 -->
+    <form  action="/uploadFiles" method="post" enctype="multipart/form-data">
+      <input type="file" id="formFileMultiple" multiple>
+      <!-- 선택된 파일 목록을 표시할 컨테이너 -->
+      <div class="file-list"></div>
+    </form>
+
+    <script>
+        // 선택된 파일들을 저장할 배열
+        let selectFileList = [];
+
+        // 파일 선택 기능 초기화
+        const selectFileFn = () => {
+            const formFileMultiple = document.querySelector("#formFileMultiple");
+            selectFileList = [];
+
+            // 파일 선택 시 이벤트 리스너 추가
+            formFileMultiple.addEventListener("change", e => {
+                const files = e.target.files;
+
+                // 선택된 각 파일에 대해 처리
+                for (let file of files) {
+                    let flag = true;
+
+                    // 중복 파일 체크
+                    selectFileList.forEach(item => {
+                        if (item.name === file.name) flag = false;
+                    })
+
+                    // 중복되지 않은 파일만 추가
+                    if (flag) selectFileList.push(file);
+                }
+
+                // 파일 목록 갱신 및 화면 업데이트
+                convertFiles();
+                displayFileNames();
+            })
+        }
+
+        // 선택된 파일 목록을 input 요소에 반영
+        const convertFiles  = () => {
+            const formFileMultiple = document.querySelector("#formFileMultiple");
+            const dataTransfer = new DataTransfer();
+            for (let file of selectFileList) dataTransfer.items.add(file);
+            formFileMultiple.files = dataTransfer.files;
+        }
+
+        // 선택된 파일 이름을 화면에 표시
+        const displayFileNames = () => {
+            const fileContainer = document.querySelector(".file-list");
+
+            // 기존 목록 초기화
+            fileContainer.innerHTML = "";
+
+            // 각 파일에 대한 요소 생성 및 추가
+            selectFileList.forEach(item => {
+                const fileDiv = document.createElement("div");
+                fileDiv.classList.add("file-item");
+
+                // 파일 이름을 표시하는 링크 생성
+                const fileName = document.createElement("a");
+                fileName.innerHTML = item.name;
+                fileName.href = URL.createObjectURL(item);
+                fileName.download = item.name;
+
+                // 삭제 버튼 생성
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerHTML = "X";
+                deleteBtn.style.marginLeft = "10px";
+                deleteBtn.style.cursor = "pointer";
+
+                // 삭제 버튼 클릭 이벤트 처리
+                deleteBtn.addEventListener("click", () => {
+                    // 해당 파일을 목록에서 제거
+                    selectFileList = selectFileList.filter(file => file.name !== item.name);
+                    // 파일 목록 갱신 및 화면 업데이트
+                    convertFiles();
+                    displayFileNames();
+                });
+
+                // 파일 이름과 삭제 버튼을 컨테이너에 추가
+                fileDiv.append(fileName, deleteBtn);
+                fileContainer.append(fileDiv);
+            });
+        }
+
+        // 페이지 로드 시 파일 선택 기능 초기화
+        selectFileFn();
+    </script>
+</body>
+</html>
+

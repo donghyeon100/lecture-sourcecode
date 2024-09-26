@@ -6,6 +6,35 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BoardProjectApplication",
+      "request": "launch",
+      "mainClass": "edu.kh.project.BoardProjectApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Test3Application",
+      "request": "launch",
+      "mainClass": "com.kh.test.Test3Application",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Test2Application",
+      "request": "launch",
+      "mainClass": "com.kh.test.Test2Application",
+      "projectName": "test2",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62299 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=test2"
+    },
+    {
+      "type": "java",
+      "name": "DemoProject1Application",
+      "request": "launch",
+      "mainClass": "edu.kh.demo.DemoProject1Application",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "Current File",
       "request": "launch",
       "mainClass": "${file}"
@@ -16,6 +45,56 @@
       "request": "launch",
       "mainClass": "edu.kh.boot1.Boot1Application",
       "projectName": "boot1"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DemoProject1Application<demoProject1>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "edu.kh.demo.DemoProject1Application",
+      "projectName": "demoProject1",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DemoProject2Application<demoProject2>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "edu.kh.demo.DemoProject2Application",
+      "projectName": "demoProject2",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-TodoListBootApplication<todoList-boot>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "edu.kh.todo.TodoListBootApplication",
+      "projectName": "todoList-boot",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-TestApplication<test2>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.kh.test.TestApplication",
+      "projectName": "test2",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BoardProjectApplication<boardProject>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "edu.kh.project.BoardProjectApplication",
+      "projectName": "boardProject",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

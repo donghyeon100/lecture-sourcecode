@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoList - Ajax</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/ajax-main.css">
+  <style>
+    body {
+      background-color: white;
+    }
+    .highlight {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Todo List - Ajax 버전</h1>
+    <hr>
+
+    <div class="mb-4">
+      <h4 class="highlight">할 일 추가</h4>
+      <div class="mb-3">
+        제목 : <input type="text" class="form-control" id="todoTitle">
+      </div>
+      <div class="mb-3">
+        <textarea id="todoDetail" class="form-control" cols="50" rows="5" placeholder="상세 내용"></textarea>
+      </div>
+      <button id="addBtn" class="btn btn-primary">추가 하기</button>
+    </div>
+
+    <hr>
+
+    <h3 id="todoHeader" class="highlight">
+      전체 Todo 개수 : <span id="totalCount">0</span> 개 /
+      완료된 Todo 개수 : <span id="todoCompleteCount">0</span> 개
+      <button id="reloadBtn" class="btn btn-secondary">새로고침</button>
+    </h3>
+
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>할 일 제목</th>
+          <th>완료 여부</th>
+          <th>등록 날짜</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+      </tbody>
+    </table>
+
+    <div id="popupLayer" class="popup-hidden">
+      <div class="popup-row">
+        번호 : <span id="popupTodoNo"></span> |
+        제목 : <span id="popupTodoTitle"></span>
+        <span id="popupClose" class="btn-close" aria-label="Close"></span>
+      </div>
+      <div class="popup-row">
+        완료 여부 : <span id="popupComplete"></span> |
+        등록일 : <span id="popupRegDate"></span>
+      </div>
+      <div class="popup-row">
+        [내용]
+        <div id="popuptodoDetail"></div>
+      </div>
+      <div class="btn-container">
+        <button id="changeComplete" class="btn btn-warning">완료 여부 변경</button>
+        <button id="updateView" class="btn btn-info">수정</button>
+        <button id="deleteBtn" class="btn btn-danger">삭제</button>
+      </div>
+    </div>
+
+    <div id="updateLayer" class="popup-hidden">
+      <div class="popup-row">
+        제목 : <input type="text" id="updateTitle" class="form-control">
+      </div>
+      <div class="popup-row">
+        <textarea id="updateContent" class="form-control" cols="50" rows="5"></textarea>
+      </div>
+      <div class="btn-container">
+        <button id="updateBtn" class="btn btn-success">수정</button>
+        <button id="updateCancel" class="btn btn-secondary">취소</button>
+      </div>
+    </div>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+  </div>
+
+  <script src="/js/ajax-main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
