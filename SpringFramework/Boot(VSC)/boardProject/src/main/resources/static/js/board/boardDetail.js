@@ -65,7 +65,7 @@ boardLike.addEventListener("click", e => {
     if(likeCheck == 0) return;
 
     // 웹소켓을 이용해서 알림 추가
-    sendNotificationFn("boardLike", location.pathname, boardNo);
+    //sendNotificationFn("boardLike", location.pathname, boardNo);
 
   });
 

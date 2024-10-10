@@ -136,7 +136,7 @@ public class BoardController {
 			map.put("memberNo", loginMember.getMemberNo());
 		}
 		
-		
+		 
 		// 2) 서비스 호출
 		Board board = service.selectOne(map);
 

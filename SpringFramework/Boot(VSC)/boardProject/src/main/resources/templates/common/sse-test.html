@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSE Client</title>
+</head>
+
+<body>
+  <h1>SSE 클라이언트</h1>
+  <input type="text" id="clientId" placeholder="클라이언트 ID 입력">
+  <button id="connectBtn">연결</button>
+  <div id="messages"></div>
+
+  <script>
+    let eventSource;
+
+    document.getElementById('connectBtn').addEventListener('click', function () {
+      const clientId = document.getElementById('clientId').value;
+      if (clientId) {
+        // SSE 연결
+        connectSse(clientId);
+      } else {
+        alert("클라이언트 ID를 입력하세요.");
+      }
+    });
+
+
+    function connectSse(clientId) {
+      eventSource = new EventSource(`/sse/${clientId}`);
+
+      eventSource.onmessage = function (event) {
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML += `<p>${event.data}</p>`;
+      };
+
+      eventSource.onerror = function () {
+        // console.error("SSE 연결 오류");
+        console.log("SSE 재연결 시도")
+        eventSource.close();
+        // 재연결 시도
+        setTimeout(() => connectSse(clientId), 5000); // 5초 후 재연결
+      };
+    }
+
+    // 예시: 특정 클라이언트에게 메시지 전송
+    function notifyClient(clientId, message) {
+      fetch(`/notify/${clientId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(message)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('네트워크 응답이 좋지 않습니다.');
+          }
+        })
+        .catch(error => {
+          console.error('문제가 발생했습니다:', error);
+        });
+    }
+
+    // 예시: 클라이언트 ID와 메시지를 사용하여 notifyClient 호출
+    // notifyClient('특정클라이언트ID', '전송할 메시지');
+  </script>
+</body>
+
+</html>

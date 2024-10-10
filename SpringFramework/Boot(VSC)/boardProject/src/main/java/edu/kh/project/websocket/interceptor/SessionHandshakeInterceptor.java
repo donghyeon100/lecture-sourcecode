@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 /** SessionHandshakeInterceptor 클래스
  * 
  * WebSocketHandler가 동작하기 전/후에
- * 연결된 클라이언트 세션을 가로채는 동작을 작성할 클래스
+ * 연결된 클라이언트 HTTP 세션을 가로채서 WebSocket 세션으로 변환하는 동작을 작성할 클래스
  */
 
 @Component // bean 등록

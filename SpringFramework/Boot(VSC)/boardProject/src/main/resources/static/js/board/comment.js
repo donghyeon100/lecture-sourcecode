@@ -42,7 +42,7 @@ const selectCommentList = () => {
     const ul = document.querySelector("#commentList");
     ul.innerHTML = ""; // 기존 댓글 목록 삭제
 
-
+l
     /* ******* 조회된 commentList를 이용해 댓글 출력 ******* */
     for(let comment of commentList){
 

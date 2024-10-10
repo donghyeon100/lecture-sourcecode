@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.main.model.service.MainService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller // bean 등록
 @RequiredArgsConstructor
@@ -67,6 +69,10 @@ public class MainController {
 	
 	
 	
+	@GetMapping("sse-test")
+	public String sseTest() {
+		return "common/sse-test";
+	}
 	
 	
 	
