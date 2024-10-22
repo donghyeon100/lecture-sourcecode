@@ -3,7 +3,7 @@ package edu.kh.project.websocket.model.service;
 import java.util.List;
 
 import edu.kh.project.board.model.dto.Board;
-import edu.kh.project.websocket.model.dto.Notification;
+import edu.kh.project.sse.dto.Notification;
 
 public interface NotificationService {
 

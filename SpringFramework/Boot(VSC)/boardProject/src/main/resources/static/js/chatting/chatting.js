@@ -126,7 +126,7 @@ if(chattingSock != undefined){
 
 
 // 비동기로 채팅방 목록 조회
-function selectRoomList(){
+const selectRoomList = () => {
 
 	fetch("/chatting/roomList")
 	.then(resp => resp.json())
@@ -201,7 +201,7 @@ function selectRoomList(){
 				notReadCount.classList.add("not-read-count");
 				notReadCount.innerText = room.notReadCount;
 				div.append(notReadCount);
-			}else{
+			}else if(selectChattingNo !== undefined && room.chattingNo != selectChattingNo){
 
 				// 현재 채팅방을 보고있는 경우
 				// 비동기로 해당 채팅방 글을 읽음으로 표시
@@ -235,7 +235,7 @@ const display = document.getElementsByClassName("display-chatting")[0];
 
 
 // 채팅방 목록에 이벤트를 추가하는 함수 
-function roomListAddEvent(){
+const roomListAddEvent = () => {
 	const chattingItemList = document.getElementsByClassName("chatting-item");
 	
 	for(let item of chattingItemList){
@@ -270,7 +270,7 @@ function roomListAddEvent(){
 
 
 // 비동기로 메세지 목록을 조회하는 함수
-function selectChattingFn() {
+const selectChattingFn = () => {
 
 	fetch(`/chatting/selectMessage?chattingNo=${selectChattingNo}`)
 	.then(resp => resp.json())
@@ -324,7 +324,7 @@ function selectChattingFn() {
 			}
 
 			ul.append(li);
-			display.scrollTop = display.scrollHeight; // 스크롤 제일 밑으로
+			ul.scrollTop = ul.scrollHeight; // 스크롤 제일 밑으로
 		}
 
 	})
@@ -391,7 +391,7 @@ targetInput.addEventListener("input", e => {
 		fetch("/chatting/selectTarget?query="+query)
 		.then(resp => resp.json())
 		.then(list => {
-			//console.log(list);
+			console.log(list);
 
 			resultArea.innerHTML = ""; // 이전 검색 결과 비우기
 
@@ -400,6 +400,7 @@ targetInput.addEventListener("input", e => {
 				li.classList.add("result-row");
 				li.innerText = "일치하는 회원이 없습니다";
 				resultArea.append(li);
+				ㄱㄷ셔구
 			}
 
 			for(let member of list){

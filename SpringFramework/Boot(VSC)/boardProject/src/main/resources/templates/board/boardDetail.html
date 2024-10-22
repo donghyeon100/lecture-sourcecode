@@ -162,12 +162,21 @@
         const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호" ;
 
         /* 현재 게시글 번호를 전역 변수로 저장 */
-        const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
+        // const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
 
         /* 현재 게시글 좋아요 여부(boardLike)를 전역 변수로 저장 */
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부";
 
         const userDefaultIamge = /*[[#{user.default.image}]]*/ "기본이미지";
+
+        // 로그인 되어있으면 true, 아니면 false
+        const loginCheck = /*[[${session.loginMember != null}]]*/ false;
+
+        // 게시글 상세 정보
+        const boardDetail = /*[[${board}]]*/ null;  
+
+        // 로그인한 회원 닉네임
+        const memberNickname = /*[[${session.loginMember?.memberNickname}]]*/ null;
     </script>
 
     <script src="/js/board/boardDetail.js"></script>

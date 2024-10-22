@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.member.model.dto.Member;
-import edu.kh.project.websocket.model.dto.Notification;
+import edu.kh.project.sse.dto.Notification;
 import edu.kh.project.websocket.model.service.NotificationService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

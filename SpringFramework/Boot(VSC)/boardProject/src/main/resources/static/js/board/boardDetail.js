@@ -14,7 +14,7 @@
 //    --> session에서 얻어오기 (session은 서버에서 관리하기 때문에 JS로 없음)
 // 2) 현재 게시글 번호 준비
 // 3) 좋아요 여부 준비
-
+const boardNo = location.pathname.split("/")[3];
 
 // 1. #boardLike가 클릭 되었을 때
 const boardLike = document.querySelector("#boardLike");
@@ -63,10 +63,10 @@ boardLike.addEventListener("click", e => {
 
     // 취소한 경우에는 알림 X
     if(likeCheck == 0) return;
-
-    // 웹소켓을 이용해서 알림 추가
-    //sendNotificationFn("boardLike", location.pathname, boardNo);
-
+    
+    
+    const content = `<strong>${memberNickname}</strong>님이 <strong>${boardDetail.boardTitle}</strong> 게시글을 좋아합니다`;
+    sendNotification("boardLike", `${location.pathname}`, boardNo, content);
   });
 
 
@@ -151,12 +151,17 @@ const goToListBtn = document.querySelector("#goToListBtn");
 
 goToListBtn.addEventListener("click", () => {
 
+
+  const limit = 10; // 페이지당 게시글 수
+
+  location.href = location.pathname + "/goToList?limit=" + limit;
+
   // 상세조회 : /board/1/2011?cp=1
   // 목록     : /board/1?cp=1
 
-  let url = location.pathname;
-  url = url.substring(0, url.lastIndexOf("/"));
+  // let url = location.pathname;
+  // url = url.substring(0, url.lastIndexOf("/"));
 
-  location.href = url + location.search;
+  // location.href = url + location.search;
                         // 쿼리스트링
 });

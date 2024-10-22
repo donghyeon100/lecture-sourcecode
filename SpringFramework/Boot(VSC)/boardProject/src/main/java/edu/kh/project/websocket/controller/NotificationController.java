@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import edu.kh.project.member.model.dto.Member;
-import edu.kh.project.websocket.model.dto.Notification;
+import edu.kh.project.sse.dto.Notification;
 import edu.kh.project.websocket.model.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 
-@RestController
-@RequestMapping("notification")
+// @RestController
+// @RequestMapping("notification")
 @RequiredArgsConstructor
 public class NotificationController {
 

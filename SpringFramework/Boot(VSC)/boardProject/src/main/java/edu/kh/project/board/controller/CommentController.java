@@ -2,7 +2,6 @@ package edu.kh.project.board.controller;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,11 +9,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import edu.kh.project.board.model.dto.Comment;
 import edu.kh.project.board.model.service.CommentService;
+import edu.kh.project.member.model.dto.Member;
 import lombok.RequiredArgsConstructor;
 
 /* @RestController (REST API 구축을 위해 사용하는 컨트롤러)
@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("comment")
 public class CommentController {
 
 	private final CommentService service;
@@ -39,7 +38,7 @@ public class CommentController {
 	 */
 	// value 속성 : 매핑할 주소
 	// produces 속성 : 응답할 데이터의 형식을 지정
-	@GetMapping(value="", produces = "application/json")
+	@GetMapping(value="comment", produces = "application/json")
 	public List<Comment> select(@RequestParam("boardNo") int boardNo){
 		
 		// HttpMessageConverter가
@@ -51,9 +50,12 @@ public class CommentController {
 	/** 댓글 등록
 	 * @return
 	 */
-	@PostMapping("")
-	public int insert(@RequestBody Comment comment) {
+	@PostMapping("comment")
+	public int insert(
+		@RequestBody Comment comment,
+		@SessionAttribute("loginMember") Member loginMember) {
 		
+		comment.setMemberNo(loginMember.getMemberNo());
 		// 요청 데이터가 JSON으로 명시됨
 		//  headers : {"Content-Type" : "application/json"}
 		
@@ -70,7 +72,7 @@ public class CommentController {
 	 * @param comment (번호, 내용)
 	 * @return result
 	 */
-	@PutMapping("")
+	@PutMapping("comment")
 	public int update(@RequestBody Comment comment) {
 		return service.update(comment);
 	}
@@ -82,7 +84,7 @@ public class CommentController {
 	 * @param commentNo
 	 * @return result
 	 */
-	@DeleteMapping("")
+	@DeleteMapping("comment")
 	public int delete(@RequestBody int commentNo) {
 		return service.delete(commentNo);
 	}

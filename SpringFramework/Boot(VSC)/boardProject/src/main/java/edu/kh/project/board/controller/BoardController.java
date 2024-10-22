@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.dto.BoardImg;
+import edu.kh.project.board.model.dto.Comment;
 import edu.kh.project.board.model.service.BoardService;
 import edu.kh.project.member.model.dto.Member;
 import jakarta.servlet.http.Cookie;
@@ -287,6 +289,34 @@ public class BoardController {
 	}
 	
 	
+
+
+	@GetMapping("commentList")
+	public String selectCommentList(
+		@RequestParam("boardNo") int boardNo,
+		Model model) {
+
+		List<Comment> commentList = service.selectCommentList(boardNo);
+		
+		Board board = Board.builder().commentList(commentList).build();
+		model.addAttribute("board", board);
+
+		return "board/comment :: comment-list";
+	}
 	
 	
+
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/goToList")
+	public String goToList(
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("boardNo") int boardNo,
+		@RequestParam("limit") int limit
+	){
+
+		int cp = service.getCurrentPage(boardCode, boardNo, limit);
+
+
+		return "redirect:/board/" + boardCode + "?cp=" + cp;
+	}
+	 
 }

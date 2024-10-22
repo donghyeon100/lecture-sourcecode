@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.project.board.model.dto.Board;
+import edu.kh.project.board.model.dto.Comment;
 
 @Mapper
 public interface BoardMapper {
@@ -81,6 +83,22 @@ public interface BoardMapper {
 	 * @return boardList
 	 */
 	List<Board> selectSearchList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+
+	/** 댓글 목록 조회
+	 * @param boardNo
+	 * @return
+	 */	
+  List<Comment> selectCommentList(int boardNo);
+
+
+	/** 현재 페이지 조회
+	 * @param boardCode
+	 * @param boardNo
+	 * @param limit
+	 * @return cp
+	 */
+	int getCurrentPage(@Param("boardCode") int boardCode, @Param("boardNo") int boardNo, @Param("limit") int limit);
 
 	
 	

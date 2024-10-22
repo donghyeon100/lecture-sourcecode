@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.project.board.model.dto.Board;
+import edu.kh.project.board.model.dto.Comment;
 
 public interface BoardService {
 
@@ -43,4 +44,18 @@ public interface BoardService {
 	 * @return map
 	 */
 	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
+
+	/** 댓글 목록 조회
+	 * @param boardNo
+	 * @return commentList
+	 */
+	List<Comment> selectCommentList(int boardNo);
+
+	/** 현재 페이지 조회
+	 * @param boardCode
+	 * @param boardNo
+	 * @param limit
+	 * @return cp
+	 */
+	int getCurrentPage(int boardCode, int boardNo, int limit);
 }

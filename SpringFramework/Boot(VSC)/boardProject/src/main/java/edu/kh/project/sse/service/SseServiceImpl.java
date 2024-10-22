@@ -1,75 +1,74 @@
 package edu.kh.project.sse.service;
 
+import java.util.List;
+import java.util.Map;
 import org.springframework.stereotype.Service;
 
-import edu.kh.project.board.model.dto.Board;
-import edu.kh.project.member.model.dto.Member;
-import edu.kh.project.websocket.model.dto.Notification;
+import edu.kh.project.sse.dto.Notification;
+import edu.kh.project.sse.mapper.SseMapper;
+import lombok.RequiredArgsConstructor;
 
 @Service
-public class SseServiceImpl implements SseService{
-  
+@RequiredArgsConstructor
+public class SseServiceImpl implements SseService {
 
-  	/**
-	 * 알림 종류에 따라 알림 객체에 값 추가하기
-	 * 
-	 * @param notification
-	 * @return
-	 */
-	private void setNotification(Notification notification, Member sendMember) {
+	private final SseMapper mapper;
 
-		// // 보낸 사람 받는 번호
-		// notification.setSendMemberNo(sendMember.getMemberNo());
+	// 알림 삽입
+	@Override
+    public Map<String, Object> insertNotification(Notification notification) {
 
-		// // 보낸 사람 프로필 이미지
-		// notification.setSendMemberProfileImg(sendMember.getProfileImg());
+			// 댓글 작성, 좋아요 -> 게시글 작성자 번호 조회
+			// 답글 작성 -> 부모 댓글 작성자 번호 조회
+			// 채팅 -> 상대방 번호 조회
+			// int receiveMemberNo = 0;
+			Map<String, Object> map = null;
+			int result = 0;
+			switch(notification.getNotificationType()) {
+				case "insertComment", "boardLike", "insertChildComment":
+					// notification.setReceiveMemberNo(receiveMemberNo);
+					result = mapper.insertNotification(notification);
 
-		// // 알림을 보낼 때 필요한 게시글 관련 값 조회
-		// // Board board = service.selectBoardData(notification.getPkNo());
+					break;
+				// case "insertChildComment":
+					// result = mapper.insertNotificationChildComment(notification);
+					// break;
+				case "insertChat":
+					break;
+			}
 
-		// // *****************************************************************
-		// // 로그인한 회원이 자신의 게시글을 좋아요, 댓글 작성 한 경우 -> 알림 필요 없음
-		// if (sendMember.getMemberNo() == board.getMemberNo())
-		// 	return;
-		// // *****************************************************************
+			// Notification noti = mapper.selectOne(notification.getNotificationNo());
+			if(result > 0) {
+				map = mapper.selectReceiveMemberNo(notification.getNotificationNo());
+			}
 
-		// String content = null;
-
-		// switch (notification.getNotificationType()) {
-
-		// 	/* ********* 게시글 좋아요 웹소켓 send 요청 시 ********* */
-		// 	case "boardLike":
-
-		// 		// 알림 내용 가공
-		// 		content = String.format("<b>%s</b>님이 <b>[%s]</b> 게시글을 좋아합니다",
-		// 				sendMember.getMemberNickname(), board.getBoardTitle());
-
-		// 		// 알림 내용 세팅
-		// 		notification.setNotificationContent(content);
-
-		// 		// 알림 받을 회원 번호 세팅
-		// 		notification.setReceiveMemberNo(board.getMemberNo());
-		// 		break;
-
-		// 	/* ********* 댓글 등록 웹소켓 send 요청 시 ********* */
-		// 	case "insertComment":
-
-		// 		// 알림 내용 가공
-		// 		content = String.format("<b>%s</b>님이 <b>[%s]</b> 게시글에 댓글을 남겼습니다",
-		// 				sendMember.getMemberNickname(), board.getBoardTitle());
-		// 		// 알림 내용 세팅
-		// 		notification.setNotificationContent(content);
-
-		// 		// 알림 받을 회원 번호 세팅
-		// 		notification.setReceiveMemberNo(board.getMemberNo());
-
-		// 		break;
-		// }
-	}
-
-    @Override
-    public int insertNotification(Notification notification) {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Unimplemented method 'insertNotification'");
+			return map;
     }
+
+
+		// 읽지 않은 알림 개수 체크
+		@Override
+		public int notReadCheck(int memberNo) {
+			return mapper.notReadCheck(memberNo);
+		}
+
+		// 알림 목록 조회
+		@Override
+		public List<Notification> selectNotificationList(int memberNo) {
+			return mapper.selectNotificationList(memberNo);
+		}
+
+		// 알림 읽음으로 변경
+		@Override
+		public void updateNotification(int notificationNo) {
+			mapper.updateNotification(notificationNo);
+		}
+
+		// 알림 삭제
+		@Override
+		public void deleteNotification(int notificationNo) {
+			mapper.deleteNotification(notificationNo);
+		}
+
+		
 }

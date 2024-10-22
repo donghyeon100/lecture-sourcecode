@@ -133,7 +133,7 @@ public class EditBoardController {
 	
 	// 하나의 요청 주소로 GET, POST 주소를 모두 처리하는 방법
 	@RequestMapping(value="{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete",
-					method = {RequestMethod.GET, RequestMethod.POST})
+					method = {/* RequestMethod.GET,  */RequestMethod.POST})
 	public String boardDelete(
 		@PathVariable("boardCode") int boardCode,
 		@PathVariable("boardNo") int boardNo,

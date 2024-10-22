@@ -344,9 +344,18 @@
 	</select>
 
 
-
-
-
+	<!-- 현재 페이지 조회 -->
+	<select id="getCurrentPage">
+		SELECT CEIL(RNUM/#{limit}) CP
+		FROM(
+			SELECT 
+				ROW_NUMBER() OVER(ORDER BY BOARD_NO DESC) RNUM, BOARD_NO
+			FROM "BOARD"
+			WHERE BOARD_CODE = #{boardCode}
+			AND BOARD_DEL_FL = 'N'
+		)
+		WHERE BOARD_NO = #{boardNo}
+	</select>
 
 
 

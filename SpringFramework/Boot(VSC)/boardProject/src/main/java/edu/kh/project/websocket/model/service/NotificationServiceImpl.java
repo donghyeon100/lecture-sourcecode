@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import edu.kh.project.board.model.dto.Board;
-import edu.kh.project.websocket.model.dto.Notification;
+import edu.kh.project.sse.dto.Notification;
 import edu.kh.project.websocket.model.mapper.NotificationMapper;
 import lombok.RequiredArgsConstructor;
 

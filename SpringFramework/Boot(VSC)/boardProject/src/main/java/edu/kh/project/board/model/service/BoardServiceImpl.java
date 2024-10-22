@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.dto.BoardImg;
+import edu.kh.project.board.model.dto.Comment;
 import edu.kh.project.board.model.dto.Pagination;
 import edu.kh.project.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -198,8 +199,18 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	
+	// 댓글 목록 조회
+	@Override
+	public List<Comment> selectCommentList(int boardNo) {
+		return mapper.selectCommentList(boardNo);
+	}
 	
-	
-	
+
+	// 현재 페이지 조회
+	@Override
+	public int getCurrentPage(int boardCode, int boardNo, int limit) {
+
+		return mapper.getCurrentPage(boardCode, boardNo, limit);
+	}
 	
 }

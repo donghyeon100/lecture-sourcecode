@@ -45,7 +45,7 @@
     }
 
     // 예시: 특정 클라이언트에게 메시지 전송
-    function notifyClient(clientId, message) {
+    function sendNotification(clientId, message) {
       fetch(`/notify/${clientId}`, {
         method: 'POST',
         headers: {
@@ -63,8 +63,8 @@
         });
     }
 
-    // 예시: 클라이언트 ID와 메시지를 사용하여 notifyClient 호출
-    // notifyClient('특정클라이언트ID', '전송할 메시지');
+    // 예시: 클라이언트 ID와 메시지를 사용하여 sendNotification 호출
+    // sendNotification('특정클라이언트ID', '전송할 메시지');
   </script>
 </body>
 

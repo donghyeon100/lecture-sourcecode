@@ -473,6 +473,21 @@ header>section:nth-child(3) {
   text-shadow: 1px 1px 3px gray, 2px 2px 5px black;
 }
 
+.notification-count-area{
+  position: absolute;
+  bottom: -6px;
+  right: -10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+}
 
 .notification-list{
   position: absolute;
